@@ -32,12 +32,22 @@
 .month-card {
     background-color: #fff;
     padding: 15px;
-    border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     width: 300px;
     text-align: center;
     cursor: pointer;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.month-card h3 {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.month-card i {
+    font-size: 30px;
+    margin-right: 20px;
 }
 
 .month-card:hover {

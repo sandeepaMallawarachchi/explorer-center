@@ -85,6 +85,21 @@ const monthsData = [
     }
 ];
 
+const monthIcons = {
+    January: "fas fa-sun",
+    February: "fas fa-snowflake",
+    March: "fas fa-wind",
+    April: "fas fa-leaf",
+    May: "fas fa-cloud-sun",
+    June: "fas fa-cloud-showers-heavy",
+    July: "fas fa-cloud-sun-rain",
+    August: "fas fa-cloud-sun-rain",
+    September: "fas fa-sun",
+    October: "fas fa-tree",
+    November: "fas fa-cloud",
+    December: "fas fa-snowman"
+};
+
 let currentIndex = 0;
 
 function showMonthContent(index) {
@@ -107,7 +122,8 @@ function createMonthCards() {
     monthsData.forEach((month, index) => {
         const card = document.createElement("div");
         card.classList.add("month-card");
-        card.innerHTML = `<h3>${month.month}</h3>`;
+        const icon = `<i class="${monthIcons[month.month]}"></i> `;
+        card.innerHTML = `<h3>${icon}${month.month}</h3>`;
         
         card.addEventListener("click", () => {
             document.querySelectorAll('.month-card').forEach(c => c.classList.remove('selected'));
