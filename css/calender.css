@@ -1,0 +1,84 @@
+.calender-container {
+    display: flex;
+    justify-content: space-between;
+    height: 110vh;
+}
+
+.left-panel {
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.right-panel {
+    width: 60%;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.months-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    transition: transform 0.3s ease;
+    overflow-y: auto;
+    width: 100%;
+}
+
+.month-card {
+    background-color: #fff;
+    padding: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 300px;
+    text-align: center;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.month-card h3 {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.month-card i {
+    font-size: 30px;
+    margin-right: 20px;
+}
+
+.month-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    background-color: #1aa3d3;
+}
+
+.month-card.selected {
+    background-color: #1aa3d3;
+}
+
+#monthImage {
+    width: 100%;
+    height: auto;
+    margin-bottom: 20px;
+}
+
+.month-content h5 {
+    font-size: 16px;
+    color: #555;
+    margin: 5px 0;
+}
+
+.month-content p {
+    font-size: 14px;
+    color: #777;
+}
+
+.month-content h2 {
+    font-size: 28px;
+    color: #333;
+    margin-bottom: 15px;
+}
