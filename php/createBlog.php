@@ -55,29 +55,26 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 </head>
 
 <body>
-    <!-- Contact Start -->
+    <!-- create blog Start -->
     <div class="container-fluid py-5">
         <div class="container py-5">
             <div class="text-center mb-3 pb-3">
-                <h6 class="text-primary text-uppercase" style="letter-spacing: 5px;">Contact</h6>
-                <h1>Contact For Any Query</h1>
+                <h6 class="text-primary text-uppercase" style="letter-spacing: 5px;">Blog</h6>
+                <h1>Create a Blog</h1>
             </div>
             <div class="row justify-content-center">
                 <div class="col-lg-8">
                     <div class="contact-form bg-white" style="padding: 30px;">
                         <div id="success"></div>
                         <form method="POST" action="php/createBlog.php">
-                            <div class="form-row">
-                                <div class="control-group col-sm-6">
-                                    <input type="text" class="form-control p-4" id="author" name="author" placeholder="Your Name"
-                                        required="required" data-validation-required-message="Please enter your name" />
-                                    <p class="help-block text-danger"></p>
-                                </div>
-                                <div class="control-group col-sm-6">
-                                    <input type="text" class="form-control p-4" id="category" name="category" placeholder="Enter Category"
-                                        required="required" data-validation-required-message="Please enter category" />
-                                    <p class="help-block text-danger"></p>
-                                </div>
+                            <div class="control-group">
+                                <input type="text" class="form-control p-4" id="author" name="author" placeholder="Your Name"
+                                    required="required" data-validation-required-message="Please enter your name" />
+                                <p class="help-block text-danger"></p>
+                            </div>
+                            <div class="control-group"> <input type="text" class="form-control p-4" id="category" name="category" placeholder="Enter Category"
+                                    required="required" data-validation-required-message="Please enter category" />
+                                <p class="help-block text-danger"></p>
                             </div>
                             <div class="control-group">
                                 <input type="text" class="form-control p-4" id="topic" name="topic" placeholder="Topic"
@@ -104,7 +101,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             </div>
         </div>
     </div>
-    <!-- Contact End -->
+    <!-- create blog End -->
 </body>
 
 </html>
