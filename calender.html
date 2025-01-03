@@ -24,6 +24,8 @@
 
     <!-- Customized Bootstrap Stylesheet -->
     <link href="css/style.css" rel="stylesheet">
+
+    <link href="css/calender.css" rel="stylesheet">
 </head>
 
 <body>
@@ -59,7 +61,7 @@
     <!-- Navbar End -->
 
     <!-- Header Start -->
-    <div class="container-fluid page-header">
+    <div class="container-fluid calendar-page-header">
         <div class="container">
             <div class="d-flex flex-column align-items-center justify-content-center" style="min-height: 400px">
                 <h3 class="display-4 text-white text-uppercase">Calender</h3>
@@ -133,263 +135,17 @@
                 <h6 class="text-primary text-uppercase" style="letter-spacing: 5px;">Calender</h6>
                 <h1>Calender Of Sri Lanka</h1>
             </div>
-            <div class="row">
-                <div class="col-lg-4 col-md-6 mb-4">
-                    <div class="service-item bg-white text-center mb-2 py-5 px-4">
-                        <!-- <i class="fa fa-2x fa-route mx-auto mb-4"></i> -->
-                        <h2 class="mb-2">January</h2>
-                        <p class="m-0">
-                        <h5>Specialty</h5> January marks the beginning of the dry season in Sri Lanka, making it an
-                        excellent time to explore the island's cultural heritage and natural beauty without the
-                        interruption of heavy rains.
-                        <h5>Rainy Season</h5>Minimal rainfall across the island, particularly in the central and
-                        southern regions.
-                        <h5>Festivals</h5>Thai Pongal, celebrated predominantly by the Tamil community, is a colorful
-                        harvest festival filled with traditional rituals and feasting.
-                        <h5>Sea Seasons</h5>Coastal areas experience calm seas and gentle waves, perfect for swimming,
-                        snorkeling, and diving.
-                        <h5>Best Sports</h5> Water-based activities such as diving and snorkeling are ideal during this
-                        month, especially in locations like Hikkaduwa and Trincomalee.
-                        <h5>Best Cities</h5>Colombo, the vibrant capital city, offers a blend of modern attractions and
-                        historical sites. Anuradhapura, an ancient city rich in cultural heritage, is perfect for
-                        exploring historical ruins.</p>
+            <div class="calender-container">
+                <div class="left-panel">
+                    <div class="months-container" id="monthsContainer">
+                        <!-- Month Cards Will Appear Here -->
                     </div>
                 </div>
-                <div class="col-lg-4 col-md-6 mb-4">
-                    <div class="service-item bg-white text-center mb-2 py-5 px-4">
-                        <!-- <i class="fa fa-2x fa-ticket-alt mx-auto mb-4"></i> -->
-                        <h2 class="mb-2">Febuary</h2>
-                        <p class="m-0">
-                        <h5>Specialty</h5>February continues the dry season, providing pleasant weather for outdoor
-                        adventures and beach activities.
-                        <h5> Rainy Season</h5> Minimal rainfall persists, particularly in the coastal and lowland areas.
-                        <h5> Festivals</h5> Navam Perahera, a grand Buddhist procession held in Colombo's Gangaramaya
-                        Temple, showcases vibrant cultural performances and religious rituals.
-                        <h5> Sea Seasons</h5>The coastal waters remain calm and clear, offering excellent conditions for
-                        diving, snorkeling, and whale watching.
-                        <h5> Best Sports</h5> Surfing enthusiasts can catch some waves along the southern coast,
-                        particularly in popular spots like Mirissa and Arugam Bay.
-                        <h5> Best Cities</h5> Galle, renowned for its colonial architecture and historic fort, provides
-                        a charming backdrop for exploration. Mirissa, a coastal town known for its picturesque beaches
-                        and whale watching opportunities, offers a tranquil retreat.</p>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 mb-4">
-                    <div class="service-item bg-white text-center mb-2 py-5 px-4">
-                        <!-- <i class="fa fa-2x fa-hotel mx-auto mb-4"></i> -->
-                        <h2 class="mb-2">March</h2>
-                        <p class="m-0">
-                        <h5>Specialty</h5> March marks the tail end of the dry season, with pleasant weather perfect for
-                        outdoor activities such as hiking and wildlife safaris.
-                        <h5> Rainy Season</h5> The onset of sporadic showers in some parts of the island, particularly
-                        in the central highlands.
-                        <h5>Festivals</h5> Maha Shivaratri, celebrated by Hindus across the island, involves rituals,
-                        prayers, and offerings at temples dedicated to Lord Shiva.
-                        <h5>Sea Seasons</h5> Coastal areas experience calm seas and warm temperatures, making it ideal
-                        for water-based activities such as snorkeling and sailing.
-                        <h5> Best Sports</h5> Hiking and trekking in the central highlands, particularly in destinations
-                        like Ella and Horton Plains National Park, offer breathtaking views of lush landscapes and
-                        cascading waterfalls.
-                        <h5> Best Cities</h5> Kandy, the cultural capital of Sri Lanka, boasts significant historical
-                        and religious sites, including the Temple of the Tooth Relic. Ella, a picturesque hill station
-                        surrounded by tea plantations and scenic trails, provides a tranquil escape for nature lovers.
-                        </p>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 mb-4">
-                    <div class="service-item bg-white text-center mb-2 py-5 px-4">
-                        <!-- <i class="fa fa-2x fa-route mx-auto mb-4"></i> -->
-                        <h2 class="mb-2">April</h2>
-                        <p class="m-0">
-                        <h5>Specialty</h5> April marks the beginning of the Sinhala and Tamil New Year, ushering in the
-                        traditional festivities amidst the onset of the wet season.
-                        <h5>Rainy Season</h5> The start of the wet season brings occasional showers and lush greenery
-                        across the island, particularly in the southwestern and central regions.
-                        <h5> Festivals</h5> Sinhala and Tamil New Year celebrations encompass traditional customs,
-                        rituals, and games, bringing communities together in joyous festivities.
-                        <h5> Sea Seasons</h5>Coastal waters may experience rougher conditions due to the onset of the
-                        southwest monsoon, but diving and snorkeling opportunities are still available in sheltered
-                        areas.
-                        <h5> Best Sports</h5> White-water rafting in Kitulgala offers thrilling adventures amidst scenic
-                        river rapids and lush rainforest surroundings.
-                        <h5> Best Cities</h5> Nuwara Eliya, known as "Little England," offers a cool climate and
-                        picturesque landscapes, perfect for leisurely strolls and tea plantation tours. Dambulla, home
-                        to ancient cave temples and majestic rock formations, provides a glimpse into Sri Lanka's rich
-                        cultural heritage.</p>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 mb-4">
-                    <div class="service-item bg-white text-center mb-2 py-5 px-4">
-                        <!-- <i class="fa fa-2x fa-ticket-alt mx-auto mb-4"></i> -->
-                        <h2 class="mb-2">May</h2>
-                        <p class="m-0">
-                        <h5>Specialty</h5> May sees the peak of the wet season, with abundant rainfall rejuvenating the
-                        island's lush landscapes and cascading waterfalls.
-                        <h5>Rainy Season</h5> Heavy rainfall occurs across the island, particularly in the southwestern
-                        and central regions, creating vibrant greenery and lush vegetation.
-                        <h5>Festivals</h5> Vesak, commemorating the birth, enlightenment, and death of Lord Buddha, is
-                        celebrated with illuminated lanterns, colorful decorations, and acts of charity.
-                        <h5>Sea Seasons</h5> Coastal areas may experience rough seas and intermittent rainfall, but
-                        diving enthusiasts can explore underwater ecosystems teeming with marine life.
-                        <h5>Best Sports</h5> Waterfall chasing and birdwatching are popular activities during this time,
-                        with numerous waterfalls in full flow and bird species thriving in the rainforest habitats.
-                        <h5> Best Cities</h5> Sigiriya, home to the iconic Sigiriya Rock Fortress and ancient frescoes,
-                        offers a glimpse into Sri Lanka's ancient past amidst lush surroundings. Bentota, a coastal town
-                        renowned for its pristine beaches and water sports facilities, provides opportunities for
-                        relaxation and adventure.</p>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 mb-4">
-                    <div class="service-item bg-white text-center mb-2 py-5 px-4">
-                        <!-- <i class="fa fa-2x fa-hotel mx-auto mb-4"></i> -->
-                        <h2 class="mb-2">June</h2>
-                        <p class="m-0">
-                        <h5>Specialty</h5> June marks the transition to the monsoon season, with the southwest
-                        experiencing heavy rainfall while the northeast enjoys drier weather.
-                        <h5> Rainy Season</h5> The southwest monsoon brings heavy rainfall to the coastal and lowland
-                        areas, creating lush green landscapes and filling reservoirs and waterfalls.
-                        <h5> Festivals</h5> Poson Poya commemorates the introduction of Buddhism to Sri Lanka by Arahat
-                        Mahinda, with pilgrimages to ancient sites and religious ceremonies.
-                        <h5> Sea Seasons</h5> Coastal areas in the northeast experience calmer seas and drier weather,
-                        making it ideal for water-based activities such as snorkeling and diving.
-                        <h5> Best Sports</h5> Kite surfing in Kalpitiya, located on the northwest coast, offers
-                        thrilling experiences amidst strong winds and expansive lagoons.
-                        <h5>Best Cities</h5> Trincomalee, with its pristine beaches and historic sites such as Fort
-                        Frederick and Koneswaram Temple, provides a tranquil retreat away from the monsoon rains.
-                        Jaffna, in the northern region, offers a unique cultural experience with its rich history,
-                        vibrant festivals, and delectable cuisine.</p>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 mb-4">
-                    <div class="service-item bg-white text-center mb-2 py-5 px-4">
-                        <!-- <i class="fa fa-2x fa-ticket-alt mx-auto mb-4"></i> -->
-                        <h2 class="mb-2">July</h2>
-                        <p class="m-0">
-                        <h5>Specialty</h5>July sees the continuation of the monsoon season, with heavy rainfall in the
-                        southwest and drier conditions in the northeast.
-                        <h5> Rainy Season</h5>The southwest monsoon brings persistent rainfall to coastal and lowland
-                        areas, nourishing rice paddies and agricultural fields.
-                        <h5> Festivals</h5>Esala Perahera, a grand cultural procession held in Kandy, showcases
-                        traditional dances, music, and beautifully adorned elephants parading through the streets.
-                        <h5> Sea Seasons</h5>Coastal areas in the northeast continue to experience calm seas and dry
-                        weather, making it ideal for water sports and beach activities.
-                        <h5> Best Sports</h5> Scuba diving in Trincomalee offers opportunities to explore vibrant coral
-                        reefs, shipwrecks, and diverse marine life in crystal-clear waters.
-                        <h5> Best Cities</h5> Polonnaruwa, a UNESCO World Heritage Site with ancient ruins and
-                        archaeological wonders, provides insights into Sri Lanka's medieval history. Arugam Bay,
-                        renowned for its world-class surf breaks and laid-back atmosphere, attracts surfers from around
-                        the globe.</p>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 mb-4">
-                    <div class="service-item bg-white text-center mb-2 py-5 px-4">
-                        <!-- <i class="fa fa-2x fa-ticket-alt mx-auto mb-4"></i> -->
-                        <h2 class="mb-2">August</h2>
-                        <p class="m-0">
-                        <h5>Specialty</h5> August marks the transition from the peak of the monsoon season to drier
-                        conditions, offering opportunities for wildlife safaris and cultural experiences.
-                        <h5> Rainy Season</h5> The southwest monsoon begins to subside, with rainfall decreasing
-                        gradually across the island, particularly in the coastal and lowland areas.
-                        <h5> Festivals</h5> The Kataragama Esala Festival, celebrated at the sacred site of Kataragama,
-                        involves colorful processions, fire-walking rituals, and devotional offerings to Hindu deities.
-                        <h5> Sea Seasons</h5> Coastal areas experience improving weather conditions, with calmer seas
-                        and clearer visibility, making it ideal for water-based activities such as snorkeling and
-                        sailing.
-                        <h5> Best Sports</h5>Wildlife safaris in Yala National Park offer opportunities to spot iconic
-                        species such as leopards, elephants, and sloth bears amidst diverse ecosystems.
-                        <h5> Best Cities</h5> Matara, with its Dutch colonial architecture, bustling markets, and
-                        tranquil beaches, provides a laid-back coastal experience. Ella, nestled amidst picturesque tea
-                        plantations and verdant hills, offers scenic train rides, hiking trails, and breathtaking views.
-                        </p>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 mb-4">
-                    <div class="service-item bg-white text-center mb-2 py-5 px-4">
-                        <!-- <i class="fa fa-2x fa-ticket-alt mx-auto mb-4"></i> -->
-                        <h2 class="mb-2">September</h2>
-                        <p class="m-0">
-                        <h5>Specialty</h5> September marks the transition from the monsoon season to clearer weather,
-                        providing diverse opportunities for exploration and outdoor activities.
-                        <h5> Rainy Season</h5> The southwest monsoon continues to weaken, with rainfall decreasing
-                        further across the island, particularly in the coastal and lowland areas.
-                        <h5> Festivals</h5> Binara Poya commemorates significant events in the life of Lord Buddha,
-                        including his first visit to Sri Lanka and the preaching of the Vinaya Pitaka.
-                        <h5> Sea Seasons</h5> Coastal areas experience improving weather conditions, with calmer seas
-                        and warmer temperatures, making it ideal for beach activities and water sports.
-                        <h5> Best Sports</h5> Rock climbing in Sigiriya offers adrenaline-pumping experiences amidst
-                        ancient rock fortresses and panoramic views of the surrounding landscape.
-                        <h5> Best Cities</h5> Anuradhapura, one of the ancient capitals of Sri Lanka, is home to
-                        magnificent stupas, monasteries, and ancient reservoirs, providing insights into the island's
-                        rich history and cultural heritage. Negombo, known for its bustling fish markets, vibrant
-                        nightlife, and golden beaches, offers a laid-back coastal retreat with a blend of local charm
-                        and modern amenities.
-                        </p>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 mb-4">
-                    <div class="service-item bg-white text-center mb-2 py-5 px-4">
-                        <!-- <i class="fa fa-2x fa-ticket-alt mx-auto mb-4"></i> -->
-                        <h2 class="mb-2">October</h2>
-                        <p class="m-0">
-                        <h5>Specialty</h5>October marks the transition to the dry season, with clear skies and pleasant
-                        weather prevailing across the island, perfect for exploration and outdoor activities.
-                        <h5> Rainy Season</h5>The southwest monsoon retreats completely, giving way to dry weather
-                        conditions and clear skies, particularly in the coastal and lowland areas.
-                        <h5> Festivals</h5> Deepavali, the festival of lights celebrated by the Hindu community,
-                        involves colorful decorations, fireworks, and traditional rituals symbolizing the triumph of
-                        light over darkness.
-                        <h5> Sea Seasons</h5> Coastal areas experience calm seas and warm temperatures, making it ideal
-                        for water-based activities such as snorkeling, diving, and fishing.
-                        <h5> Best Sports</h5> Cycling tours through rural villages and scenic landscapes offer immersive
-                        experiences and opportunities to interact with local communities.
-                        <h5> Best Cities</h5> Polonnaruwa, with its well-preserved ancient ruins and archaeological
-                        sites, provides insights into Sri Lanka's medieval history and cultural heritage. Mirissa, a
-                        coastal town renowned for its pristine beaches, whale watching opportunities, and vibrant
-                        nightlife, offers a perfect blend of relaxation and adventure.</p>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 mb-4">
-                    <div class="service-item bg-white text-center mb-2 py-5 px-4">
-                        <!-- <i class="fa fa-2x fa-ticket-alt mx-auto mb-4"></i> -->
-                        <h2 class="mb-2">November</h2>
-                        <p class="m-0">
-                        <h5>Specialty</h5> November offers pleasant weather across the island, perfect for outdoor
-                        adventures, wildlife safaris, and cultural experiences.
-                        <h5> Rainy Season</h5>November marks the transition from the wet season to the dry season, with
-                        occasional showers tapering off and giving way to clearer skies and cooler temperatures.
-                        <h5> Festivals</h5> Milad-Un-Nabi, commemorating the birth of Prophet Muhammad, is celebrated
-                        with prayers, processions, and acts of charity by the Muslim community.
-                        <h5> Sea Seasons</h5> Coastal areas experience calm seas and warm temperatures, making it ideal
-                        for water-based activities such as snorkeling, diving, and beachcombing.
-                        <h5> Best Sports</h5> Safari in Udawalawe National Park offers opportunities to spot iconic
-                        wildlife species such as elephants, leopards, and water buffaloes amidst diverse habitats.
-                        <h5> Best Cities</h5> Kandy, renowned for its scenic beauty, cultural richness, and spiritual
-                        significance, offers a blend of historical attractions, natural wonders, and vibrant festivals.
-                        Ella, nestled amidst verdant hills and tea plantations, provides breathtaking views, scenic
-                        hikes, and a tranquil retreat away from the hustle and bustle of city life.</p>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 mb-4">
-                    <div class="service-item bg-white text-center mb-2 py-5 px-4">
-                        <!-- <i class="fa fa-2x fa-ticket-alt mx-auto mb-4"></i> -->
-                        <h2 class="mb-2">December</h2>
-                        <p class="m-0">
-                        <h5>Specialty</h5> December marks the onset of the festive season, with Christmas and New Year
-                        celebrations bringing joy and merriment across the island.
-                        <h5> Rainy Season</h5> The northeast monsoon brings occasional showers to the eastern and
-                        northern regions, while the southwest enjoys dry weather and clear skies.
-                        <h5> Festivals</h5> Christmas, celebrated with enthusiasm by Christians across the island,
-                        involves church services, festive decorations, and feasting with family and friends.
-                        <h5> Sea Seasons</h5> Coastal areas experience calm seas and warm temperatures, making it ideal
-                        for water-based activities such as snorkeling, diving, and beach picnics.
-                        <h5> Best Sports</h5> Wind surfing in Kalpitiya offers adrenaline-pumping experiences amidst
-                        strong winds and expansive lagoons, making it a popular destination for water sports
-                        enthusiasts.
-                        <h5> Best Cities</h5> Colombo, the vibrant capital city, offers a blend of modern attractions,
-                        colonial architecture, and cultural experiences, along with bustling markets, vibrant nightlife,
-                        and delectable cuisine. Mirissa, a coastal town renowned for its golden beaches, whale watching
-                        opportunities, and beach parties, provides a perfect setting for relaxation and celebration
-                        amidst the festive season.</p>
+
+                <div class="right-panel">
+                    <img id="monthImage" src="img/about-1.jpg" alt="Month Image">
+                    <div class="month-content" id="monthContent">
+                        <!-- Month Content Will Appear Here -->
                     </div>
                 </div>
             </div>
@@ -477,6 +233,7 @@
     <script src="lib/tempusdominus/js/moment.min.js"></script>
     <script src="lib/tempusdominus/js/moment-timezone.min.js"></script>
     <script src="lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
+    <script src="js/calender.js"></script>
 
     <!-- Contact Javascript File -->
     <script src="mail/jqBootstrapValidation.min.js"></script>
