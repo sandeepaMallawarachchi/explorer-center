@@ -94,7 +94,7 @@ $result = mysqli_query($conn, $sql);
                         <?php
                         if ($result && mysqli_num_rows($result) > 0) {
                             while ($row = mysqli_fetch_assoc($result)) {
-                                $imagePath = !empty($row['image_url']) ? htmlspecialchars($row['image_url']) : 'img/blog-1.jpg';
+                                $imagePath = !empty($row['image_url']) ? htmlspecialchars($row['image_url']) : 'img/placeholder.jpg';
                                 echo "
                                 <div class='col-md-6 mb-4 pb-2'>
                                     <div class='blog-item'>
@@ -107,11 +107,11 @@ $result = mysqli_query($conn, $sql);
                                         </div>
                                         <div class='bg-white p-4'>
                                             <div class='d-flex mb-2'>
-                                                <a class='text-primary text-uppercase text-decoration-none' href=''>" . htmlspecialchars($row['author']) . "</a>
+                                                <span class='text-primary text-uppercase text-decoration-none'>" . htmlspecialchars($row['author']) . "</span>
                                                 <span class='text-primary px-2'>|</span>
                                                 <a class='text-primary text-uppercase text-decoration-none' href=''>" . htmlspecialchars($row['category']) . "</a>
                                             </div>
-                                            <a class='h5 m-0 text-decoration-none' href=''>" . htmlspecialchars($row['topic']) . "</a>
+                                            <a class='h5 m-0 text-decoration-none' href='#' data-toggle='modal' data-target='#blogModal' data-id='" . $row['id'] . "'>" . htmlspecialchars($row['topic']) . "</a>
                                         </div>
                                     </div>
                                 </div>";
@@ -239,6 +239,26 @@ $result = mysqli_query($conn, $sql);
     </div>
     <!-- get blog End -->
 
+    <!-- Modal Structure -->
+    <div class="modal fade" id="blogModal" tabindex="-1" role="dialog" aria-labelledby="blogModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="blogModalLabel">Blog Details</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <!-- Blog details will be loaded here -->
+                    <div id="modalContent">
+                        <p>Loading...</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Footer Start -->
     <div id="footer"></div>
 
@@ -275,6 +295,7 @@ $result = mysqli_query($conn, $sql);
 
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
+    <script src="js/blog-modal.js"></script>
 </body>
 
 </html>
