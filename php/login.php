@@ -1,35 +1,28 @@
 <?php
-// login.php - Backend for handling login
 session_start();
 include('db.php');
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $username = $_POST['username'];
-    $password = $_POST['password'];
-
-    // Prevent SQL Injection
-    $username = mysqli_real_escape_string($conn, $username);
-    $password = mysqli_real_escape_string($conn, $password);
-
-    // Hash the password (use bcrypt in production)
+    $username = mysqli_real_escape_string($conn, $_POST['username']);
+    $password = mysqli_real_escape_string($conn, $_POST['password']);
     $hashed_password = md5($password);
 
-    // Query to check user existence
-    $sql = "SELECT * FROM users WHERE username = '$username' AND password = '$hashed_password'";
+    $sql = "SELECT * FROM login WHERE username = '$username' AND password = '$hashed_password'";
     $result = $conn->query($sql);
 
-    if ($result->num_rows > 0) {
+    if ($result && $result->num_rows > 0) {
         $user = $result->fetch_assoc();
         $_SESSION['user_id'] = $user['id'];
         $_SESSION['username'] = $user['username'];
-        header("Location: dashboard.php"); // Redirect to dashboard
+        header("Location: /explorer-center/index.html");
+        exit;
     } else {
         $_SESSION['error'] = "Invalid username or password.";
-        header("Location: index.html"); // Redirect back to login
+        header("Location: login.php");
+        exit;
     }
 }
 ?>
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -87,13 +80,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </script>
     <!-- Topbar End -->
 
-
-
-
-
-
-
-    <!-- Contact Start -->
+    <!-- login Start -->
     <div class="container-fluid py-5">
         <div class="container py-5">
             <div class="text-center mb-3 pb-3">
@@ -112,21 +99,27 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             unset($_SESSION['error']);
                         }
                         ?>
-                        <form action="login.php" method="POST">
-                            <div class="textbox">
-                                <input type="text" placeholder="Username" name="username" required>
+                        <form action="php/login.php" method="POST">
+                            <div class="control-group">
+                                <input type="text" class="form-control p-4" id="username" placeholder="Your username" name="username"
+                                    required="required" data-validation-required-message="Please enter your username" />
+                                <p class="help-block text-danger"></p>
                             </div>
-                            <div class="textbox">
-                                <input type="password" placeholder="Password" name="password" required>
+                            <div class="control-group">
+                                <input type="password" class="form-control p-4" id="password" placeholder="Your password" name="password"
+                                    required="required" data-validation-required-message="Please enter your password" />
+                                <p class="help-block text-danger"></p>
                             </div>
-                            <button class="btn" type="submit">Login</button>
+                            <div class="text-center">
+                                <button class="btn btn-primary py-3 px-4" type="submit" id="sendMessageButton">Login</button>
+                            </div>
                         </form>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <!-- Contact End -->
+    <!-- login End -->
 
 
 
