@@ -70,8 +70,8 @@ $result = mysqli_query($conn, $sql);
     </script>
     <!-- Navbar End -->
 
-     <!-- Header Start -->
-     <div class="container-fluid blog-page-header">
+    <!-- Header Start -->
+    <div class="container-fluid blog-page-header">
         <div class="container">
             <div class="d-flex flex-column align-items-center justify-content-center" style="min-height: 400px">
                 <h3 class="display-4 text-white text-uppercase">Blog</h3>
@@ -94,11 +94,12 @@ $result = mysqli_query($conn, $sql);
                         <?php
                         if ($result && mysqli_num_rows($result) > 0) {
                             while ($row = mysqli_fetch_assoc($result)) {
+                                $imagePath = !empty($row['image_url']) ? htmlspecialchars($row['image_url']) : 'img/blog-1.jpg';
                                 echo "
                                 <div class='col-md-6 mb-4 pb-2'>
                                     <div class='blog-item'>
                                         <div class='position-relative'>
-                                            <img class='img-fluid w-100' src='img/blog-1.jpg' alt='Blog Image'>
+                                            <img class='img-fluid w-100' src='$imagePath' alt='Blog Image'>
                                             <div class='blog-date'>
                                                 <h6 class='font-weight-bold mb-n1'>" . date("d", strtotime($row['date'])) . "</h6>
                                                 <small class='text-white text-uppercase'>" . date("M", strtotime($row['date'])) . "</small>
