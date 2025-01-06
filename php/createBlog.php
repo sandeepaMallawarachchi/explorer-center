@@ -118,12 +118,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                 <input type="date" class="form-control p-4" id="date" name="date" placeholder="Date"
                                     required="required" data-validation-required-message="Please select the date" />
                             </div>
-                            <div class="text-center">
+                            <div class="text-center mb-2">
                                 <div class="img-upload-container" id="img-upload-container">
                                     <img src="img/upload.png" alt="Upload Image" class="img-upload-bg">
                                     <input type="file" id="img-upload-input" class="img-upload-input" accept="image/*" onchange="previewImage(event)">
                                     <div class="upload-text">Click or Drag to Upload</div>
                                 </div>
+                            </div>
+                            <div class="text-center">
+                                <button class="btn btn-primary py-3 px-4" type="submit">Create Blog</button>
                             </div>
                         </form>
                     </div>
