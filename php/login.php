@@ -1,20 +1,4 @@
 <?php
-// db.php - Database connection file
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "explorer_center";
-
-// Create connection
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
-?>
-
-<?php
 // login.php - Backend for handling login
 session_start();
 include('db.php');
