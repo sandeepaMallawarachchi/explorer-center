@@ -121,7 +121,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             <div class="text-center mb-2">
                                 <div class="img-upload-container" id="img-upload-container">
                                     <img src="img/upload.png" alt="Upload Image" class="img-upload-bg">
-                                    <input type="file" id="img-upload-input" class="img-upload-input" accept="image/*" onchange="previewImage(event)">
+                                    <input type="file" id="img-upload-input" class="img-upload-input" accept="image/*" name="image" onchange="previewImage(event)">
                                     <div class="upload-text">Click or Drag to Upload</div>
                                 </div>
                             </div>
