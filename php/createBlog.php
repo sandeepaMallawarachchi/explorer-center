@@ -1,7 +1,7 @@
 <?php
 // Include database connection
 include('db.php');
-require 'vendor/autoload.php';
+require '../vendor/autoload.php';
 
 use Cloudinary\Configuration\Configuration;
 use Cloudinary\Api\Upload\UploadApi;
@@ -82,6 +82,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     <!-- Customized Bootstrap Stylesheet -->
     <link href="css/style.css" rel="stylesheet">
+    <link href="css/upload.css" rel="stylesheet">
 </head>
 
 <body>
@@ -97,32 +98,32 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     <div class="contact-form bg-white" style="padding: 30px;">
                         <div id="success"></div>
                         <form method="POST" action="php/createBlog.php" enctype="multipart/form-data">
-                            <div class="control-group">
+                            <div class="control-group mb-2">
                                 <input type="text" class="form-control p-4" id="author" name="author" placeholder="Your Name"
                                     required="required" data-validation-required-message="Please enter your name" />
                             </div>
-                            <div class="control-group">
+                            <div class="control-group mb-2">
                                 <input type="text" class="form-control p-4" id="category" name="category" placeholder="Enter Category"
                                     required="required" data-validation-required-message="Please enter category" />
                             </div>
-                            <div class="control-group">
+                            <div class="control-group mb-2">
                                 <input type="text" class="form-control p-4" id="topic" name="topic" placeholder="Topic"
                                     required="required" data-validation-required-message="Please enter a topic" />
                             </div>
-                            <div class="control-group">
+                            <div class="control-group mb-2">
                                 <textarea class="form-control py-3 px-4" rows="5" id="description" name="description" placeholder="Description"
                                     required="required" data-validation-required-message="Please enter description"></textarea>
                             </div>
-                            <div class="control-group">
+                            <div class="control-group mb-2">
                                 <input type="date" class="form-control p-4" id="date" name="date" placeholder="Date"
                                     required="required" data-validation-required-message="Please select the date" />
                             </div>
-                            <div class="control-group">
-                                <input type="file" class="form-control p-4" id="image" name="image" placeholder="Upload Image"
-                                    required="required" data-validation-required-message="Please upload an image" />
-                            </div>
                             <div class="text-center">
-                                <button class="btn btn-primary py-3 px-4" type="submit">Create Blog</button>
+                                <div class="img-upload-container" id="img-upload-container">
+                                    <img src="img/upload.png" alt="Upload Image" class="img-upload-bg">
+                                    <input type="file" id="img-upload-input" class="img-upload-input" accept="image/*" onchange="previewImage(event)">
+                                    <div class="upload-text">Click or Drag to Upload</div>
+                                </div>
                             </div>
                         </form>
                     </div>
@@ -131,6 +132,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         </div>
     </div>
     <!-- create blog End -->
+
+    <!-- JavaScript Libraries -->
+    <script src="js/upload.js"></script>
+
 </body>
 
 </html>
