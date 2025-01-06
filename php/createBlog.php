@@ -1,6 +1,22 @@
 <?php
 // Include database connection
 include('db.php');
+require 'vendor/autoload.php';
+
+use Cloudinary\Configuration\Configuration;
+use Cloudinary\Api\Upload\UploadApi;
+
+// Configure Cloudinary
+Configuration::instance([
+    'cloud' => [
+        'cloud_name' => 'dfssg1dxr',
+        'api_key' => '521587614913943',
+        'api_secret' => 'VRClcvauG_qw2tKOn16RIpgzp3Q'
+    ],
+    'url' => [
+        'secure' => true
+    ]
+]);
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // Retrieve form data
@@ -10,9 +26,24 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $description = $_POST['description'];
     $date = $_POST['date'];
 
+    // Handle image upload to Cloudinary
+    if (!empty($_FILES['image']['tmp_name'])) {
+        $image = $_FILES['image']['tmp_name'];
+
+        try {
+            $uploadResult = (new UploadApi())->upload($image);
+            $imageUrl = $uploadResult['secure_url'];
+        } catch (Exception $e) {
+            echo "<script>alert('Image upload failed: " . $e->getMessage() . "');</script>";
+            exit;
+        }
+    } else {
+        $imageUrl = null;
+    }
+
     // Insert into the blogs table
-    $sql = "INSERT INTO blogs (author, category, topic, description, date) 
-            VALUES ('$author', '$category', '$topic', '$description', '$date')";
+    $sql = "INSERT INTO blogs (author, category, topic, description, date, image_url) 
+            VALUES ('$author', '$category', '$topic', '$description', '$date', '$imageUrl')";
 
     if (mysqli_query($conn, $sql)) {
         echo "<script>alert('Blog successfully created!');</script>";
@@ -20,7 +51,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         echo "<script>alert('Error: " . mysqli_error($conn) . "');</script>";
     }
 }
-
 ?>
 
 <!DOCTYPE html>
@@ -66,34 +96,33 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <div class="col-lg-8">
                     <div class="contact-form bg-white" style="padding: 30px;">
                         <div id="success"></div>
-                        <form method="POST" action="php/createBlog.php">
+                        <form method="POST" action="php/createBlog.php" enctype="multipart/form-data">
                             <div class="control-group">
                                 <input type="text" class="form-control p-4" id="author" name="author" placeholder="Your Name"
                                     required="required" data-validation-required-message="Please enter your name" />
-                                <p class="help-block text-danger"></p>
                             </div>
-                            <div class="control-group"> <input type="text" class="form-control p-4" id="category" name="category" placeholder="Enter Category"
+                            <div class="control-group">
+                                <input type="text" class="form-control p-4" id="category" name="category" placeholder="Enter Category"
                                     required="required" data-validation-required-message="Please enter category" />
-                                <p class="help-block text-danger"></p>
                             </div>
                             <div class="control-group">
                                 <input type="text" class="form-control p-4" id="topic" name="topic" placeholder="Topic"
                                     required="required" data-validation-required-message="Please enter a topic" />
-                                <p class="help-block text-danger"></p>
                             </div>
                             <div class="control-group">
                                 <textarea class="form-control py-3 px-4" rows="5" id="description" name="description" placeholder="Description"
-                                    required="required"
-                                    data-validation-required-message="Please enter description"></textarea>
-                                <p class="help-block text-danger"></p>
+                                    required="required" data-validation-required-message="Please enter description"></textarea>
                             </div>
                             <div class="control-group">
                                 <input type="date" class="form-control p-4" id="date" name="date" placeholder="Date"
                                     required="required" data-validation-required-message="Please select the date" />
-                                <p class="help-block text-danger"></p>
+                            </div>
+                            <div class="control-group">
+                                <input type="file" class="form-control p-4" id="image" name="image" placeholder="Upload Image"
+                                    required="required" data-validation-required-message="Please upload an image" />
                             </div>
                             <div class="text-center">
-                                <button class="btn btn-primary py-3 px-4" type="submit" id="">Send Message</button>
+                                <button class="btn btn-primary py-3 px-4" type="submit">Create Blog</button>
                             </div>
                         </form>
                     </div>

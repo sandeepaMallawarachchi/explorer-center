@@ -1,0 +1,53 @@
+# Ignore vendor directory (created by Composer)
+vendor/
+
+# Ignore Composer lock file
+composer.lock
+
+# Ignore sensitive environment files
+.env
+.env.*
+
+# Ignore XAMPP-related files
+/xampp-server/
+/htdocs/
+
+# Ignore system files
+*.DS_Store
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+*.log
+
+# Ignore IDE configuration files
+.vscode/
+.idea/
+*.sublime-workspace
+*.sublime-project
+
+# Ignore PHPUnit test result files
+phpunit.xml
+phpunit.xml.dist
+
+# Ignore node_modules if using any front-end tools
+node_modules/
+
+# Ignore cache and session files
+storage/framework/cache/*
+storage/framework/sessions/*
+storage/framework/views/*
+storage/logs/*
+
+# Ignore uploaded files (like images)
+public/uploads/
+
+# Ignore temporary and backup files
+*.tmp
+*.swp
+*.bak
+*.backup
+*.old
+*.orig
+
+# Ignore personal contribution settings
+*.env.local
