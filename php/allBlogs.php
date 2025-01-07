@@ -1,8 +1,17 @@
 <?php
 include('db.php');
 
-// Fetch blogs
-$sql = "SELECT * FROM blogs";
+// Fetch search term if any
+$searchKeyword = isset($_GET['search']) ? $_GET['search'] : '';
+
+// Prepare SQL query based on search
+if ($searchKeyword) {
+    $searchKeyword = mysqli_real_escape_string($conn, $searchKeyword);
+    $sql = "SELECT * FROM blogs WHERE LOWER(topic) LIKE '%$searchKeyword%' OR LOWER(author) LIKE '%$searchKeyword%' OR LOWER(category) LIKE '%$searchKeyword%' OR LOWER(description) LIKE '%$searchKeyword%'";
+} else {
+    $sql = "SELECT * FROM blogs";
+}
+
 $result = mysqli_query($conn, $sql);
 ?>
 
@@ -152,10 +161,9 @@ $result = mysqli_query($conn, $sql);
                     <div class="mb-5">
                         <div class="bg-white" style="padding: 30px;">
                             <div class="input-group">
-                                <input type="text" class="form-control p-4" placeholder="Keyword">
+                                <input type="text" class="form-control p-4" id="searchInput" placeholder="Keyword" value="<?php echo htmlspecialchars($searchKeyword); ?>">
                                 <div class="input-group-append">
-                                    <span class="input-group-text bg-primary border-primary text-white"><i
-                                            class="fa fa-search"></i></span>
+                                    <span class="input-group-text bg-primary border-primary text-white" id="searchBtn"><i class="fa fa-search"></i></span>
                                 </div>
                             </div>
                         </div>
@@ -292,6 +300,7 @@ $result = mysqli_query($conn, $sql);
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
     <script src="js/blog-modal.js"></script>
+    <script src="js/search-blog.js"></script>
 </body>
 
 </html>
