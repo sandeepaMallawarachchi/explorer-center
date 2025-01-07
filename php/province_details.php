@@ -1,3 +1,61 @@
+<?php
+$province = isset($_GET['province']) ? htmlspecialchars($_GET['province']) : 'Unknown Province';
+
+// Define details for each province
+$provinces = [
+    "province1" => [
+        "name" => "Southern Province",
+        "image" => "img/destination-1.jpg",
+        "description" => "Southern Province is known for its beautiful beaches, historical landmarks like Galle Fort, and rich biodiversity. Enjoy whale watching in Mirissa, visit the iconic stilt fishermen, and explore the dense rainforest of Sinharaja."
+    ],
+    "province2" => [
+        "name" => "Western Province",
+        "image" => "img/destination-2.jpg",
+        "description" => "Western Province is the economic hub of Sri Lanka, home to Colombo, vibrant nightlife, and modern infrastructure. Discover the bustling Pettah Market, iconic Colombo Lotus Tower, and sandy beaches like Negombo."
+    ],
+    "province3" => [
+        "name" => "Central Province",
+        "image" => "img/destination-3.jpg",
+        "description" => "Central Province is famous for tea plantations, breathtaking landscapes, and ancient cities like Kandy. Visit the Sacred Tooth Relic Temple, explore Horton Plains, and climb the majestic Sigiriya Rock Fortress."
+    ],
+    "province4" => [
+        "name" => "Eastern Province",
+        "image" => "img/destination-4.jpg",
+        "description" => "Eastern Province features pristine beaches, diverse culture, and ancient temples. Relax at Arugam Bay, visit the serene Kumana National Park, and enjoy the cultural richness of Batticaloa and Trincomalee."
+    ],
+    "province5" => [
+        "name" => "Northern Province",
+        "image" => "img/destination-5.jpg",
+        "description" => "Northern Province boasts unique Tamil culture, ancient ruins, and stunning lagoons. Explore the Jaffna Peninsula, visit the sacred Nallur Kovil, and relax at Casuarina Beach."
+    ],
+    "province6" => [
+        "name" => "North Western Province",
+        "image" => "img/destination-6.jpg",
+        "description" => "North Western Province offers ancient cities and serene landscapes. Discover Wilpattu National Park, explore Yapahuwa rock fortress, and visit the historic Panduwasnuwara ruins."
+    ],
+    "province7" => [
+        "name" => "North Central Province",
+        "image" => "img/destination-7.jpg",
+        "description" => "North Central Province is the cultural heart of Sri Lanka, home to ancient cities. Visit the ruins of Anuradhapura and Polonnaruwa, and explore the Minneriya National Park, known for the 'Gathering' of elephants."
+    ],
+    "province8" => [
+        "name" => "Uva Province",
+        "image" => "img/destination-8.jpg",
+        "description" => "Uva Province is renowned for its scenic beauty and cool climate. Discover Ella's Nine Arches Bridge, trek Little Adam's Peak, and visit the historic Rawana Falls and Lipton's Seat."
+    ],
+    "province9" => [
+        "name" => "Sabaragamuwa Province",
+        "image" => "img/destination-9.jpg",
+        "description" => "Sabaragamuwa Province is famous for its gem mines, wildlife, and waterfalls. Explore the gem city of Ratnapura, visit Udawalawe National Park, and hike through the lush greenery of Kitulgala."
+    ]
+];
+
+
+// Get the province ID from the query parameter
+$province_id = $_GET['province'] ?? "province1";
+$province_details = $provinces[$province_id] ?? null;
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -65,32 +123,20 @@
     <div class="container-fluid py-5">
         <div class="container pt-5">
             <div class="row">
-                <div class="col-lg-6" style="min-height: 900px; position: relative;"> <!-- Ensure parent is relative -->
-                    <div class="position-relative h-100">
-                        <img class="position-absolute" src="img/map.png"
-                            style="width: 82%; height: 60%; object-fit: cover; top: 50%; left: 50%; transform: translate(-50%, -50%);">
-                    </div>
+                <!-- Left Column for Image -->
+                <div class="col-lg-6">
+                    <img src="img/map.png" alt="" style="width: 100%; height: 800px;">
                 </div>
 
-
-                <div class="col-lg-6 pt-5 pb-lg-5">
-                    <div class="about-text bg-white p-4 p-lg-5 my-lg-5">
-                        <h6 class="text-primary text-uppercase" style="letter-spacing: 5px;">Southern Province</h6>
-                        <h1 class="mb-3">Discover the Best of Sri Lanka with Our Expert Tourism Operator!</h1>
-                        <p>Welcome to our Sri Lankan tourism company! We are dedicated to providing exceptional travel experiences to those seeking to explore the unique culture, natural beauty, and diverse landscape of our island nation.</p>
-                        <p>As a team of passionate travel experts, we strive to create personalized itineraries that cater to the individual needs and interests of our clients. Our extensive knowledge of Sri Lanka allows us to showcase the very best of what our country has to offer, from the stunning beaches along the coastline to the lush green tea plantations nestled in the hill country.</p>
-                        <p>We understand that travel is not just about visiting new places, but also about creating lasting memories and experiences. That's why we go above and beyond to ensure that each trip is filled with authentic cultural encounters, thrilling adventures, and moments of relaxation and rejuvenation.</p>
-                        <p>Our commitment to sustainable tourism practices is also a key aspect of our company's values. We strive to minimize our impact on the environment and support local communities through responsible travel initiatives</p>
-                        <p>Whether you're looking for a romantic getaway, a family vacation, or an adventure-packed trip, we are here to turn your travel dreams into reality. Let us take care of the details, so that you can sit back, relax, and enjoy the journey.</p>
-                        <div class="row mb-4">
-                            <div class="col-6">
-                                <img class="img-fluid" src="img/about-1.jpg" alt="">
-                            </div>
-                            <div class="col-6">
-                                <img class="img-fluid" src="img/about-2.jpg" alt="">
-                            </div>
+                <!-- Right Column for Content -->
+                <div class="col-lg-6 pb-lg-5">
+                    <div class="bg-white p-4 p-lg-5 my-lg-5">
+                        <h1 class="text-primary mb-3"><?= $province_details['name'] ?></h1>
+                        <div class="position-relative h-100 mb-3">
+                            <img src="<?= $province_details['image'] ?>" alt="<?= $province_details['name'] ?>"
+                                style="width: 100%; height: 250px; object-fit: cover;">
                         </div>
-                        <a href="" class="btn btn-primary mt-1">Book Now</a>
+                        <p><?= $province_details['description'] ?></p>
                     </div>
                 </div>
             </div>
