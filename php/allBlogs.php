@@ -27,6 +27,39 @@ $result = mysqli_query($conn, $sql);
 // Fetch categories and blog counts
 $sql = "SELECT category, COUNT(*) as count FROM blogs GROUP BY category";
 $categoryResult = mysqli_query($conn, $sql);
+
+// Fetch the last 3 blog posts in descending order
+$sql = "SELECT * FROM blogs ORDER BY date DESC LIMIT 3";
+$recentPostsResult = mysqli_query($conn, $sql);
+
+$sqlTags = "SELECT description FROM blogs";
+$tagsResult = mysqli_query($conn, $sqlTags);
+
+$tags = [];
+if ($tagsResult && mysqli_num_rows($tagsResult) > 0) {
+    while ($row = mysqli_fetch_assoc($tagsResult)) {
+        $description = strtolower($row['description']);
+        preg_match_all('/\b(design|consulting|travel|culture|adventure|wildlife|beaches)\b/i', $description, $matches);
+        $tags = array_merge($tags, $matches[0]);
+    }
+    $tags = array_unique($tags);
+}
+
+// Pagination logic
+$blogsPerPage = 6;
+$page = isset($_GET['page']) && is_numeric($_GET['page']) ? intval($_GET['page']) : 1;
+$offset = ($page - 1) * $blogsPerPage;
+
+// Fetch total blogs count for pagination
+$totalBlogsQuery = "SELECT COUNT(*) AS total FROM blogs";
+$totalBlogsResult = mysqli_query($conn, $totalBlogsQuery);
+$totalBlogs = mysqli_fetch_assoc($totalBlogsResult)['total'];
+$totalPages = ceil($totalBlogs / $blogsPerPage);
+
+// Fetch blogs for current page
+$sql = "SELECT * FROM blogs ORDER BY date DESC LIMIT $offset, $blogsPerPage";
+$result = mysqli_query($conn, $sql);
+
 ?>
 
 <!DOCTYPE html>
@@ -144,6 +177,36 @@ $categoryResult = mysqli_query($conn, $sql);
                         }
                         ?>
                     </div>
+
+                    <!-- page navigation -->
+                    <div class="col-12">
+                        <nav aria-label="Page navigation">
+                            <ul class="pagination pagination-lg justify-content-center bg-white mb-0" style="padding: 30px;">
+                                <!-- Previous Button -->
+                                <li class="page-item <?php echo $page <= 1 ? 'disabled' : ''; ?>">
+                                    <a class="page-link" href="php/allBlogs.php?page=<?php echo $page - 1; ?>" aria-label="Previous">
+                                        <span aria-hidden="true">&laquo;</span>
+                                        <span class="sr-only">Previous</span>
+                                    </a>
+                                </li>
+
+                                <!-- Page Numbers -->
+                                <?php for ($i = 1; $i <= $totalPages; $i++): ?>
+                                    <li class="page-item <?php echo $i == $page ? 'active' : ''; ?>">
+                                        <a class="page-link" href="php/allBlogs.php?page=<?php echo $i; ?>"><?php echo $i; ?></a>
+                                    </li>
+                                <?php endfor; ?>
+
+                                <!-- Next Button -->
+                                <li class="page-item <?php echo $page >= $totalPages ? 'disabled' : ''; ?>">
+                                    <a class="page-link" href="php/allBlogs.php?page=<?php echo $page + 1; ?>" aria-label="Next">
+                                        <span aria-hidden="true">&raquo;</span>
+                                        <span class="sr-only">Next</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
                 </div>
 
                 <div class="col-lg-4 mt-5 mt-lg-0">
@@ -209,41 +272,43 @@ $categoryResult = mysqli_query($conn, $sql);
                     <!-- Recent Post -->
                     <div class="mb-5">
                         <h4 class="text-uppercase mb-4" style="letter-spacing: 5px;">Recent Post</h4>
-                        <a class="d-flex align-items-center text-decoration-none bg-white mb-3" href="">
-                            <img class="img-fluid" src="img/blog-100x100.jpg" alt="">
-                            <div class="pl-3">
-                                <h6 class="m-1">Diam lorem dolore justo eirmod lorem dolore</h6>
-                                <small>Jan 01, 2050</small>
-                            </div>
-                        </a>
-                        <a class="d-flex align-items-center text-decoration-none bg-white mb-3" href="">
-                            <img class="img-fluid" src="img/blog-100x100.jpg" alt="">
-                            <div class="pl-3">
-                                <h6 class="m-1">Diam lorem dolore justo eirmod lorem dolore</h6>
-                                <small>Jan 01, 2050</small>
-                            </div>
-                        </a>
-                        <a class="d-flex align-items-center text-decoration-none bg-white mb-3" href="">
-                            <img class="img-fluid" src="img/blog-100x100.jpg" alt="">
-                            <div class="pl-3">
-                                <h6 class="m-1">Diam lorem dolore justo eirmod lorem dolore</h6>
-                                <small>Jan 01, 2050</small>
-                            </div>
-                        </a>
+                        <?php
+                        if ($recentPostsResult && mysqli_num_rows($recentPostsResult) > 0) {
+                            while ($row = mysqli_fetch_assoc($recentPostsResult)) {
+                                $imagePath = !empty($row['image_url']) ? htmlspecialchars($row['image_url']) : 'img/placeholder.jpg';
+                                $formattedDate = date("M d, Y", strtotime($row['date']));
+                                echo "
+                                <a class='d-flex align-items-center text-decoration-none bg-white mb-3' href='#' data-toggle='modal' data-target='#blogModal' data-id='" . $row['id'] . "'>
+                                    <img class='img-fluid' src='$imagePath' alt='' style='width: 120px;'>
+                                    <div class='pl-3'>
+                                        <h6 class='m-1'>" . htmlspecialchars($row['topic']) . "</h6>
+                                        <small>$formattedDate</small>
+                                    </div>
+                                </a>";
+                            }
+                        } else {
+                            echo "<p>No recent posts found.</p>";
+                        }
+                        ?>
                     </div>
 
                     <!-- Tag Cloud -->
                     <div class="mb-5">
                         <h4 class="text-uppercase mb-4" style="letter-spacing: 5px;">Tag Cloud</h4>
                         <div class="d-flex flex-wrap m-n1">
-                            <a href="" class="btn btn-light m-1">Design</a>
-                            <a href="" class="btn btn-light m-1">Development</a>
-                            <a href="" class="btn btn-light m-1">Marketing</a>
-                            <a href="" class="btn btn-light m-1">SEO</a>
-                            <a href="" class="btn btn-light m-1">Writing</a>
-                            <a href="" class="btn btn-light m-1">Consulting</a>
+                            <?php
+                            if (!empty($tags)) {
+                                foreach ($tags as $tag) {
+                                    $tagName = htmlspecialchars($tag);
+                                    echo "<a href='?search=$tagName' class='btn btn-light m-1'>" . ucfirst($tagName) . "</a>";
+                                }
+                            } else {
+                                echo "<p>No tags available.</p>";
+                            }
+                            ?>
                         </div>
                     </div>
+
                 </div>
             </div>
         </div>
