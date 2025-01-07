@@ -12,16 +12,15 @@ if (isset($_GET['id'])) {
         echo "
         <div class='text-center'>
             <img src='$imagePath' alt='Blog Image' class='img-fluid mb-3'>
+            <p class='text-end'>" . date('F d, Y', strtotime($row['date'])) . "</p>
         </div>
-        <h4>" . htmlspecialchars($row['topic']) . "</h4>
+        <h4 class='text-blue-500'>" . htmlspecialchars($row['topic']) . "</h4>
         <p><strong>Author:</strong> " . htmlspecialchars($row['author']) . "</p>
         <p><strong>Category:</strong> " . htmlspecialchars($row['category']) . "</p>
-        <p><strong>Date:</strong> " . date('F d, Y', strtotime($row['date'])) . "</p>
-        <p>" . htmlspecialchars($row['content']) . "</p>";
+        <p><strong>Description:</strong> " . htmlspecialchars($row['description']) . "</p>";
     } else {
         echo "<p>Blog not found.</p>";
     }
 } else {
     echo "<p>Invalid blog ID.</p>";
 }
-?>

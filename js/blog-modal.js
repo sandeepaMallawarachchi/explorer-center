@@ -3,7 +3,7 @@ $(document).ready(function () {
         const blogId = $(e.relatedTarget).data('id');
         if (blogId) {
             $.ajax({
-                url: 'blogModal.php',
+                url: '/explorer-center/php/blogModal.php',
                 type: 'GET',
                 data: { id: blogId },
                 success: function (response) {
@@ -13,6 +13,8 @@ $(document).ready(function () {
                     $('#modalContent').html('<p>Error loading blog details.</p>');
                 },
             });
+        } else {
+            $('#modalContent').html('<p>Invalid blog ID.</p>');
         }
     });
 });
