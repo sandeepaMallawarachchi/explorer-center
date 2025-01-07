@@ -119,7 +119,7 @@ $province_details = $provinces[$province_id] ?? null;
     </script>
     <!-- Navbar End -->
 
-    <!-- About Start -->
+    <!-- Province details Start -->
     <div class="container-fluid py-5">
         <div class="container pt-5">
             <div class="row">
@@ -142,7 +142,7 @@ $province_details = $provinces[$province_id] ?? null;
             </div>
         </div>
     </div>
-    <!-- About End -->
+    <!-- Province details End -->
 
 
     <!-- Back to Top -->
