@@ -137,6 +137,7 @@ $province_details = $provinces[$province_id] ?? null;
                                 style="width: 100%; height: 250px; object-fit: cover;">
                         </div>
                         <p><?= $province_details['description'] ?></p>
+                        <a href="php/district_details.php?province=<?= $province_id ?>" class="btn btn-primary">View Districts</a>
                     </div>
                 </div>
             </div>
