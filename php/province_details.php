@@ -144,6 +144,26 @@ $province_details = $provinces[$province_id] ?? null;
     </div>
     <!-- Province details End -->
 
+    <!-- Modal Structure -->
+    <div class="modal fade" id="districtModal" tabindex="-1" role="dialog" aria-labelledby="blogModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document" style="max-width: 50%;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="blogModalLabel">Blog Details</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <!-- Blog details will be loaded here -->
+                    <div id="modalContent">
+                        <p>Loading...</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
 
     <!-- Back to Top -->
     <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="fa fa-angle-double-up"></i></a>

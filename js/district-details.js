@@ -1,20 +1,20 @@
 $(document).ready(function () {
-    $('#blogModal').on('show.bs.modal', function (e) {
-        const blogId = $(e.relatedTarget).data('id');
-        if (blogId) {
+    $('#districtModal').on('show.bs.modal', function (e) {
+        const districtId = $(e.relatedTarget).data('id');
+        if (districtId) {
             $.ajax({
-                url: '/explorer-center/php/blogModal.php',
+                url: '/explorer-center/php/district_details.php',
                 type: 'GET',
-                data: { id: blogId },
+                data: { id: districtId },
                 success: function (response) {
                     $('#modalContent').html(response);
                 },
                 error: function () {
-                    $('#modalContent').html('<p>Error loading blog details.</p>');
+                    $('#modalContent').html('<p>Error loading district details.</p>');
                 },
             });
         } else {
-            $('#modalContent').html('<p>Invalid blog ID.</p>');
+            $('#modalContent').html('<p>Invalid district ID.</p>');
         }
     });
 });
