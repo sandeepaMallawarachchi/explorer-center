@@ -1,18 +1,32 @@
 <?php
 include('db.php');
 
-// Fetch search term if any
+// Fetch the search term if any
 $searchKeyword = isset($_GET['search']) ? $_GET['search'] : '';
 
-// Prepare SQL query based on search
-if ($searchKeyword) {
+// Fetch the selected category from the URL if any
+$categoryFilter = isset($_GET['category']) ? $_GET['category'] : '';
+
+// Prepare SQL query based on search and category filter
+if ($searchKeyword && $categoryFilter) {
+    $searchKeyword = mysqli_real_escape_string($conn, $searchKeyword);
+    $categoryFilter = mysqli_real_escape_string($conn, $categoryFilter);
+    $sql = "SELECT * FROM blogs WHERE (LOWER(topic) LIKE '%$searchKeyword%' OR LOWER(author) LIKE '%$searchKeyword%' OR LOWER(category) LIKE '%$searchKeyword%' OR LOWER(description) LIKE '%$searchKeyword%') AND category = '$categoryFilter'";
+} elseif ($searchKeyword) {
     $searchKeyword = mysqli_real_escape_string($conn, $searchKeyword);
     $sql = "SELECT * FROM blogs WHERE LOWER(topic) LIKE '%$searchKeyword%' OR LOWER(author) LIKE '%$searchKeyword%' OR LOWER(category) LIKE '%$searchKeyword%' OR LOWER(description) LIKE '%$searchKeyword%'";
+} elseif ($categoryFilter) {
+    $categoryFilter = mysqli_real_escape_string($conn, $categoryFilter);
+    $sql = "SELECT * FROM blogs WHERE category = '$categoryFilter'";
 } else {
     $sql = "SELECT * FROM blogs";
 }
 
 $result = mysqli_query($conn, $sql);
+
+// Fetch categories and blog counts
+$sql = "SELECT category, COUNT(*) as count FROM blogs GROUP BY category";
+$categoryResult = mysqli_query($conn, $sql);
 ?>
 
 <!DOCTYPE html>
@@ -118,7 +132,7 @@ $result = mysqli_query($conn, $sql);
                                             <div class='d-flex mb-2'>
                                                 <span class='text-primary text-uppercase text-decoration-none'>" . htmlspecialchars($row['author']) . "</span>
                                                 <span class='text-primary px-2'>|</span>
-                                                <a class='text-primary text-uppercase text-decoration-none' href=''>" . htmlspecialchars($row['category']) . "</a>
+                                                <a class='text-primary text-uppercase text-decoration-none' href='#'>" . htmlspecialchars($row['category']) . "</a>
                                             </div>
                                             <a class='h5 m-0 text-decoration-none' href='#' data-toggle='modal' data-target='#blogModal' data-id='" . $row['id'] . "'>" . htmlspecialchars($row['topic']) . "</a>
                                         </div>
@@ -174,31 +188,20 @@ $result = mysqli_query($conn, $sql);
                         <h4 class="text-uppercase mb-4" style="letter-spacing: 5px;">Categories</h4>
                         <div class="bg-white" style="padding: 30px;">
                             <ul class="list-inline m-0">
-                                <li class="mb-3 d-flex justify-content-between align-items-center">
-                                    <a class="text-dark" href="#"><i class="fa fa-angle-right text-primary mr-2"></i>Web
-                                        Design</a>
-                                    <span class="badge badge-primary badge-pill">150</span>
-                                </li>
-                                <li class="mb-3 d-flex justify-content-between align-items-center">
-                                    <a class="text-dark" href="#"><i class="fa fa-angle-right text-primary mr-2"></i>Web
-                                        Development</a>
-                                    <span class="badge badge-primary badge-pill">131</span>
-                                </li>
-                                <li class="mb-3 d-flex justify-content-between align-items-center">
-                                    <a class="text-dark" href="#"><i
-                                            class="fa fa-angle-right text-primary mr-2"></i>Online Marketing</a>
-                                    <span class="badge badge-primary badge-pill">78</span>
-                                </li>
-                                <li class="mb-3 d-flex justify-content-between align-items-center">
-                                    <a class="text-dark" href="#"><i
-                                            class="fa fa-angle-right text-primary mr-2"></i>Keyword Research</a>
-                                    <span class="badge badge-primary badge-pill">56</span>
-                                </li>
-                                <li class="d-flex justify-content-between align-items-center">
-                                    <a class="text-dark" href="#"><i
-                                            class="fa fa-angle-right text-primary mr-2"></i>Email Marketing</a>
-                                    <span class="badge badge-primary badge-pill">98</span>
-                                </li>
+                                <?php
+                                if ($categoryResult && mysqli_num_rows($categoryResult) > 0) {
+                                    while ($row = mysqli_fetch_assoc($categoryResult)) {
+                                        $categoryName = htmlspecialchars($row['category']);
+                                        $categoryCount = $row['count'];
+                                        // Add category link with a query parameter
+                                        echo "
+                                        <li class='mb-3 d-flex justify-content-between align-items-center'>
+                                            <a class='text-dark' href='php/allBlogs.php?category=$categoryName&search=$searchKeyword'><i class='fa fa-angle-right text-primary mr-2'></i>$categoryName</a>
+                                            <span class='badge badge-primary badge-pill'>$categoryCount</span>
+                                        </li>";
+                                    }
+                                }
+                                ?>
                             </ul>
                         </div>
                     </div>
