@@ -12,9 +12,9 @@ if (isset($_GET['id'])) {
         echo "
         <div class='text-center'>
             <img src='$imagePath' alt='Blog Image' class='img-fluid mb-3'>
-            <p class='text-end'>" . date('F d, Y', strtotime($row['date'])) . "</p>
+            <p style='text-align: right;'>" . date('F d, Y', strtotime($row['date'])) . "</p>
         </div>
-        <h4 class='text-blue-500'>" . htmlspecialchars($row['topic']) . "</h4>
+        <h4 style='color: #3b82f6;'>" . htmlspecialchars($row['topic']) . "</h4> <!-- blue color -->
         <p><strong>Author:</strong> " . htmlspecialchars($row['author']) . "</p>
         <p><strong>Category:</strong> " . htmlspecialchars($row['category']) . "</p>
         <p><strong>Description:</strong> " . htmlspecialchars($row['description']) . "</p>";
