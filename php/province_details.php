@@ -128,32 +128,26 @@ $province_details = $provinces[$province_id] ?? null;
                     <img src="img/map2.png" alt="Sri Lanka Map" style="width: 100%; max-height: 800px;">
 
                     <!-- Location Links -->
-                    <a href="#" data-id="1" data-toggle="modal" data-target="#districtModal"
-                        style="position: absolute; top: 80%; left: 35%; text-decoration: none; color: transparent;">
+                    <a href="#" data-id="1" class="location-link" style="position: absolute; top: 80%; left: 35%; text-decoration: none;">
                         <i class="fas fa-map-marker-alt text-primary" style="font-size: 1.5rem;"></i>
                     </a>
-                    <a href="#" data-id="2" data-toggle="modal" data-target="#districtModal"
-                        style="position: absolute; top: 82%; left: 43%; text-decoration: none; color: transparent;">
+                    <a href="#" data-id="2" class="location-link" style="position: absolute; top: 82%; left: 43%; text-decoration: none;">
                         <i class="fas fa-map-marker-alt text-primary" style="font-size: 1.5rem;"></i>
                     </a>
-                    <a href="#" data-id="3" data-toggle="modal" data-target="#districtModal"
-                        style="position: absolute; top: 80%; left: 55%; text-decoration: none; color: transparent;">
+                    <a href="#" data-id="3" class="location-link" style="position: absolute; top: 80%; left: 55%; text-decoration: none;">
                         <i class="fas fa-map-marker-alt text-primary" style="font-size: 1.5rem;"></i>
                     </a>
                 </div>
 
                 <!-- Right Column for Content -->
                 <div class="col-lg-6 pb-lg-5">
-                    <div class="bg-white p-4 p-lg-5 my-lg-5">
-                        <h1 class="text-primary mb-3"><?= $province_details['name'] ?></h1>
+                    <div class="bg-white p-4 p-lg-5 my-lg-5" id="provinceDetails">
+                        <h1 class="text-primary mb-3" id="provinceName"><?= $province_details['name'] ?></h1>
                         <div class="position-relative h-100 mb-3">
-                            <img src="<?= $province_details['image'] ?>" alt="<?= $province_details['name'] ?>"
+                            <img src="<?= $province_details['image'] ?>" id="provinceImage" alt="<?= $province_details['name'] ?>"
                                 style="width: 100%; height: 250px; object-fit: cover;">
                         </div>
-                        <p><?= $province_details['description'] ?></p>
-                        <a href="#" data-id="1" data-toggle="modal" data-target="#districtModal">View Galle</a>
-                        <a href="#" data-id="2" data-toggle="modal" data-target="#districtModal">View Matara</a>
-                        <a href="#" data-id="3" data-toggle="modal" data-target="#districtModal">View Hambantota</a>
+                        <p id="provinceDescription"><?= $province_details['description'] ?></p>
                     </div>
                 </div>
             </div>
@@ -161,25 +155,21 @@ $province_details = $provinces[$province_id] ?? null;
     </div>
     <!-- Province details End -->
 
-    <!-- Modal Structure -->
-    <div class="modal fade" id="districtModal" tabindex="-1" role="dialog" aria-labelledby="blogModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document" style="max-width: 50%;">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="blogModalLabel">Blog Details</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <!-- Blog details will be loaded here -->
-                    <div id="modalContent">
-                        <p>Loading...</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+    <!-- Footer Start -->
+    <div id="footer"></div>
+
+    <script>
+        fetch('components/footer.html')
+            .then(response => response.text())
+            .then(data => {
+                const tempDiv = document.createElement('div');
+                tempDiv.innerHTML = data;
+                const template = tempDiv.querySelector('template');
+                document.getElementById('footer').appendChild(template.content.cloneNode(true));
+            })
+            .catch(error => console.error('Error loading footer:', error));
+    </script>
+    <!-- Footer End -->
 
 
     <!-- Back to Top -->
