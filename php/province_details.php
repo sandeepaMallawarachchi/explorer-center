@@ -131,31 +131,31 @@ $province_details = $provinces[$province_id] ?? null;
                     <?php
                     // Define positions for each district marker (these positions are placeholders and may need adjustment)
                     $districtPositions = [
-                        1 => ["top" => "70%", "left" => "30%"], // Galle
-                        2 => ["top" => "75%", "left" => "35%"], // Matara
-                        3 => ["top" => "80%", "left" => "40%"], // Hambantota
-                        4 => ["top" => "65%", "left" => "50%"], // Colombo
-                        5 => ["top" => "60%", "left" => "45%"], // Gampaha
-                        6 => ["top" => "55%", "left" => "50%"], // Kalutara
-                        7 => ["top" => "75%", "left" => "55%"], // Kandy
-                        8 => ["top" => "70%", "left" => "60%"], // Matale
-                        9 => ["top" => "85%", "left" => "50%"], // Nuwara Eliya
-                        10 => ["top" => "60%", "left" => "40%"], // Jaffna
-                        11 => ["top" => "65%", "left" => "35%"], // Kilinochchi
-                        12 => ["top" => "70%", "left" => "30%"], // Mannar
-                        13 => ["top" => "75%", "left" => "25%"], // Vavuniya
-                        14 => ["top" => "80%", "left" => "20%"], // Mullaitivu
-                        15 => ["top" => "55%", "left" => "30%"], // Anuradhapura
-                        16 => ["top" => "50%", "left" => "35%"], // Polonnaruwa
-                        17 => ["top" => "45%", "left" => "40%"], // Trincomalee
-                        18 => ["top" => "40%", "left" => "45%"], // Batticaloa
-                        19 => ["top" => "35%", "left" => "50%"], // Ampara
-                        20 => ["top" => "55%", "left" => "55%"], // Puttalam
-                        21 => ["top" => "50%", "left" => "60%"], // Kurunegala
-                        22 => ["top" => "60%", "left" => "65%"], // Ratnapura
-                        23 => ["top" => "65%", "left" => "70%"], // Kegalle
-                        24 => ["top" => "70%", "left" => "75%"], // Badulla
-                        25 => ["top" => "75%", "left" => "80%"], // Monaragala
+                        1 => ["top" => "80%", "left" => "35%"], // Galle
+                        2 => ["top" => "82%", "left" => "43%"], // Matara
+                        3 => ["top" => "80%", "left" => "55%"], // Hambantota
+                        4 => ["top" => "67%", "left" => "30%"], // Colombo
+                        5 => ["top" => "62%", "left" => "30%"], // Gampaha
+                        6 => ["top" => "72%", "left" => "32%"], // Kalutara
+                        7 => ["top" => "58%", "left" => "45%"], // Kandy
+                        8 => ["top" => "50%", "left" => "47%"], // Matale
+                        9 => ["top" => "65%", "left" => "47%"], // Nuwara Eliya
+                        10 => ["top" => "10%", "left" => "30%"], // Jaffna
+                        11 => ["top" => "17%", "left" => "35%"], // Kilinochchi
+                        12 => ["top" => "27%", "left" => "30%"], // Mannar
+                        13 => ["top" => "27%", "left" => "42%"], // Vavuniya
+                        14 => ["top" => "20%", "left" => "42%"], // Mullaitivu
+                        15 => ["top" => "35%", "left" => "42%"], // Anuradhapura
+                        16 => ["top" => "45%", "left" => "55%"], // Polonnaruwa
+                        17 => ["top" => "35%", "left" => "57%"], // Trincomalee
+                        18 => ["top" => "47%", "left" => "65%"], // Batticaloa
+                        19 => ["top" => "60%", "left" => "72%"], // Ampara
+                        20 => ["top" => "43%", "left" => "27%"], // Puttalam
+                        21 => ["top" => "50%", "left" => "35%"], // Kurunegala
+                        22 => ["top" => "72%", "left" => "45%"], // Ratnapura
+                        23 => ["top" => "62%", "left" => "37%"], // Kegalle
+                        24 => ["top" => "63%", "left" => "55%"], // Badulla
+                        25 => ["top" => "68%", "left" => "62%"], // Monaragala
                     ];
 
                     foreach ($districtPositions as $id => $position) {
