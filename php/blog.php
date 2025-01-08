@@ -1,13 +1,36 @@
 <?php
 include('db.php');
 
+// Check if blog ID is valid
 if (isset($_GET['id'])) {
-    $id = intval($_GET['id']);
-    $sql = "SELECT * FROM blogs WHERE id = $id";
+    $blog_id = intval($_GET['id']);
+    $sql = "SELECT * FROM blogs WHERE id = $blog_id";
     $result = mysqli_query($conn, $sql);
 } else {
     echo "<p>Invalid blog ID.</p>";
+    exit;
 }
+
+// Handle comment form submission
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $name = mysqli_real_escape_string($conn, $_POST['name']);
+    $email = mysqli_real_escape_string($conn, $_POST['email']);
+    $message = mysqli_real_escape_string($conn, $_POST['message']);
+    $comment_date = date("Y-m-d H:i:s");
+
+    $comment_sql = "INSERT INTO blog_comments (blog_id, name, email, message, date) 
+                    VALUES ('$blog_id', '$name', '$email', '$message', '$comment_date')";
+
+    if (mysqli_query($conn, $comment_sql)) {
+        echo "<script>alert('Comment added successfully!');</script>";
+    } else {
+        echo "<script>alert('Error: " . mysqli_error($conn) . "');</script>";
+    }
+}
+
+// Fetch comments for the blog
+$comments_sql = "SELECT * FROM blog_comments WHERE blog_id = $blog_id ORDER BY date DESC";
+$comments_result = mysqli_query($conn, $comments_sql);
 ?>
 
 <!DOCTYPE html>
@@ -43,76 +66,34 @@ if (isset($_GET['id'])) {
 
 <body>
     <!-- Topbar Start -->
-    <div class="container-fluid bg-light pt-3 d-none d-lg-block">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-6 text-center text-lg-left mb-2 mb-lg-0">
-                    <div class="d-inline-flex align-items-center">
-                        <p><i class="fa fa-envelope mr-2"></i>info@explorercentre.com</p>
-                        <p class="text-body px-3">|</p>
-                        <p><i class="fa fa-phone-alt mr-2"></i>+94114545312</p>
-                        <span></span> <span></span> <span></span>
-                        <p><i class="fa fa-phone-alt mr-2"></i>+61480096262</p>
-                    </div>
-                </div>
-                <div class="col-lg-6 text-center text-lg-right">
-                    <div class="d-inline-flex align-items-center">
-                        <a class="text-primary px-3" href="">
-                            <i class="fab fa-facebook-f"></i>
-                        </a>
-                        <a class="text-primary px-3" href="">
-                            <i class="fab fa-twitter"></i>
-                        </a>
-                        <a class="text-primary px-3" href="">
-                            <i class="fab fa-linkedin-in"></i>
-                        </a>
-                        <a class="text-primary px-3" href="">
-                            <i class="fab fa-instagram"></i>
-                        </a>
-                        <a class="text-primary pl-3" href="">
-                            <i class="fab fa-youtube"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+    <div id="topbar"></div>
+
+    <script>
+        fetch('components/topbar.html')
+            .then(response => response.text())
+            .then(data => {
+                const tempDiv = document.createElement('div');
+                tempDiv.innerHTML = data;
+                const template = tempDiv.querySelector('template');
+                document.getElementById('topbar').appendChild(template.content.cloneNode(true));
+            })
+            .catch(error => console.error('Error loading header:', error));
+    </script>
     <!-- Topbar End -->
 
-
     <!-- Navbar Start -->
-    <div class="container-fluid position-relative nav-bar p-0">
-        <div class="container-lg position-relative p-0 px-lg-3" style="z-index: 9;">
-            <nav class="navbar navbar-expand-lg bg-light navbar-light shadow-lg py-3 py-lg-0 pl-3 pl-lg-5">
-                <a href="" class="navbar-brand">
-                    <h1 class="m-0 text-primary"><span class="text-dark">Explorer</span>Centre</h1>
-                </a>
-                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse justify-content-between px-3" id="navbarCollapse">
-                    <div class="navbar-nav ml-auto py-0">
-                        <a href="index.html" class="nav-item nav-link active">Home</a>
-                        <a href="about.html" class="nav-item nav-link">About</a>
-                        <a href="calender.html" class="nav-item nav-link">Calender</a>
-                        <a href="package.html" class="nav-item nav-link">Discover</a>
-                        <a href="package.html" class="nav-item nav-link">Exploration</a>
-                        <div class="nav-item dropdown">
-                            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Itinerarie</a>
-                            <div class="dropdown-menu border-0 rounded-0 m-0">
-                                <a href="blog.html" class="dropdown-item">Blog Grid</a>
-                                <a href="single.html" class="dropdown-item">Blog Detail</a>
-                                <a href="destination.html" class="dropdown-item">Destination</a>
-                                <a href="guide.html" class="dropdown-item">Travel Guides</a>
-                                <a href="testimonial.html" class="dropdown-item">Testimonial</a>
-                            </div>
-                        </div>
-                        <a href="contact.html" class="nav-item nav-link">Contact</a>
-                    </div>
-                </div>
-            </nav>
-        </div>
-    </div>
+    <div id="header"></div>
+    <script>
+        fetch('components/header.html')
+            .then(response => response.text())
+            .then(data => {
+                const tempDiv = document.createElement('div');
+                tempDiv.innerHTML = data;
+                const template = tempDiv.querySelector('template');
+                document.getElementById('header').appendChild(template.content.cloneNode(true));
+            })
+            .catch(error => console.error('Error loading header:', error));
+    </script>
     <!-- Navbar End -->
 
 
@@ -223,68 +204,44 @@ if (isset($_GET['id'])) {
 
                     <!-- Comment List Start -->
                     <div class="bg-white" style="padding: 30px; margin-bottom: 30px;">
-                        <h4 class="text-uppercase mb-4" style="letter-spacing: 5px;">3 Comments</h4>
-                        <div class="media mb-4">
-                            <img src="img/user.jpg" alt="Image" class="img-fluid mr-3 mt-1" style="width: 45px;">
-                            <div class="media-body">
-                                <h6><a href="">John Doe</a> <small><i>01 Jan 2045</i></small></h6>
-                                <p>Diam amet duo labore stet elitr invidunt ea clita ipsum voluptua, tempor labore
-                                    accusam ipsum et no at. Kasd diam tempor rebum magna dolores sed sed eirmod ipsum.
-                                    Gubergren clita aliquyam consetetur sadipscing, at tempor amet ipsum diam tempor
-                                    consetetur at sit.</p>
-                                <button class="btn btn-sm btn-outline-primary">Reply</button>
-                            </div>
-                        </div>
-                        <div class="media">
-                            <img src="img/user.jpg" alt="Image" class="img-fluid mr-3 mt-1" style="width: 45px;">
-                            <div class="media-body">
-                                <h6><a href="">John Doe</a> <small><i>01 Jan 2045</i></small></h6>
-                                <p>Diam amet duo labore stet elitr invidunt ea clita ipsum voluptua, tempor labore
-                                    accusam ipsum et no at. Kasd diam tempor rebum magna dolores sed sed eirmod ipsum.
-                                    Gubergren clita aliquyam consetetur sadipscing, at tempor amet ipsum diam tempor
-                                    consetetur at sit.</p>
-                                <button class="btn btn-sm btn-outline-primary">Reply</button>
-                                <div class="media mt-4">
-                                    <img src="img/user.jpg" alt="Image" class="img-fluid mr-3 mt-1"
-                                        style="width: 45px;">
-                                    <div class="media-body">
-                                        <h6><a href="">John Doe</a> <small><i>01 Jan 2045</i></small></h6>
-                                        <p>Diam amet duo labore stet elitr invidunt ea clita ipsum voluptua, tempor
-                                            labore accusam ipsum et no at. Kasd diam tempor rebum magna dolores sed sed
-                                            eirmod ipsum. Gubergren clita aliquyam consetetur sadipscing, at tempor amet
-                                            ipsum diam tempor consetetur at sit.</p>
-                                        <button class="btn btn-sm btn-outline-primary">Reply</button>
+                        <h4 class="text-uppercase mb-4" style="letter-spacing: 5px;">Comments</h4>
+                        <?php
+                        if ($comments_result && mysqli_num_rows($comments_result) > 0) {
+                            while ($comment = mysqli_fetch_assoc($comments_result)) {
+                                echo "
+                                <div class='media mb-4'>
+                                    <img src='img/user.jpg' alt='Image' class='img-fluid mr-3 mt-1' style='width: 45px;'>
+                                    <div class='media-body'>
+                                        <h6>" . htmlspecialchars($comment['name']) . " <small><i>" . date("d M Y, h:i A", strtotime($comment['date'])) . "</i></small></h6>
+                                        <p>" . htmlspecialchars($comment['message']) . "</p>
                                     </div>
-                                </div>
-                            </div>
-                        </div>
+                                </div>";
+                            }
+                        } else {
+                            echo "<p>No comments yet. Be the first to leave a comment!</p>";
+                        }
+                        ?>
                     </div>
                     <!-- Comment List End -->
 
                     <!-- Comment Form Start -->
                     <div class="bg-white mb-3" style="padding: 30px;">
                         <h4 class="text-uppercase mb-4" style="letter-spacing: 5px;">Leave a comment</h4>
-                        <form>
+                        <form method="POST" action="">
                             <div class="form-group">
                                 <label for="name">Name *</label>
-                                <input type="text" class="form-control" id="name">
+                                <input type="text" class="form-control" id="name" name="name" required>
                             </div>
                             <div class="form-group">
                                 <label for="email">Email *</label>
-                                <input type="email" class="form-control" id="email">
+                                <input type="email" class="form-control" id="email" name="email" required>
                             </div>
-                            <div class="form-group">
-                                <label for="website">Website</label>
-                                <input type="url" class="form-control" id="website">
-                            </div>
-
                             <div class="form-group">
                                 <label for="message">Message *</label>
-                                <textarea id="message" cols="30" rows="5" class="form-control"></textarea>
+                                <textarea id="message" cols="30" rows="5" class="form-control" name="message" required></textarea>
                             </div>
                             <div class="form-group mb-0">
-                                <input type="submit" value="Leave a comment"
-                                    class="btn btn-primary font-weight-semi-bold py-2 px-3">
+                                <input type="submit" value="Leave a comment" class="btn btn-primary font-weight-semi-bold py-2 px-3">
                             </div>
                         </form>
                     </div>
