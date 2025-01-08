@@ -167,7 +167,7 @@ $result = mysqli_query($conn, $sql);
                                                 <span class='text-primary px-2'>|</span>
                                                 <a class='text-primary text-uppercase text-decoration-none' href='#'>" . htmlspecialchars($row['category']) . "</a>
                                             </div>
-                                            <a class='h5 m-0 text-decoration-none' href='#' data-toggle='modal' data-target='#blogModal' data-id='" . $row['id'] . "'>" . htmlspecialchars($row['topic']) . "</a>
+                                            <a class='h5 m-0 text-decoration-none' href='php/blog.php?id=" . $row['id'] . "'>" . htmlspecialchars($row['topic']) . "</a>
                                         </div>
                                     </div>
                                 </div>";
