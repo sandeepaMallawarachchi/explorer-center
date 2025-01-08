@@ -124,8 +124,22 @@ $province_details = $provinces[$province_id] ?? null;
         <div class="container pt-5">
             <div class="row">
                 <!-- Left Column for Image -->
-                <div class="col-lg-6">
-                    <img src="img/map.png" alt="" style="width: 100%; height: 800px;">
+                <div class="col-lg-6 position-relative">
+                    <img src="img/map2.png" alt="Sri Lanka Map" style="width: 100%; max-height: 800px;">
+
+                    <!-- Location Links -->
+                    <a href="#" data-id="1" data-toggle="modal" data-target="#districtModal"
+                        style="position: absolute; top: 80%; left: 35%; text-decoration: none; color: transparent;">
+                        <i class="fas fa-map-marker-alt text-primary" style="font-size: 1.5rem;"></i>
+                    </a>
+                    <a href="#" data-id="2" data-toggle="modal" data-target="#districtModal"
+                        style="position: absolute; top: 82%; left: 43%; text-decoration: none; color: transparent;">
+                        <i class="fas fa-map-marker-alt text-primary" style="font-size: 1.5rem;"></i>
+                    </a>
+                    <a href="#" data-id="3" data-toggle="modal" data-target="#districtModal"
+                        style="position: absolute; top: 80%; left: 55%; text-decoration: none; color: transparent;">
+                        <i class="fas fa-map-marker-alt text-primary" style="font-size: 1.5rem;"></i>
+                    </a>
                 </div>
 
                 <!-- Right Column for Content -->
@@ -137,7 +151,9 @@ $province_details = $provinces[$province_id] ?? null;
                                 style="width: 100%; height: 250px; object-fit: cover;">
                         </div>
                         <p><?= $province_details['description'] ?></p>
-                        <a href="php/district_details.php?province=<?= $province_id ?>" class="btn btn-primary">View Districts</a>
+                        <a href="#" data-id="1" data-toggle="modal" data-target="#districtModal">View Galle</a>
+                        <a href="#" data-id="2" data-toggle="modal" data-target="#districtModal">View Matara</a>
+                        <a href="#" data-id="3" data-toggle="modal" data-target="#districtModal">View Hambantota</a>
                     </div>
                 </div>
             </div>
@@ -185,6 +201,8 @@ $province_details = $provinces[$province_id] ?? null;
 
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
+    <script src="js/district-details.js"></script>
+
 </body>
 
 </html>

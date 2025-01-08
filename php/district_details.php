@@ -1,25 +1,35 @@
 <?php
+// Sample data for districts
+$districts = [
+    1 => [
+        "name" => "Galle",
+        "description" => "Galle is a beautiful district known for its historic Galle Fort and scenic beaches.",
+        "image_url" => "img/calender7.jpg",
+    ],
+    2 => [
+        "name" => "Matara",
+        "description" => "Matara is a coastal district famous for its lighthouse and whale watching tours.",
+        "image_url" => "img/calender3.jpg",
+    ],
+    3 => [
+        "name" => "Hambantota",
+        "description" => "Hambantota boasts rich wildlife sanctuaries, including Yala National Park.",
+        "image_url" => "img/hambanthota.jpg",
+    ],
+];
 
-if (isset($_GET['id'])) {
-    $id = intval($_GET['id']);
-    $sql = "SELECT * FROM blogs WHERE id = $id";
-    $result = mysqli_query($conn, $sql);
+// Get the district ID from the query parameter
+$districtId = $_GET['id'] ?? null;
+$district = $districts[$districtId] ?? null;
 
-    if ($result && mysqli_num_rows($result) > 0) {
-        $row = mysqli_fetch_assoc($result);
-        $imagePath = !empty($row['image_url']) ? htmlspecialchars($row['image_url']) : 'img/placeholder.jpg';
-        echo "
-        <div class='text-center'>
-            <img src='$imagePath' alt='Blog Image' class='img-fluid mb-3'>
-            <p style='text-align: right;'>" . date('F d, Y', strtotime($row['date'])) . "</p>
-        </div>
-        <h4 style='color: #3b82f6;'>" . htmlspecialchars($row['topic']) . "</h4> <!-- blue color -->
-        <p><strong>Author:</strong> " . htmlspecialchars($row['author']) . "</p>
-        <p><strong>Category:</strong> " . htmlspecialchars($row['category']) . "</p>
-        <p><strong>Description:</strong> " . htmlspecialchars($row['description']) . "</p>";
-    } else {
-        echo "<p>Blog not found.</p>";
-    }
+if ($district) {
+    $imagePath = htmlspecialchars($district['image_url']);
+    echo "
+    <div class='text-center'>
+        <img src='$imagePath' alt='{$district['name']} Image' class='img-fluid mb-3' style='max-height: 400px;'>
+    </div>
+    <h4 style='color: #3b82f6;'>" . htmlspecialchars($district['name']) . "</h4>
+    <p><strong>Description:</strong> " . htmlspecialchars($district['description']) . "</p>";
 } else {
-    echo "<p>Invalid blog ID.</p>";
+    echo "<p>Invalid district ID.</p>";
 }
