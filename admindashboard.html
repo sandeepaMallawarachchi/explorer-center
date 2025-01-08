@@ -31,45 +31,43 @@
 
 </head>
 <body>
-    <div class="d-flex">
-        <!-- Sidebar -->
-        <nav class="bg-dark text-white p-3" style="width: 250px; min-height: 100vh;">
-            <h3 class="text-center">Explorer Center</h3>
-            <ul class="nav flex-column mt-4">
-                <li class="nav-item mb-2">
-                    <a href="#" class="nav-link text-white">
-                        <i class="fas fa-home"></i> Home
-                    </a>
-                </li>
-                <li class="nav-item mb-2">
-                    <a href="#" class="nav-link text-white">
-                        <i class="fas fa-info-circle"></i> About
-                    </a>
-                </li>
-                <li class="nav-item mb-2">
-                    <a href="#" class="nav-link text-white">
-                        <i class="fas fa-map"></i> Destinations
-                    </a>
-                </li>
-                <li class="nav-item mb-2">
-                    <a href="#" class="nav-link text-white">
-                        <i class="fas fa-concierge-bell"></i> Services
-                    </a>
-                </li>
-                <li class="nav-item mb-2">
-                    <a href="#" class="nav-link text-white">
-                        <i class="fas fa-envelope"></i> Contact
-                    </a>
-                </li>
-            </ul>
-        </nav>
 
-        <!-- Main Content -->
-        <div class="flex-grow-1 p-4">
-            <h1>Welcome to Explorer Center</h1>
-            <p>Your main content goes here.</p>
-        </div>
-    </div>
+    <!-- Topbar Start -->
+    <div id="topbar"></div>
+
+    <script>
+        fetch('components/topbar.html')
+            .then(response => response.text())
+            .then(data => {
+                const tempDiv = document.createElement('div');
+                tempDiv.innerHTML = data;
+                const template = tempDiv.querySelector('template');
+                document.getElementById('topbar').appendChild(template.content.cloneNode(true));
+            })
+            .catch(error => console.error('Error loading topbar:', error));
+    </script>
+    <!-- Topbar End -->
+
+    <!-- Navbar Start -->
+    <div id="header"></div>
+    <script>
+        fetch('components/header.html')
+            .then(response => response.text())
+            .then(data => {
+                const tempDiv = document.createElement('div');
+                tempDiv.innerHTML = data;
+                const template = tempDiv.querySelector('template');
+                document.getElementById('header').appendChild(template.content.cloneNode(true));
+            })
+            .catch(error => console.error('Error loading header:', error));
+    </script>
+    <!-- Navbar End -->
+
+ 
+
+
+  
+   
 
     <!-- Bootstrap JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
