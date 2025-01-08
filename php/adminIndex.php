@@ -1,5 +1,4 @@
 <?php
-
 include 'db.php';
 // Fetch all records
 $query = "SELECT * FROM tours";
@@ -43,49 +42,63 @@ if (isset($_GET['delete'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin - Manage Tours</title>
-    <link rel="stylesheet" href="your-stylesheet.css">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/admin.css">
 </head>
 <body>
-    <div class="container-fluid py-5">
-        <div class="container pt-5 pb-3">
-            <div class="text-center mb-3 pb-3">
-                <h6 class="text-primary text-uppercase" style="letter-spacing: 5px;">Tours</h6>
-                <h1>Manage Tours</h1>
+    <div class="container py-5">
+        <div class="text-center mb-4">
+            <h6 class="text-primary text-uppercase" style="letter-spacing: 5px;">Tours</h6>
+            <h1>Manage Tours</h1>
+        </div>
+
+        <!-- Create New Tour Form -->
+        <form method="POST" class="bg-white p-4 rounded shadow-sm mb-5">
+            <h2>Create New Tour</h2>
+            <div class="mb-3">
+                <input type="text" name="title" class="form-control" placeholder="Title" required>
             </div>
+            <div class="mb-3">
+                <textarea name="description" class="form-control" placeholder="Description" rows="5" required></textarea>
+            </div>
+            <div class="mb-3">
+                <input type="text" name="image_main" class="form-control" placeholder="Main Image URL" required>
+            </div>
+            <button type="submit" name="create" class="btn btn-primary">Create</button>
+        </form>
 
-            <!-- Create New Tour Form -->
-            <form method="POST" style="margin-bottom: 20px; background: #fff; padding: 15px; border-radius: 5px;">
-                <h2>Create New Tour</h2>
-                <input type="text" name="title" placeholder="Title" required>
-                <textarea name="description" placeholder="Description" rows="5" required></textarea>
-                <input type="text" name="image_main" placeholder="Main Image URL" required>
-                <button type="submit" name="create">Create</button>
-            </form>
-
-            <!-- Tours List -->
-            <table>
+        <!-- Tours List -->
+        <table class="table table-bordered table-striped">
+            <thead class="thead-dark">
                 <tr>
                     <th>Title</th>
                     <th>Description</th>
                     <th>Main Image</th>
                     <th>Actions</th>
                 </tr>
+            </thead>
+            <tbody>
                 <?php while ($row = $result->fetch_assoc()): ?>
                     <tr>
                         <form method="POST">
                             <input type="hidden" name="id" value="<?= $row['id'] ?>">
-                            <td><input type="text" name="title" value="<?= $row['title'] ?>"></td>
-                            <td><textarea name="description" rows="3"><?= $row['description'] ?></textarea></td>
-                            <td><input type="text" name="image_main" value="<?= $row['image_main'] ?>"></td>
+                            <td><input type="text" name="title" class="form-control" value="<?= $row['title'] ?>"></td>
+                            <td><textarea name="description" class="form-control" rows="3"><?= $row['description'] ?></textarea></td>
+                            <td><input type="text" name="image_main" class="form-control" value="<?= $row['image_main'] ?>"></td>
                             <td>
-                                <button type="submit" name="update">Update</button>
-                                <a href="?delete=<?= $row['id'] ?>" onclick="return confirm('Are you sure?')">Delete</a>
+                                <button type="submit" name="update" class="btn btn-success">Update</button>
+                                <a href="?delete=<?= $row['id'] ?>" onclick="return confirm('Are you sure?')" class="btn btn-danger">Delete</a>
                             </td>
                         </form>
                     </tr>
                 <?php endwhile; ?>
-            </table>
-        </div>
+            </tbody>
+        </table>
     </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
