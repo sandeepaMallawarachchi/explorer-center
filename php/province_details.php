@@ -131,37 +131,71 @@ $province_details = $provinces[$province_id] ?? null;
                     <?php
                     // Define positions for each district marker (these positions are placeholders and may need adjustment)
                     $districtPositions = [
-                        1 => ["top" => "80%", "left" => "35%"], // Galle
-                        2 => ["top" => "82%", "left" => "43%"], // Matara
-                        3 => ["top" => "80%", "left" => "55%"], // Hambantota
-                        4 => ["top" => "67%", "left" => "30%"], // Colombo
-                        5 => ["top" => "62%", "left" => "30%"], // Gampaha
-                        6 => ["top" => "72%", "left" => "32%"], // Kalutara
-                        7 => ["top" => "58%", "left" => "45%"], // Kandy
-                        8 => ["top" => "50%", "left" => "47%"], // Matale
-                        9 => ["top" => "65%", "left" => "47%"], // Nuwara Eliya
-                        10 => ["top" => "10%", "left" => "30%"], // Jaffna
-                        11 => ["top" => "17%", "left" => "35%"], // Kilinochchi
-                        12 => ["top" => "27%", "left" => "30%"], // Mannar
-                        13 => ["top" => "27%", "left" => "42%"], // Vavuniya
-                        14 => ["top" => "20%", "left" => "42%"], // Mullaitivu
-                        15 => ["top" => "35%", "left" => "42%"], // Anuradhapura
-                        16 => ["top" => "45%", "left" => "55%"], // Polonnaruwa
-                        17 => ["top" => "35%", "left" => "57%"], // Trincomalee
-                        18 => ["top" => "47%", "left" => "65%"], // Batticaloa
-                        19 => ["top" => "60%", "left" => "72%"], // Ampara
-                        20 => ["top" => "43%", "left" => "27%"], // Puttalam
-                        21 => ["top" => "50%", "left" => "35%"], // Kurunegala
-                        22 => ["top" => "72%", "left" => "45%"], // Ratnapura
-                        23 => ["top" => "62%", "left" => "37%"], // Kegalle
-                        24 => ["top" => "63%", "left" => "55%"], // Badulla
-                        25 => ["top" => "68%", "left" => "62%"], // Monaragala
+                        "province1" => [
+                            ["top" => "80%", "left" => "35%"], // Galle
+                            ["top" => "82%", "left" => "43%"], // Matara
+                            ["top" => "80%", "left" => "55%"]  // Hambantota
+                        ],
+                        "province2" => [
+                            ["top" => "67%", "left" => "30%"], // Colombo
+                            ["top" => "62%", "left" => "30%"], // Gampaha
+                            ["top" => "72%", "left" => "32%"]  // Kalutara
+                        ],
+                        "province3" => [
+                            ["top" => "58%", "left" => "45%"], // Kandy
+                            ["top" => "50%", "left" => "47%"], // Matale
+                            ["top" => "65%", "left" => "47%"]  // Nuwara Eliya
+                        ],
+                        "province4" => [
+                            ["top" => "35%", "left" => "57%"], // Trincomalee
+                            ["top" => "47%", "left" => "65%"], // Batticaloa
+                            ["top" => "60%", "left" => "72%"]  // Ampara
+                        ],
+                        "province5" => [
+                            ["top" => "10%", "left" => "30%"], // Jaffna
+                            ["top" => "17%", "left" => "35%"], // Kilinochchi
+                            ["top" => "27%", "left" => "30%"]  // Mannar
+                        ],
+                        "province6" => [
+                            ["top" => "43%", "left" => "27%"], // Puttalam
+                            ["top" => "50%", "left" => "35%"], // Kurunegala
+                        ],
+                        "province7" => [
+                            ["top" => "35%", "left" => "42%"], // Anuradhapura
+                            ["top" => "45%", "left" => "55%"]  // Polonnaruwa
+                        ],
+                        "province8" => [
+                            ["top" => "63%", "left" => "55%"], // Badulla
+                            ["top" => "68%", "left" => "62%"]  // Monaragala
+                        ],
+                        "province9" => [
+                            ["top" => "72%", "left" => "45%"], // Ratnapura
+                            ["top" => "62%", "left" => "37%"]  // Kegalle
+                        ]
                     ];
 
-                    foreach ($districtPositions as $id => $position) {
-                        echo "<a href='#' class='location-link' data-id='{$id}' style='position: absolute; top: {$position['top']}; left: {$position['left']}; text-decoration: none;'>
-                                <i class='fas fa-map-marker-alt text-primary' style='font-size: 1.5rem;'></i>
-                            </a>";
+                    $provinceStartingIds = [
+                        "province1" => 1,  // Galle starts from ID 1
+                        "province2" => 4,  // Colombo starts from ID 4
+                        "province3" => 7,  // Kandy starts from ID 7
+                        "province4" => 10, // Trincomalee starts from ID 10
+                        "province5" => 13, // Jaffna starts from ID 13
+                        "province6" => 16, // Puttalam starts from ID 16
+                        "province7" => 18, // Anuradhapura starts from ID 18
+                        "province8" => 20, // Badulla starts from ID 20
+                        "province9" => 22  // Ratnapura starts from ID 22
+                    ];
+
+                    // Get the starting district ID for the selected province
+                    $districtId = $provinceStartingIds[$province_id] ?? 1; // Default to 1 if province_id not found
+
+                    if (isset($districtPositions[$province_id])) {
+                        foreach ($districtPositions[$province_id] as $position) {
+                            echo "<a href='#' class='location-link' data-id='{$districtId}' style='position: absolute; top: {$position['top']}; left: {$position['left']}; text-decoration: none;'>
+                                    <i class='fas fa-map-marker-alt text-primary' style='font-size: 1.5rem;'></i>
+                                </a>";
+                            $districtId++; // Increment the district ID for each district in the province
+                        }
                     }
                     ?>
                 </div>
