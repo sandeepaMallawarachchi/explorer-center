@@ -1,65 +1,21 @@
 <?php
-include('db.php');
+include('blog_helpers.php');
 
-// Fetch the search term if any
-$searchKeyword = isset($_GET['search']) ? $_GET['search'] : '';
-
-// Fetch the selected category from the URL if any
-$categoryFilter = isset($_GET['category']) ? $_GET['category'] : '';
-
-// Prepare SQL query based on search and category filter
-if ($searchKeyword && $categoryFilter) {
-    $searchKeyword = mysqli_real_escape_string($conn, $searchKeyword);
-    $categoryFilter = mysqli_real_escape_string($conn, $categoryFilter);
-    $sql = "SELECT * FROM blogs WHERE (LOWER(topic) LIKE '%$searchKeyword%' OR LOWER(author) LIKE '%$searchKeyword%' OR LOWER(category) LIKE '%$searchKeyword%' OR LOWER(description) LIKE '%$searchKeyword%') AND category = '$categoryFilter'";
-} elseif ($searchKeyword) {
-    $searchKeyword = mysqli_real_escape_string($conn, $searchKeyword);
-    $sql = "SELECT * FROM blogs WHERE LOWER(topic) LIKE '%$searchKeyword%' OR LOWER(author) LIKE '%$searchKeyword%' OR LOWER(category) LIKE '%$searchKeyword%' OR LOWER(description) LIKE '%$searchKeyword%'";
-} elseif ($categoryFilter) {
-    $categoryFilter = mysqli_real_escape_string($conn, $categoryFilter);
-    $sql = "SELECT * FROM blogs WHERE category = '$categoryFilter'";
-} else {
-    $sql = "SELECT * FROM blogs";
-}
-
-$result = mysqli_query($conn, $sql);
-
-// Fetch categories and blog counts
-$sql = "SELECT category, COUNT(*) as count FROM blogs GROUP BY category";
-$categoryResult = mysqli_query($conn, $sql);
-
-// Fetch the last 3 blog posts in descending order
-$sql = "SELECT * FROM blogs ORDER BY date DESC LIMIT 3";
-$recentPostsResult = mysqli_query($conn, $sql);
-
-$sqlTags = "SELECT description FROM blogs";
-$tagsResult = mysqli_query($conn, $sqlTags);
-
-$tags = [];
-if ($tagsResult && mysqli_num_rows($tagsResult) > 0) {
-    while ($row = mysqli_fetch_assoc($tagsResult)) {
-        $description = strtolower($row['description']);
-        preg_match_all('/\b(design|consulting|travel|culture|adventure|wildlife|beaches)\b/i', $description, $matches);
-        $tags = array_merge($tags, $matches[0]);
-    }
-    $tags = array_unique($tags);
-}
-
-// Pagination logic
+// Fetch pagination details
 $blogsPerPage = 6;
 $page = isset($_GET['page']) && is_numeric($_GET['page']) ? intval($_GET['page']) : 1;
-$offset = ($page - 1) * $blogsPerPage;
+$totalBlogs = getTotalBlogsCount($conn);
+$totalPages = getTotalPages($totalBlogs, $blogsPerPage);
 
-// Fetch total blogs count for pagination
-$totalBlogsQuery = "SELECT COUNT(*) AS total FROM blogs";
-$totalBlogsResult = mysqli_query($conn, $totalBlogsQuery);
-$totalBlogs = mysqli_fetch_assoc($totalBlogsResult)['total'];
-$totalPages = ceil($totalBlogs / $blogsPerPage);
+// Fetch blogs
+$searchKeyword = isset($_GET['search']) ? $_GET['search'] : '';
+$categoryFilter = isset($_GET['category']) ? $_GET['category'] : '';
+$result = getBlogs($conn, $searchKeyword, $categoryFilter, $page, $blogsPerPage);
 
-// Fetch blogs for current page
-$sql = "SELECT * FROM blogs ORDER BY date DESC LIMIT $offset, $blogsPerPage";
-$result = mysqli_query($conn, $sql);
-
+// Fetch categories and recent posts
+$categoryResult = getBlogCategories($conn);
+$recentPostsResult = getRecentPosts($conn);
+$tags = getBlogTags($conn);
 ?>
 
 <!DOCTYPE html>
@@ -167,7 +123,7 @@ $result = mysqli_query($conn, $sql);
                                                 <span class='text-primary px-2'>|</span>
                                                 <a class='text-primary text-uppercase text-decoration-none' href='#'>" . htmlspecialchars($row['category']) . "</a>
                                             </div>
-                                            <a class='h5 m-0 text-decoration-none' href='#' data-toggle='modal' data-target='#blogModal' data-id='" . $row['id'] . "'>" . htmlspecialchars($row['topic']) . "</a>
+                                            <a class='h5 m-0 text-decoration-none' href='php/blog.php?id=" . $row['id'] . "'>" . htmlspecialchars($row['topic']) . "</a>
                                         </div>
                                     </div>
                                 </div>";
@@ -237,12 +193,16 @@ $result = mysqli_query($conn, $sql);
                     <!-- Search Form -->
                     <div class="mb-5">
                         <div class="bg-white" style="padding: 30px;">
-                            <div class="input-group">
-                                <input type="text" class="form-control p-4" id="searchInput" placeholder="Keyword" value="<?php echo htmlspecialchars($searchKeyword); ?>">
-                                <div class="input-group-append">
-                                    <span class="input-group-text bg-primary border-primary text-white" id="searchBtn"><i class="fa fa-search"></i></span>
+                            <form method="GET" action="php/allBlogs.php">
+                                <div class="input-group">
+                                    <input type="text" name="search" class="form-control p-4" id="searchInput" placeholder="Keyword" value="<?php echo htmlspecialchars($searchKeyword); ?>">
+                                    <div class="input-group-append">
+                                        <button type="submit" class="input-group-text bg-primary border-primary text-white" id="searchBtn">
+                                            <i class="fa fa-search"></i>
+                                        </button>
+                                    </div>
                                 </div>
-                            </div>
+                            </form>
                         </div>
                     </div>
 
@@ -251,20 +211,22 @@ $result = mysqli_query($conn, $sql);
                         <h4 class="text-uppercase mb-4" style="letter-spacing: 5px;">Categories</h4>
                         <div class="bg-white" style="padding: 30px;">
                             <ul class="list-inline m-0">
-                                <?php
-                                if ($categoryResult && mysqli_num_rows($categoryResult) > 0) {
-                                    while ($row = mysqli_fetch_assoc($categoryResult)) {
+                                <?php if ($categoryResult && mysqli_num_rows($categoryResult) > 0): ?>
+                                    <?php while ($row = mysqli_fetch_assoc($categoryResult)): ?>
+                                        <?php
                                         $categoryName = htmlspecialchars($row['category']);
                                         $categoryCount = $row['count'];
-                                        // Add category link with a query parameter
-                                        echo "
+                                        ?>
                                         <li class='mb-3 d-flex justify-content-between align-items-center'>
-                                            <a class='text-dark' href='php/allBlogs.php?category=$categoryName&search=$searchKeyword'><i class='fa fa-angle-right text-primary mr-2'></i>$categoryName</a>
-                                            <span class='badge badge-primary badge-pill'>$categoryCount</span>
-                                        </li>";
-                                    }
-                                }
-                                ?>
+                                            <a class='text-dark' href='php/allBlogs.php?category=<?= urlencode($categoryName) ?>&search=<?= urlencode($searchKeyword) ?>'>
+                                                <i class='fa fa-angle-right text-primary mr-2'></i><?= $categoryName ?>
+                                            </a>
+                                            <span class='badge badge-primary badge-pill'><?= $categoryCount ?></span>
+                                        </li>
+                                    <?php endwhile; ?>
+                                <?php else: ?>
+                                    <p>No categories found.</p>
+                                <?php endif; ?>
                             </ul>
                         </div>
                     </div>
@@ -272,40 +234,36 @@ $result = mysqli_query($conn, $sql);
                     <!-- Recent Post -->
                     <div class="mb-5">
                         <h4 class="text-uppercase mb-4" style="letter-spacing: 5px;">Recent Post</h4>
-                        <?php
-                        if ($recentPostsResult && mysqli_num_rows($recentPostsResult) > 0) {
-                            while ($row = mysqli_fetch_assoc($recentPostsResult)) {
+                        <?php if ($recentPostsResult && mysqli_num_rows($recentPostsResult) > 0): ?>
+                            <?php while ($row = mysqli_fetch_assoc($recentPostsResult)): ?>
+                                <?php
                                 $imagePath = !empty($row['image_url']) ? htmlspecialchars($row['image_url']) : 'img/placeholder.jpg';
                                 $formattedDate = date("M d, Y", strtotime($row['date']));
-                                echo "
-                                <a class='d-flex align-items-center text-decoration-none bg-white mb-3' href='#' data-toggle='modal' data-target='#blogModal' data-id='" . $row['id'] . "'>
-                                    <img class='img-fluid' src='$imagePath' alt='' style='width: 120px;'>
-                                    <div class='pl-3'>
-                                        <h6 class='m-1'>" . htmlspecialchars($row['topic']) . "</h6>
-                                        <small>$formattedDate</small>
+                                ?>
+                                <a class="d-flex align-items-center text-decoration-none bg-white mb-3" href="php/blog.php?id=<?= $row['id'] ?>">
+                                    <img class="img-fluid" src="<?= $imagePath ?>" alt="Blog Image" style="width: 120px;">
+                                    <div class="pl-3">
+                                        <h6 class="m-1"><?= htmlspecialchars($row['topic']) ?></h6>
+                                        <small><?= $formattedDate ?></small>
                                     </div>
-                                </a>";
-                            }
-                        } else {
-                            echo "<p>No recent posts found.</p>";
-                        }
-                        ?>
+                                </a>
+                            <?php endwhile; ?>
+                        <?php else: ?>
+                            <p>No recent posts found.</p>
+                        <?php endif; ?>
                     </div>
 
                     <!-- Tag Cloud -->
                     <div class="mb-5">
                         <h4 class="text-uppercase mb-4" style="letter-spacing: 5px;">Tag Cloud</h4>
                         <div class="d-flex flex-wrap m-n1">
-                            <?php
-                            if (!empty($tags)) {
-                                foreach ($tags as $tag) {
-                                    $tagName = htmlspecialchars($tag);
-                                    echo "<a href='?search=$tagName' class='btn btn-light m-1'>" . ucfirst($tagName) . "</a>";
-                                }
-                            } else {
-                                echo "<p>No tags available.</p>";
-                            }
-                            ?>
+                            <?php if (!empty($tags)): ?>
+                                <?php foreach ($tags as $tag): ?>
+                                    <a href="php/allBlogs.php?search=<?= urlencode($tag) ?>" class="btn btn-light m-1"><?= ucfirst(htmlspecialchars($tag)) ?></a>
+                                <?php endforeach; ?>
+                            <?php else: ?>
+                                <p>No tags available.</p>
+                            <?php endif; ?>
                         </div>
                     </div>
 
