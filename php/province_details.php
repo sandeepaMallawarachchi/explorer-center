@@ -125,7 +125,7 @@ $province_details = $provinces[$province_id] ?? null;
             <div class="row">
                 <!-- Left Column for Image -->
                 <div class="col-lg-6 position-relative">
-                    <img src="img/map2.png" alt="Sri Lanka Map" style="width: 100%; max-height: 800px;">
+                    <img src="img/map3.png" alt="Sri Lanka Map" style="width: 100%; max-height: 800px;">
 
                     <!-- Location Links -->
                     <a href="#" data-id="1" class="location-link" style="position: absolute; top: 80%; left: 35%; text-decoration: none;">
