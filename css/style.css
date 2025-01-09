@@ -10995,3 +10995,7 @@ h6,
   overflow: auto;
   /* Clear floats */
 }
+
+.topic{
+  font-size: larger;
+}
