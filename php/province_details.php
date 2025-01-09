@@ -198,6 +198,7 @@ $province_details = $provinces[$province_id] ?? null;
                         }
                     }
                     ?>
+                    <small style="color: red;">*Please select a district on the map to show details.</small>
                 </div>
 
                 <!-- Right Column for Content -->
@@ -222,7 +223,7 @@ $province_details = $provinces[$province_id] ?? null;
             <div class="row">
                 <div class="col-lg-8">
                     <div class="bg-white mb-3" style="padding: 30px;">
-                        <p id="districtDescription"></p>
+                        <p id="districtDescription"><?= 'Please select a district on the map to show details.'?></p>
                     </div>
                 </div>
 
