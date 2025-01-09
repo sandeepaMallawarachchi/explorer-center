@@ -44,7 +44,7 @@ $(document).ready(function () {
         9: {
             name: "Nuwara Eliya",
             image: "img/calender7.jpg",
-            description: "Description for Nuwara Eliya."
+            description: "2021 Population Estimate: 780,000 <br><br>Total Land Area: 1,706 km2 (659 mi2)<br><br>Province: Central<br><br>Nestled among the hills of Sri Lanka’s Central Province is the district of Nuwara Eliya. The terrain in this area of the country is mostly mountainous with deep valleys, and the capital of the district is located in what is considered the most important location for tea cultivation in Sri Lanka.<br><br>There are several natural attractions in the capital city such as Victoria Park, Lake Gregory, Galway’s Land Bird Sanctuary, and more."
         },
         10: {
             name: "Jaffna",

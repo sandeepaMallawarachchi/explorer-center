@@ -10970,6 +10970,7 @@ h6,
 .district-image-left {
   width: 300px;
   height: auto;
+  max-height: 300px;
   float: left;
   margin-right: 20px;
   /* Space between image and text */
@@ -10978,6 +10979,7 @@ h6,
 .district-image-right {
   width: 300px;
   height: auto;
+  max-height: 300px;
   float: right;
   margin-left: 20px;
   /* Space between image and text */
