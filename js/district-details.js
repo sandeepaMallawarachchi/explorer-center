@@ -94,7 +94,7 @@ $(document).ready(function () {
         19: {
             name: "Ampara",
             image: "img/calender7.jpg",
-            description: "Description for Ampara."
+            description: "2021 Population Estimate: 752,000 </br> Total Land Area: 4,222 km2 (1,630 mi2) </br> Province: Eastern </br> The Ampara District is located along the southeastern coast of Sri Lanka, bordering six other districts and the Indian Ocean. It is one of the most diverse districts in the country, and it was formed in 1961 from land that had previously been a part of the Batticaloa District. During the British colonial period, the capital of Ampara was used as a resting ground for hunters. It was later turned into a town and functioned as a place of residence for workers on the Inginiyagala Dam (Gal Oya Dam)."
         },
         20: {
             name: "Puttalam",
@@ -140,6 +140,11 @@ $(document).ready(function () {
             $('#provinceName').text(name);
             $('#provinceImage').attr('src', image).attr('alt', name);
             $('#provinceDescription').text(description);
+
+            // Fetch district details dynamically from the corresponding text file
+            $.get(`districts/${districtId}.txt`, function (data) {
+                $('#districtDescription').html(data.replace(/\n/g, '<br>'));
+            });
         }
     });
 });

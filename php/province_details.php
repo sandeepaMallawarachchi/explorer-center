@@ -124,7 +124,7 @@ $province_details = $provinces[$province_id] ?? null;
         <div class="container pt-5">
             <div class="row">
                 <!-- Left Column for Image -->
-                <div class="col-lg-6 position-relative">
+                <div class="col-lg-6" style="position: relative; height: 720px;">
                     <img src="img/map3.png" alt="Sri Lanka Map" style="width: 100%; max-height: 800px;">
 
                     <!-- Dynamic Location Links -->
@@ -178,11 +178,11 @@ $province_details = $provinces[$province_id] ?? null;
                         "province1" => 1,  // Galle starts from ID 1
                         "province2" => 4,  // Colombo starts from ID 4
                         "province3" => 7,  // Kandy starts from ID 7
-                        "province4" => 10, // Trincomalee starts from ID 10
-                        "province5" => 13, // Jaffna starts from ID 13
-                        "province6" => 16, // Puttalam starts from ID 16
-                        "province7" => 18, // Anuradhapura starts from ID 18
-                        "province8" => 20, // Badulla starts from ID 20
+                        "province4" => 17, // Trincomalee starts from ID 10
+                        "province5" => 10, // Jaffna starts from ID 13
+                        "province6" => 20, // Puttalam starts from ID 16
+                        "province7" => 15, // Anuradhapura starts from ID 18
+                        "province8" => 24, // Badulla starts from ID 20
                         "province9" => 22  // Ratnapura starts from ID 22
                     ];
 
@@ -201,7 +201,7 @@ $province_details = $provinces[$province_id] ?? null;
                 </div>
 
                 <!-- Right Column for Content -->
-                <div class="col-lg-6 pb-lg-5">
+                <div class="col-lg-6 pb-lg-5" style="min-height: 800px;">
                     <div class="bg-white p-4 p-lg-5 my-lg-5" id="provinceDetails">
                         <h1 class="text-primary mb-3" id="provinceName"><?= $province_details['name'] ?></h1>
                         <div class="position-relative h-100 mb-3">
@@ -215,6 +215,94 @@ $province_details = $provinces[$province_id] ?? null;
         </div>
     </div>
     <!-- Province details End -->
+
+    <!-- District details Start -->
+    <div class="container-fluid">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8">
+                    <div class="bg-white mb-3" style="padding: 30px;">
+                        <p id="districtDescription"></p>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 mt-5 mt-lg-0">
+                    <!-- Search Form -->
+                    <div class="mb-5">
+                        <div class="bg-white" style="padding: 30px;">
+                            <div class="input-group">
+                                <input type="text" class="form-control p-4" placeholder="Keyword">
+                                <div class="input-group-append">
+                                    <span class="input-group-text bg-primary border-primary text-white"><i
+                                            class="fa fa-search"></i></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Recent Post -->
+                    <div class="mb-5">
+                        <h4 class="text-uppercase mb-4" style="letter-spacing: 5px;">Province</h4>
+                        <a class="d-flex align-items-center text-decoration-none bg-white mb-3" href="php/province_details.php?province=province2">
+                            <img class="img-fluid" src="img/destination-2.jpg" alt="" style="max-width: 150px; width: 120px; max-height: 100px;">
+                            <div class="pl-3">
+                                <h6 class="m-1">Western Province</h6>
+                            </div>
+                        </a>
+                        <a class="d-flex align-items-center text-decoration-none bg-white mb-3" href="php/province_details.php?province=province1">
+                            <img class="img-fluid" src="img/destination-1.jpg" alt="" style="max-width: 150px; width: 120px; max-height: 100px;">
+                            <div class="pl-3">
+                                <h6 class="m-1">Southern Province</h6>
+                            </div>
+                        </a>
+                        <a class="d-flex align-items-center text-decoration-none bg-white mb-3" href="php/province_details.php?province=province3">
+                            <img class="img-fluid" src="img/destination-6.jpg" alt="" style="max-width: 150px; width: 120px; max-height: 100px;">
+                            <div class="pl-3">
+                                <h6 class="m-1">Central Province</h6>
+                            </div>
+                        </a>
+                        <a class="d-flex align-items-center text-decoration-none bg-white mb-3" href="php/province_details.php?province=province4">
+                            <img class="img-fluid" src="img/destination-4.jpg" alt="" style="max-width: 150px; width: 120px; max-height: 100px;">
+                            <div class="pl-3">
+                                <h6 class="m-1">Eastern Province</h6>
+                            </div>
+                        </a>
+                        <a class="d-flex align-items-center text-decoration-none bg-white mb-3" href="php/province_details.php?province=province5">
+                            <img class="img-fluid" src="img/destination-5.jpg" alt="" style="max-width: 150px; width: 120px; max-height: 100px;">
+                            <div class="pl-3">
+                                <h6 class="m-1">Northern Province</h6>
+                            </div>
+                        </a>
+                        <a class="d-flex align-items-center text-decoration-none bg-white mb-3" href="php/province_details.php?province=province6">
+                            <img class="img-fluid" src="img/destination-3.jpg" alt="" style="max-width: 150px; width: 120px; max-height: 100px;">
+                            <div class="pl-3">
+                                <h6 class="m-1">North Western Province</h6>
+                            </div>
+                        </a>
+                        <a class="d-flex align-items-center text-decoration-none bg-white mb-3" href="php/province_details.php?province=province7">
+                            <img class="img-fluid" src="img/destination-7.jpg" alt="" style="max-width: 150px; width: 120px; max-height: 100px;">
+                            <div class="pl-3">
+                                <h6 class="m-1">North Central Province</h6>
+                            </div>
+                        </a>
+                        <a class="d-flex align-items-center text-decoration-none bg-white mb-3" href="php/province_details.php?province=province8">
+                            <img class="img-fluid" src="img/destination-8.jpg" alt="" style="max-width: 150px; width: 120px; max-height: 100px;">
+                            <div class="pl-3">
+                                <h6 class="m-1">Uva Province</h6>
+                            </div>
+                        </a>
+                        <a class="d-flex align-items-center text-decoration-none bg-white mb-3" href="php/province_details.php?province=province9">
+                            <img class="img-fluid" src="img/destination-9.jpg" alt="" style="max-width: 150px; width: 120px; max-height: 100px;">
+                            <div class="pl-3">
+                                <h6 class="m-1">Sabaragamuwa Province</h6>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- District details End -->
 
     <!-- Footer Start -->
     <div id="footer"></div>
