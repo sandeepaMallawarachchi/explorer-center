@@ -238,7 +238,7 @@ $province_details = $provinces[$province_id] ?? null;
     <div class="container-fluid">
         <div class="container">
             <div class="row">
-                <div class="col-lg-8" style="height: 150vh; overflow-y: auto;">
+                <div class="col-lg-8" style="height: 130vh; overflow-y: auto;">
                     <div class="bg-white mb-3" style="padding: 30px;">
                         <p id="districtDescription"><?= 'Please select a district on the map to show details.' ?></p>
                     </div>
@@ -246,20 +246,21 @@ $province_details = $provinces[$province_id] ?? null;
 
                 <div class="col-lg-4 mt-5 mt-lg-0">
                     <!-- Search Form -->
-                    <div class="mb-5">
+                    <!-- <div class="mb-5">
                         <div class="bg-white" style="padding: 30px;">
                             <div class="input-group">
-                                <input type="text" class="form-control p-4" placeholder="Keyword">
+                                <input type="text" class="form-control p-4" placeholder="Keyword in <?= htmlspecialchars($province_details['name']) ?>">
                                 <div class="input-group-append">
-                                    <span class="input-group-text bg-primary border-primary text-white"><i
-                                            class="fa fa-search"></i></span>
+                                    <span class="input-group-text bg-primary border-primary text-white">
+                                        <i class="fa fa-search"></i>
+                                    </span>
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
 
                     <!-- province Post -->
-                    <div class="mb-5" ">
+                    <div class="mb-5">
                         <h4 class=" text-uppercase mb-4" style="letter-spacing: 5px;">Province</h4>
                         <a class="d-flex align-items-center text-decoration-none bg-white mb-3" href="php/province_details.php?province=province2">
                             <img class="img-fluid" src="img/destination-2.jpg" alt="" style="max-width: 150px; width: 120px; max-height: 100px;">

@@ -4,7 +4,7 @@ $(document).ready(function () {
         1: {
             name: "Galle",
             image: "img/calender7.jpg",
-            description: "Description for Galle."
+            description: "2021 Population Estimate: 1,147,000<br><br>Total Land Area: 1,617 km2 (624 mi2)<br><br>Province: Southern<br><br>The Galle District is located in the southeast corner of Sri Lanka and borders the Indian Ocean as well as three other districts. It is the site of the Sinharaja Forest Reserve, a UNESCO World Heritage Site."
         },
         2: {
             name: "Matara",
@@ -147,7 +147,7 @@ $(document).ready(function () {
 
                 // Make the topics bold
                 formattedData = formattedData.replace(/\*([^\*]+)\*/g, function (match, topic) {
-                    return `<strong>${topic}</strong>`;
+                    return `<strong class="topic">${topic}</strong>`;
                 });
 
                 // Replace image markdown syntax with <img> tags
