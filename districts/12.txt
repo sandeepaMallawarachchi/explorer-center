@@ -4,9 +4,8 @@ Province: Northern
 
 The Mannar District takes up a stretch of coastline on Sri Lanka’s northeastern shore and includes Mannar Island. The animal and plant life in this district are unique from that found in other parts of the country. For example, baobab trees grow on Mannar Island and few other places in the country. The dugong (marine mammal) can also be found in Mannar bay.
 
-
 *Lady of Madhu*
-![Lady of Madhu](img/BuddhangalaMonastery.jpg)
+![alt text](img/LadyofMadhu.jpg)
 
 One of the most significant religious sites in Sri Lanka is the Shrine of Our Lady of Madhu. It is situated in the Madhu Forest and is a Roman Catholic shrine with a history of more than 400 years. This shrine has a peaceful surrounding and offers a calm atmosphere for prayer and self-reflection.
 
@@ -14,9 +13,8 @@ The annual Madhu Forest Feast is celebrated in the month of August and attracts 
 
 The architecture of this church is beautiful and attracts many visitors. It is one of the few churches that sees the devotion of Buddhists, Hindus, and other religions in the country and other nations
 
-
 *Thiruketheeswaram Kovil*
-![Thiruketheeswaram Kovil](img/BuddhangalaMonastery.jpg)
+![alt text](img/ThiruketheeswaramKovil.jpg)
 
 Being one of the five ancient Isvarams of Lord Shiva, it has become a popular pilgrimage site for Hindus across the globe. This sacred temple or Kovil, as it is called in Sinhalese, is believed to be 2500 years old. It reflects the rich history of Hindu worship in the region.
 
@@ -25,7 +23,7 @@ The temple is situated on the banks of the river Aruvi Aru. The architecture of 
 It is also popularly known as Ketheeswaram Temple. The temple provides skirts and sarongs to females and males, respectively. It is necessary for all to maintain the dress code. You can see the ancient port towns of Kudiramalai and Manthai from the temple itself. Even if these port towns are in ruins, they offer a glimpse of Mannar’s buildings.
 
 *Mannar Island*
-![Mannar Island](img/BuddhangalaMonastery.jpg)
+![alt text](img/MannarIsland.jpg)
 
 Connected to the mainland by a causeway, Mannar Island is a unique destination known for its landscapes, rich history, and various attractions. The main spot here is the Mannar Fort, which was built in the 16th century by the Portuguese. But later, it was occupied by the Dutch and the British. The visiting hours of this fort are 8 am to 6 pm daily. The entry is free for all visitors.
 
@@ -34,7 +32,7 @@ Another place to visit in Mannar Island is the iconic Baobab tree. It is believe
 Mannar Island is famous for kitesurfing, bird watching, fishing, and many other activities. If you like adventures, then Mannar Island is going to be a perfect place for you.
 
 *Thanthirimale*
-![Thanthirimale](img/BuddhangalaMonastery.jpg)
+![alt text](img/Thanthirimale.jpg)
 
 Located near Mannar, Thanthirimale is an ancient Buddhist site dating back to the Anuradhapura times. It is an archaeological marvel popular for its large reclining Buddha statue carved out of a single rock. It is considered to be one of the finest examples of ancient Sri Lankan sculpture.
 
@@ -45,13 +43,8 @@ Thanthirimale lies in the Anuradhapura district. Hence, this is a great opportun
 A large lake in the area adds more beauty to this natural place and gives peace to the mind. If you are someone who enjoys history and nature together, then you should definitely visit this place.
 
 *Mannar Bird Sanctuary*
-![Mannar Bird Sanctuary](img/BuddhangalaMonastery.jpg)
+![alt text](img/MannarBirdSanctuary.jpg)
 
 For all the nature lovers, the Mannar Bird Sanctuary is a place with diverse species of birds. It is home to many resident birds but also attracts many migratory ones. This bird sanctuary is famous for flamingos. All the birdwatchers can spot a wide range of species like pelicans, herons, and cormorants in the wetlands and lagoons of the sanctuary.
 
 It also has a tranquil environment that is best for wildlife photography and to enjoy nature walks. The Mannar Bird Sanctuary has rich biodiversity and beautiful coastal ecosystems. If you want to enjoy a complete package of nature mixed with coastal areas, birds, and various landscapes, then the Mannar Bird Sanctuary is for you.
-
-
-
-
-
