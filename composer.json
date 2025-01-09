@@ -1,4 +1,5 @@
 {
+
     "name": "thisa/explorer-center",
     "autoload": {
         "psr-4": {
@@ -13,5 +14,6 @@
     ],
     "require": {
         "cloudinary/cloudinary_php": "^3.0"
+
     }
 }
