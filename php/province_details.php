@@ -119,9 +119,26 @@ $province_details = $provinces[$province_id] ?? null;
     </script>
     <!-- Navbar End -->
 
+    <!-- Header Start -->
+    <div class="container-fluid district-page-header">
+        <div class="container">
+            <div class="d-flex flex-column align-items-center justify-content-center" style="min-height: 400px">
+                <h3 class="display-4 text-white text-uppercase">Districts</h3>
+                <div class="d-inline-flex text-white">
+                    <p class="m-0 text-uppercase"><a class="text-white" href="">Home</a></p>
+                    <i class="fa fa-angle-double-right pt-1 px-3"></i>
+                    <p class="m-0 text-uppercase"><a class="text-white" href="destination.html">Destinations</a></p>
+                    <i class="fa fa-angle-double-right pt-1 px-3"></i>
+                    <p class="m-0 text-uppercase">Districts</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Header End -->
+
     <!-- Province details Start -->
     <div class="container-fluid py-5">
-        <div class="container pt-5">
+        <div class="container">
             <div class="row">
                 <!-- Left Column for Image -->
                 <div class="col-lg-6" style="position: relative; height: 720px;">
@@ -198,7 +215,7 @@ $province_details = $provinces[$province_id] ?? null;
                         }
                     }
                     ?>
-                    <small style="color: red;">*Please select a district on the map to show details.</small>
+                    <p style="color: red;">*Please select a district on the map to show details.</p>
                 </div>
 
                 <!-- Right Column for Content -->
@@ -221,9 +238,9 @@ $province_details = $provinces[$province_id] ?? null;
     <div class="container-fluid">
         <div class="container">
             <div class="row">
-                <div class="col-lg-8">
+                <div class="col-lg-8" style="height: 150vh; overflow-y: auto;">
                     <div class="bg-white mb-3" style="padding: 30px;">
-                        <p id="districtDescription"><?= 'Please select a district on the map to show details.'?></p>
+                        <p id="districtDescription"><?= 'Please select a district on the map to show details.' ?></p>
                     </div>
                 </div>
 
@@ -241,9 +258,9 @@ $province_details = $provinces[$province_id] ?? null;
                         </div>
                     </div>
 
-                    <!-- Recent Post -->
-                    <div class="mb-5">
-                        <h4 class="text-uppercase mb-4" style="letter-spacing: 5px;">Province</h4>
+                    <!-- province Post -->
+                    <div class="mb-5" ">
+                        <h4 class=" text-uppercase mb-4" style="letter-spacing: 5px;">Province</h4>
                         <a class="d-flex align-items-center text-decoration-none bg-white mb-3" href="php/province_details.php?province=province2">
                             <img class="img-fluid" src="img/destination-2.jpg" alt="" style="max-width: 150px; width: 120px; max-height: 100px;">
                             <div class="pl-3">
