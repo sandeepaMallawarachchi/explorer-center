@@ -1,4 +1,17 @@
 {
+
+    "name": "thisa/explorer-center",
+    "autoload": {
+        "psr-4": {
+            "Thisa\\ExplorerCenter\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "thisaldil",
+            "email": "tdimith10@gmail.com"
+        }
+    ],
     "require": {
         "cloudinary/cloudinary_php": "^2.14",
         "phpmailer/phpmailer": "^6.9"
