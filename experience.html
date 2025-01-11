@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Explorer Center-Sri Lanka | Experience</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="Explore Sri Lanka's Beautiful Travel Experiences" name="keywords">
+    <meta content="Discover unique experiences across Sri Lanka" name="description">
+
+    <!-- Base URL -->
+    <base href="/explorer-center/">
+
+    <!-- Favicon -->
+    <link href="img/favicon.ico" rel="icon">
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet"> 
+
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+
+    <!-- Libraries Stylesheet -->
+    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet" />
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="css/style.css" rel="stylesheet">
+</head>
+
+<body>
+    <!-- Topbar Start -->
+    <div id="topbar"></div>
+
+    <script>
+        fetch('components/topbar.html')
+            .then(response => response.text())
+            .then(data => {
+                const tempDiv = document.createElement('div');
+                tempDiv.innerHTML = data;
+                const template = tempDiv.querySelector('template');
+                document.getElementById('topbar').appendChild(template.content.cloneNode(true));
+            })
+            .catch(error => console.error('Error loading header:', error));
+    </script>
+    <!-- Topbar End -->
+
+    <!-- Navbar Start -->
+    <div id="header"></div>
+    <script>
+        fetch('components/header.html')
+            .then(response => response.text())
+            .then(data => {
+                const tempDiv = document.createElement('div');
+                tempDiv.innerHTML = data;
+                const template = tempDiv.querySelector('template');
+                document.getElementById('header').appendChild(template.content.cloneNode(true));
+            })
+            .catch(error => console.error('Error loading header:', error));
+    </script>
+    <!-- Navbar End -->
+
+    <!-- Header Start -->
+    <div class="container-fluid page-header">
+        <div class="container">
+            <div class="d-flex flex-column align-items-center justify-content-center" style="min-height: 400px">
+                <h3 class="display-4 text-white text-uppercase">Experience Sri Lanka</h3>
+                <div class="d-inline-flex text-white">
+                    <p class="m-0 text-uppercase"><a class="text-white" href="">Home</a></p>
+                    <i class="fa fa-angle-double-right pt-1 px-3"></i>
+                    <p class="m-0 text-uppercase">Experience</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Header End -->
+
+ <!-- Experience Start -->
+ <div class="container-fluid py-5">
+    <div class="container pt-5">
+        <div class="row">
+            <!-- Left Column for Images -->
+            <div class="col-lg-6">
+                <div class="row">
+                    <!-- Image 1 -->
+                    <div class="col-md-14 mb-3">
+                        <div class="position-relative" style="height: 250px;">
+                            <img class="w-95 h-100" src="img/experience1.jpg" style="object-fit: cover; transition: transform 0.6s ease; box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.6); border-top-right-radius: 20px; border-bottom-right-radius: 20px;" onmouseover="hoverEffect(this, 100)" onmouseout="hoverEffect(this, 0)">
+                        </div>
+                    </div>
+                    <!-- Image 2 -->
+                    <div class="col-md-14 mb-3" style="margin-left: 150px;">
+                        <div class="position-relative" style="height: 250px;">
+                            <img class="w-95 h-100" src="img/experience2.jpg" style="object-fit: cover; transition: transform 0.6s ease; box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.6); border-top-left-radius: 20px; border-bottom-left-radius: 20px;" onmouseover="hoverEffect(this, -100)" onmouseout="hoverEffect(this, 0)">
+                        </div>
+                    </div>
+                    <!-- Image 3 -->
+                    <div class="col-md-14 mb-3">
+                        <div class="position-relative" style="height: 250px;">
+                            <img class="w-95 h-100" src="img/experience3.jpg" style="object-fit: cover; transition: transform 0.6s ease; box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.6); border-top-right-radius: 20px; border-bottom-right-radius: 20px;" onmouseover="hoverEffect(this, 100)" onmouseout="hoverEffect(this, 0)">
+                        </div>
+                    </div>
+                    <!-- Image 4 -->
+                    <div class="col-md-14 mb-3" style="margin-left: 150px;">
+                        <div class="position-relative" style="height: 250px;">
+                            <img class="w-95 h-100" src="img/experience4.jpg" style="object-fit: cover; transition: transform 0.6s ease; box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.6); border-top-left-radius: 20px; border-bottom-left-radius: 20px;" onmouseover="hoverEffect(this, -100)" onmouseout="hoverEffect(this, 0)">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Column for Content -->
+            <div class="col-lg-6 pt-5 pb-lg-5">
+                <div class="bg-white p-4 p-lg-5 my-lg-5">
+                    <h6 class="text-primary text-uppercase" style="letter-spacing: 5px;">Experience Sri Lanka</h6>
+                    <h1 class="mb-3">Unveil the Beauty of Sri Lanka!</h1>
+                    <p>Sri Lanka offers an incredible mix of natural wonders and cultural richness. Whether you’re hiking through misty mountains, witnessing vibrant traditional festivals, exploring the diverse wildlife, or experiencing the enchanting dance performances, Sri Lanka promises unforgettable adventures. Immerse yourself in unique experiences like:</p>
+                    <ul>
+                        <li>Hiking to the top of Adam’s Peak or exploring the serene landscapes of Nuwara Eliya’s mountain ranges.</li>
+                        <li>Participating in Sri Lanka’s colorful traditional festivals, such as the grand Vesak celebrations, where the streets light up with lanterns and religious rituals.</li>
+                        <li>Experiencing the wild side of Sri Lanka with safari tours in national parks like Yala, where you can spot leopards, elephants, and exotic bird species.</li>
+                        <li>Enjoying the graceful performances of Sri Lankan traditional dance, a mesmerizing fusion of music, rhythm, and storytelling.</li>
+                    </ul>
+                    <p>Our curated experiences will let you dive deep into Sri Lanka’s rich culture, pristine nature, and captivating traditions, creating memories that will last a lifetime.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+   function hoverEffect(element, moveDistance) {
+    element.style.transition = 'transform 0.6s ease';  // Move out slow (1.5s)
+    element.style.transform = `translateX(${moveDistance}px)`;
+    
+    setTimeout(() => {
+        element.style.transition = 'transform 0.3s ease';  // Come back fast (0.5s)
+        element.style.transform = 'translateX(0px)';
+    }, 1500);  // Reset after 1.5s
+}
+
+</script>
+
+
+<!-- Experience End -->
+
+<br>
+<br>
+<hr style="width: 80%; margin: 0 auto; border: 1px solid #dededf;">
+<br><br><br>
+    <!-- Features Start -->
+    <div class="container-fluid pb-5">
+        <div class="container pb-5">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="d-flex mb-4 mb-lg-0">
+                        <div class="d-flex flex-shrink-0 align-items-center justify-content-center bg-primary mr-3" style="height: 100px; width: 100px;">
+                            <i class="fa fa-2x fa-hiking text-white"></i>
+                        </div>
+                        <div class="d-flex flex-column">
+                            <h5 class="">Adventure</h5>
+                            <p class="m-0">Embark on exciting tours, from mountain trekking to safaris in Sri Lanka's wildlife sanctuaries.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="d-flex mb-4 mb-lg-0">
+                        <div class="d-flex flex-shrink-0 align-items-center justify-content-center bg-primary mr-3" style="height: 100px; width: 100px;">
+                            <i class="fa fa-2x fa-sun text-white"></i>
+                        </div>
+                        <div class="d-flex flex-column">
+                            <h5 class="">Relaxation</h5>
+                            <p class="m-0">Enjoy peaceful moments on Sri Lanka's golden beaches and rejuvenate at luxury resorts.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="d-flex mb-4 mb-lg-0">
+                        <div class="d-flex flex-shrink-0 align-items-center justify-content-center bg-primary mr-3" style="height: 100px; width: 100px;">
+                            <i class="fa fa-2x fa-cogs text-white"></i>
+                        </div>
+                        <div class="d-flex flex-column">
+                            <h5 class="">Custom Experiences</h5>
+                            <p class="m-0">Tailored travel packages designed to suit your preferences and interests.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Features End -->
+
+    <!-- Footer Start -->
+    <div id="footer"></div>
+
+    <script>
+        fetch('components/footer.html')
+            .then(response => response.text())
+            .then(data => {
+                const tempDiv = document.createElement('div');
+                tempDiv.innerHTML = data;
+                const template = tempDiv.querySelector('template');
+                document.getElementById('footer').appendChild(template.content.cloneNode(true));
+            })
+            .catch(error => console.error('Error loading footer:', error));
+    </script>
+    <!-- Footer End -->
+
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="fa fa-angle-double-up"></i></a>
+
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+    <script src="lib/easing/easing.min.js"></script>
+    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+    <script src="lib/tempusdominus/js/moment.min.js"></script>
+    <script src="lib/tempusdominus/js/moment-timezone.min.js"></script>
+    <script src="lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
+
+    <!-- Template Javascript -->
+    <script src="js/main.js"></script>
+</body>
+
+</html>
