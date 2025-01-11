@@ -325,7 +325,7 @@ $province_details = $provinces[$province_id] ?? null;
             </div>
         </div>
     </div>
-    <!-- District details End -->
+  <!-- District details End -->
 
     <!-- Footer Start -->
     <div id="footer"></div>
@@ -342,7 +342,6 @@ $province_details = $provinces[$province_id] ?? null;
             .catch(error => console.error('Error loading footer:', error));
     </script>
     <!-- Footer End -->
-
 
     <!-- Back to Top -->
     <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="fa fa-angle-double-up"></i></a>
