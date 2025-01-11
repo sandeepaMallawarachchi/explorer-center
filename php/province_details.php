@@ -227,6 +227,10 @@ $province_details = $provinces[$province_id] ?? null;
                                 style="width: 100%; height: 250px; object-fit: cover;">
                         </div>
                         <p id="provinceDescription"><?= $province_details['description'] ?></p>
+                        <button class="btn btn-sm btn-outline-primary" id="scrollBtn">
+                            <i class="fa fa-arrow-down px-1"></i>
+                            More Details
+                        </button>
                     </div>
                 </div>
             </div>
@@ -235,7 +239,7 @@ $province_details = $provinces[$province_id] ?? null;
     <!-- Province details End -->
 
     <!-- District details Start -->
-    <div class="container-fluid">
+    <div class="container-fluid" id="districtDetails">
         <div class="container">
             <div class="row">
                 <div class="col-lg-8" style="height: 130vh; overflow-y: auto;">
@@ -360,6 +364,7 @@ $province_details = $provinces[$province_id] ?? null;
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
     <script src="js/district-details.js"></script>
+    <script src="js/scroll-btn.js"></script>
 
 </body>
 
