@@ -1,0 +1,44 @@
+/* General Styles */
+.location-link {
+    text-decoration: none;
+    position: absolute;
+    transition: all 0.3s ease; /* Smooth transition for position changes */
+}
+
+.marker-icon {
+    font-size: 2rem; /* Default size for large screens */
+    color: #007bff;
+}
+
+/* Medium screens (tablets) */
+@media (max-width: 1024px) {
+    .marker-icon {
+        font-size: 1.7rem; /* Adjust marker size for tablets */
+    }
+
+    .location-link {
+        top: calc(var(--top) - 10%); /* Move up by 5% for medium screens */
+    }
+}
+
+/* Small screens (mobile phones) */
+@media (max-width: 768px) {
+    .marker-icon {
+        font-size: 1.5rem; /* Adjust marker size for small screens */
+    }
+
+    .location-link {
+        top: 10%
+    }
+}
+
+/* Extra small screens (very small devices) */
+@media (max-width: 480px) {
+    .marker-icon {
+        font-size: 1.2rem; /* Adjust marker size for very small screens */
+    }
+
+    .location-link {
+        top: calc(var(--top) - 20%); /* Move up by 15% for extra small screens */
+    }
+}

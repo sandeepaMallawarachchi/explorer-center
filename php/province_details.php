@@ -85,6 +85,7 @@ $province_details = $provinces[$province_id] ?? null;
 
     <!-- Customized Bootstrap Stylesheet -->
     <link href="css/style.css" rel="stylesheet">
+    <link href="css/location.css" rel="stylesheet">
 </head>
 
 <body>
@@ -159,7 +160,7 @@ $province_details = $provinces[$province_id] ?? null;
                             ["top" => "75%", "left" => "30%"]  // Kalutara
                         ],
                         "province3" => [
-                            ["top" => "61%", "left" => "45%"], // Kandy
+                            ["top" => "60%", "left" => "45%"], // Kandy
                             ["top" => "53%", "left" => "47%"], // Matale
                             ["top" => "68%", "left" => "47%"]  // Nuwara Eliya
                         ],
@@ -192,15 +193,15 @@ $province_details = $provinces[$province_id] ?? null;
                     ];
 
                     $provinceStartingIds = [
-                        "province1" => 1,  // Galle starts from ID 1
-                        "province2" => 4,  // Colombo starts from ID 4
-                        "province3" => 7,  // Kandy starts from ID 7
-                        "province4" => 17, // Trincomalee starts from ID 10
-                        "province5" => 10, // Jaffna starts from ID 13
-                        "province6" => 20, // Puttalam starts from ID 16
-                        "province7" => 15, // Anuradhapura starts from ID 18
-                        "province8" => 24, // Badulla starts from ID 20
-                        "province9" => 22  // Ratnapura starts from ID 22
+                        "province1" => 1,  // Galle 
+                        "province2" => 4,  // Colombo 
+                        "province3" => 7,  // Kandy 
+                        "province4" => 17, // Trincomalee 
+                        "province5" => 10, // Jaffna 
+                        "province6" => 20, // Puttalam 
+                        "province7" => 15, // Anuradhapura 
+                        "province8" => 24, // Badulla 
+                        "province9" => 22  // Ratnapura 
                     ];
 
                     // Get the starting district ID for the selected province
@@ -208,10 +209,13 @@ $province_details = $provinces[$province_id] ?? null;
 
                     if (isset($districtPositions[$province_id])) {
                         foreach ($districtPositions[$province_id] as $position) {
-                            echo "<a href='#' class='location-link' data-id='{$districtId}' style='position: absolute; top: {$position['top']}; left: {$position['left']}; text-decoration: none;'>
-                                    <i class='fas fa-map-marker-alt text-primary' style='font-size: 2rem;'></i>
+                            echo "<a href='#' 
+                                    class='location-link province-{$province_id}' 
+                                    data-id='{$districtId}' 
+                                    style='top: {$position['top']}; left: {$position['left']};'>
+                                    <i class='fas fa-map-marker-alt text-primary marker-icon'></i>
                                 </a>";
-                            $districtId++; // Increment the district ID for each district in the province
+                            $districtId++;
                         }
                     }
                     ?>
@@ -325,7 +329,7 @@ $province_details = $provinces[$province_id] ?? null;
             </div>
         </div>
     </div>
-  <!-- District details End -->
+    <!-- District details End -->
 
     <!-- Footer Start -->
     <div id="footer"></div>
