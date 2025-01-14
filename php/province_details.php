@@ -142,52 +142,52 @@ $province_details = $provinces[$province_id] ?? null;
             <div class="row">
                 <!-- Left Column for Image -->
                 <div class="col-lg-6" style="position: relative; height: 720px;">
-                    <img src="img/map3.png" alt="Sri Lanka Map" style="width: 100%; max-height: 800px;">
+                    <img src="img/map.png" alt="Sri Lanka Map" style="width: 100%; max-height: 800px;">
 
                     <!-- Dynamic Location Links -->
                     <?php
                     // Define positions for each district marker (these positions are placeholders and may need adjustment)
                     $districtPositions = [
                         "province1" => [
-                            ["top" => "80%", "left" => "35%"], // Galle
-                            ["top" => "82%", "left" => "43%"], // Matara
-                            ["top" => "80%", "left" => "55%"]  // Hambantota
+                            ["top" => "83%", "left" => "35%"], // Galle
+                            ["top" => "85%", "left" => "43%"], // Matara
+                            ["top" => "83%", "left" => "55%"]  // Hambantota
                         ],
                         "province2" => [
-                            ["top" => "67%", "left" => "30%"], // Colombo
-                            ["top" => "62%", "left" => "30%"], // Gampaha
-                            ["top" => "72%", "left" => "32%"]  // Kalutara
+                            ["top" => "70%", "left" => "28%"], // Colombo
+                            ["top" => "65%", "left" => "28%"], // Gampaha
+                            ["top" => "75%", "left" => "30%"]  // Kalutara
                         ],
                         "province3" => [
-                            ["top" => "58%", "left" => "45%"], // Kandy
-                            ["top" => "50%", "left" => "47%"], // Matale
-                            ["top" => "65%", "left" => "47%"]  // Nuwara Eliya
+                            ["top" => "61%", "left" => "45%"], // Kandy
+                            ["top" => "53%", "left" => "47%"], // Matale
+                            ["top" => "68%", "left" => "47%"]  // Nuwara Eliya
                         ],
                         "province4" => [
-                            ["top" => "35%", "left" => "57%"], // Trincomalee
-                            ["top" => "47%", "left" => "65%"], // Batticaloa
-                            ["top" => "60%", "left" => "72%"]  // Ampara
+                            ["top" => "38%", "left" => "57%"], // Trincomalee
+                            ["top" => "50%", "left" => "65%"], // Batticaloa
+                            ["top" => "63%", "left" => "72%"]  // Ampara
                         ],
                         "province5" => [
-                            ["top" => "10%", "left" => "30%"], // Jaffna
-                            ["top" => "17%", "left" => "35%"], // Kilinochchi
-                            ["top" => "27%", "left" => "30%"]  // Mannar
+                            ["top" => "9%", "left" => "30%"], // Jaffna
+                            ["top" => "16%", "left" => "35%"], // Kilinochchi
+                            ["top" => "26%", "left" => "30%"]  // Mannar
                         ],
                         "province6" => [
-                            ["top" => "43%", "left" => "27%"], // Puttalam
-                            ["top" => "50%", "left" => "35%"], // Kurunegala
+                            ["top" => "46%", "left" => "27%"], // Puttalam
+                            ["top" => "53%", "left" => "35%"], // Kurunegala
                         ],
                         "province7" => [
-                            ["top" => "35%", "left" => "42%"], // Anuradhapura
-                            ["top" => "45%", "left" => "55%"]  // Polonnaruwa
+                            ["top" => "38%", "left" => "42%"], // Anuradhapura
+                            ["top" => "46%", "left" => "55%"]  // Polonnaruwa
                         ],
                         "province8" => [
-                            ["top" => "63%", "left" => "55%"], // Badulla
-                            ["top" => "68%", "left" => "62%"]  // Monaragala
+                            ["top" => "66%", "left" => "55%"], // Badulla
+                            ["top" => "71%", "left" => "62%"]  // Monaragala
                         ],
                         "province9" => [
-                            ["top" => "72%", "left" => "45%"], // Ratnapura
-                            ["top" => "62%", "left" => "37%"]  // Kegalle
+                            ["top" => "75%", "left" => "45%"], // Ratnapura
+                            ["top" => "65%", "left" => "37%"]  // Kegalle
                         ]
                     ];
 
@@ -209,7 +209,7 @@ $province_details = $provinces[$province_id] ?? null;
                     if (isset($districtPositions[$province_id])) {
                         foreach ($districtPositions[$province_id] as $position) {
                             echo "<a href='#' class='location-link' data-id='{$districtId}' style='position: absolute; top: {$position['top']}; left: {$position['left']}; text-decoration: none;'>
-                                    <i class='fas fa-map-marker-alt text-primary' style='font-size: 1.5rem;'></i>
+                                    <i class='fas fa-map-marker-alt text-primary' style='font-size: 2rem;'></i>
                                 </a>";
                             $districtId++; // Increment the district ID for each district in the province
                         }
