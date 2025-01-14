@@ -142,7 +142,7 @@ $province_details = $provinces[$province_id] ?? null;
         <div class="container">
             <div class="row">
                 <!-- Left Column for Image -->
-                <div class="col-lg-6" style="position: relative; height: 720px;">
+                <div class="col-lg-6" style="position: relative; max-height: 720px; margin-bottom: 50px" >
                     <img src="img/map.png" alt="Sri Lanka Map" style="width: 100%; max-height: 800px;">
 
                     <!-- Dynamic Location Links -->
@@ -223,7 +223,7 @@ $province_details = $provinces[$province_id] ?? null;
                 </div>
 
                 <!-- Right Column for Content -->
-                <div class="col-lg-6 pb-lg-5" style="min-height: 800px;">
+                <div class="col-lg-6 pb-lg-5 right-col">
                     <div class="bg-white p-4 p-lg-5 my-lg-5" id="provinceDetails">
                         <h1 class="text-primary mb-3" id="provinceName"><?= $province_details['name'] ?></h1>
                         <div class="position-relative h-100 mb-3">
@@ -246,7 +246,7 @@ $province_details = $provinces[$province_id] ?? null;
     <div class="container-fluid" id="districtDetails">
         <div class="container">
             <div class="row">
-                <div class="col-lg-8" style="height: 130vh; overflow-y: auto;">
+                <div class="col-lg-8 description">
                     <div class="bg-white mb-3" style="padding: 30px;">
                         <p id="districtDescription"><?= 'Please select a district on the map to show details.' ?></p>
                     </div>
