@@ -1,9 +1,21 @@
 <?php
-include('db.php');
+include('blog_helpers.php');
+
+// Fetch pagination details
+$blogsPerPage = 6;
+$page = isset($_GET['page']) && is_numeric($_GET['page']) ? intval($_GET['page']) : 1;
+$totalBlogs = getTotalBlogsCount($conn);
+$totalPages = getTotalPages($totalBlogs, $blogsPerPage);
 
 // Fetch blogs
-$sql = "SELECT * FROM blogs";
-$result = mysqli_query($conn, $sql);
+$searchKeyword = isset($_GET['search']) ? $_GET['search'] : '';
+$categoryFilter = isset($_GET['category']) ? $_GET['category'] : '';
+$result = getBlogs($conn, $searchKeyword, $categoryFilter, $page, $blogsPerPage);
+
+// Fetch categories and recent posts
+$categoryResult = getBlogCategories($conn);
+$recentPostsResult = getRecentPosts($conn);
+$tags = getBlogTags($conn);
 ?>
 
 <!DOCTYPE html>
@@ -70,8 +82,8 @@ $result = mysqli_query($conn, $sql);
     </script>
     <!-- Navbar End -->
 
-     <!-- Header Start -->
-     <div class="container-fluid blog-page-header">
+    <!-- Header Start -->
+    <div class="container-fluid blog-page-header">
         <div class="container">
             <div class="d-flex flex-column align-items-center justify-content-center" style="min-height: 400px">
                 <h3 class="display-4 text-white text-uppercase">Blog</h3>
@@ -94,11 +106,12 @@ $result = mysqli_query($conn, $sql);
                         <?php
                         if ($result && mysqli_num_rows($result) > 0) {
                             while ($row = mysqli_fetch_assoc($result)) {
+                                $imagePath = !empty($row['image_url']) ? htmlspecialchars($row['image_url']) : 'img/placeholder.jpg';
                                 echo "
                                 <div class='col-md-6 mb-4 pb-2'>
                                     <div class='blog-item'>
                                         <div class='position-relative'>
-                                            <img class='img-fluid w-100' src='img/blog-1.jpg' alt='Blog Image'>
+                                            <img class='img-fluid w-100' src='$imagePath' alt='Blog Image'>
                                             <div class='blog-date'>
                                                 <h6 class='font-weight-bold mb-n1'>" . date("d", strtotime($row['date'])) . "</h6>
                                                 <small class='text-white text-uppercase'>" . date("M", strtotime($row['date'])) . "</small>
@@ -106,11 +119,11 @@ $result = mysqli_query($conn, $sql);
                                         </div>
                                         <div class='bg-white p-4'>
                                             <div class='d-flex mb-2'>
-                                                <a class='text-primary text-uppercase text-decoration-none' href=''>" . htmlspecialchars($row['author']) . "</a>
+                                                <span class='text-primary text-uppercase text-decoration-none'>" . htmlspecialchars($row['author']) . "</span>
                                                 <span class='text-primary px-2'>|</span>
-                                                <a class='text-primary text-uppercase text-decoration-none' href=''>" . htmlspecialchars($row['category']) . "</a>
+                                                <a class='text-primary text-uppercase text-decoration-none' href='#'>" . htmlspecialchars($row['category']) . "</a>
                                             </div>
-                                            <a class='h5 m-0 text-decoration-none' href=''>" . htmlspecialchars($row['topic']) . "</a>
+                                            <a class='h5 m-0 text-decoration-none' href='php/blog.php?id=" . $row['id'] . "'>" . htmlspecialchars($row['topic']) . "</a>
                                         </div>
                                     </div>
                                 </div>";
@@ -119,6 +132,36 @@ $result = mysqli_query($conn, $sql);
                             echo "<p>No blogs found.</p>";
                         }
                         ?>
+                    </div>
+
+                    <!-- page navigation -->
+                    <div class="col-12">
+                        <nav aria-label="Page navigation">
+                            <ul class="pagination pagination-lg justify-content-center bg-white mb-0" style="padding: 30px;">
+                                <!-- Previous Button -->
+                                <li class="page-item <?php echo $page <= 1 ? 'disabled' : ''; ?>">
+                                    <a class="page-link" href="php/allBlogs.php?page=<?php echo $page - 1; ?>" aria-label="Previous">
+                                        <span aria-hidden="true">&laquo;</span>
+                                        <span class="sr-only">Previous</span>
+                                    </a>
+                                </li>
+
+                                <!-- Page Numbers -->
+                                <?php for ($i = 1; $i <= $totalPages; $i++): ?>
+                                    <li class="page-item <?php echo $i == $page ? 'active' : ''; ?>">
+                                        <a class="page-link" href="php/allBlogs.php?page=<?php echo $i; ?>"><?php echo $i; ?></a>
+                                    </li>
+                                <?php endfor; ?>
+
+                                <!-- Next Button -->
+                                <li class="page-item <?php echo $page >= $totalPages ? 'disabled' : ''; ?>">
+                                    <a class="page-link" href="php/allBlogs.php?page=<?php echo $page + 1; ?>" aria-label="Next">
+                                        <span aria-hidden="true">&raquo;</span>
+                                        <span class="sr-only">Next</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </nav>
                     </div>
                 </div>
 
@@ -150,13 +193,16 @@ $result = mysqli_query($conn, $sql);
                     <!-- Search Form -->
                     <div class="mb-5">
                         <div class="bg-white" style="padding: 30px;">
-                            <div class="input-group">
-                                <input type="text" class="form-control p-4" placeholder="Keyword">
-                                <div class="input-group-append">
-                                    <span class="input-group-text bg-primary border-primary text-white"><i
-                                            class="fa fa-search"></i></span>
+                            <form method="GET" action="php/allBlogs.php">
+                                <div class="input-group">
+                                    <input type="text" name="search" class="form-control p-4" id="searchInput" placeholder="Keyword" value="<?php echo htmlspecialchars($searchKeyword); ?>">
+                                    <div class="input-group-append">
+                                        <button type="submit" class="input-group-text bg-primary border-primary text-white" id="searchBtn">
+                                            <i class="fa fa-search"></i>
+                                        </button>
+                                    </div>
                                 </div>
-                            </div>
+                            </form>
                         </div>
                     </div>
 
@@ -165,31 +211,22 @@ $result = mysqli_query($conn, $sql);
                         <h4 class="text-uppercase mb-4" style="letter-spacing: 5px;">Categories</h4>
                         <div class="bg-white" style="padding: 30px;">
                             <ul class="list-inline m-0">
-                                <li class="mb-3 d-flex justify-content-between align-items-center">
-                                    <a class="text-dark" href="#"><i class="fa fa-angle-right text-primary mr-2"></i>Web
-                                        Design</a>
-                                    <span class="badge badge-primary badge-pill">150</span>
-                                </li>
-                                <li class="mb-3 d-flex justify-content-between align-items-center">
-                                    <a class="text-dark" href="#"><i class="fa fa-angle-right text-primary mr-2"></i>Web
-                                        Development</a>
-                                    <span class="badge badge-primary badge-pill">131</span>
-                                </li>
-                                <li class="mb-3 d-flex justify-content-between align-items-center">
-                                    <a class="text-dark" href="#"><i
-                                            class="fa fa-angle-right text-primary mr-2"></i>Online Marketing</a>
-                                    <span class="badge badge-primary badge-pill">78</span>
-                                </li>
-                                <li class="mb-3 d-flex justify-content-between align-items-center">
-                                    <a class="text-dark" href="#"><i
-                                            class="fa fa-angle-right text-primary mr-2"></i>Keyword Research</a>
-                                    <span class="badge badge-primary badge-pill">56</span>
-                                </li>
-                                <li class="d-flex justify-content-between align-items-center">
-                                    <a class="text-dark" href="#"><i
-                                            class="fa fa-angle-right text-primary mr-2"></i>Email Marketing</a>
-                                    <span class="badge badge-primary badge-pill">98</span>
-                                </li>
+                                <?php if ($categoryResult && mysqli_num_rows($categoryResult) > 0): ?>
+                                    <?php while ($row = mysqli_fetch_assoc($categoryResult)): ?>
+                                        <?php
+                                        $categoryName = htmlspecialchars($row['category']);
+                                        $categoryCount = $row['count'];
+                                        ?>
+                                        <li class='mb-3 d-flex justify-content-between align-items-center'>
+                                            <a class='text-dark' href='php/allBlogs.php?category=<?= urlencode($categoryName) ?>&search=<?= urlencode($searchKeyword) ?>'>
+                                                <i class='fa fa-angle-right text-primary mr-2'></i><?= $categoryName ?>
+                                            </a>
+                                            <span class='badge badge-primary badge-pill'><?= $categoryCount ?></span>
+                                        </li>
+                                    <?php endwhile; ?>
+                                <?php else: ?>
+                                    <p>No categories found.</p>
+                                <?php endif; ?>
                             </ul>
                         </div>
                     </div>
@@ -197,46 +234,64 @@ $result = mysqli_query($conn, $sql);
                     <!-- Recent Post -->
                     <div class="mb-5">
                         <h4 class="text-uppercase mb-4" style="letter-spacing: 5px;">Recent Post</h4>
-                        <a class="d-flex align-items-center text-decoration-none bg-white mb-3" href="">
-                            <img class="img-fluid" src="img/blog-100x100.jpg" alt="">
-                            <div class="pl-3">
-                                <h6 class="m-1">Diam lorem dolore justo eirmod lorem dolore</h6>
-                                <small>Jan 01, 2050</small>
-                            </div>
-                        </a>
-                        <a class="d-flex align-items-center text-decoration-none bg-white mb-3" href="">
-                            <img class="img-fluid" src="img/blog-100x100.jpg" alt="">
-                            <div class="pl-3">
-                                <h6 class="m-1">Diam lorem dolore justo eirmod lorem dolore</h6>
-                                <small>Jan 01, 2050</small>
-                            </div>
-                        </a>
-                        <a class="d-flex align-items-center text-decoration-none bg-white mb-3" href="">
-                            <img class="img-fluid" src="img/blog-100x100.jpg" alt="">
-                            <div class="pl-3">
-                                <h6 class="m-1">Diam lorem dolore justo eirmod lorem dolore</h6>
-                                <small>Jan 01, 2050</small>
-                            </div>
-                        </a>
+                        <?php if ($recentPostsResult && mysqli_num_rows($recentPostsResult) > 0): ?>
+                            <?php while ($row = mysqli_fetch_assoc($recentPostsResult)): ?>
+                                <?php
+                                $imagePath = !empty($row['image_url']) ? htmlspecialchars($row['image_url']) : 'img/placeholder.jpg';
+                                $formattedDate = date("M d, Y", strtotime($row['date']));
+                                ?>
+                                <a class="d-flex align-items-center text-decoration-none bg-white mb-3" href="php/blog.php?id=<?= $row['id'] ?>">
+                                    <img class="img-fluid" src="<?= $imagePath ?>" alt="Blog Image" style="width: 120px;">
+                                    <div class="pl-3">
+                                        <h6 class="m-1"><?= htmlspecialchars($row['topic']) ?></h6>
+                                        <small><?= $formattedDate ?></small>
+                                    </div>
+                                </a>
+                            <?php endwhile; ?>
+                        <?php else: ?>
+                            <p>No recent posts found.</p>
+                        <?php endif; ?>
                     </div>
 
                     <!-- Tag Cloud -->
                     <div class="mb-5">
                         <h4 class="text-uppercase mb-4" style="letter-spacing: 5px;">Tag Cloud</h4>
                         <div class="d-flex flex-wrap m-n1">
-                            <a href="" class="btn btn-light m-1">Design</a>
-                            <a href="" class="btn btn-light m-1">Development</a>
-                            <a href="" class="btn btn-light m-1">Marketing</a>
-                            <a href="" class="btn btn-light m-1">SEO</a>
-                            <a href="" class="btn btn-light m-1">Writing</a>
-                            <a href="" class="btn btn-light m-1">Consulting</a>
+                            <?php if (!empty($tags)): ?>
+                                <?php foreach ($tags as $tag): ?>
+                                    <a href="php/allBlogs.php?search=<?= urlencode($tag) ?>" class="btn btn-light m-1"><?= ucfirst(htmlspecialchars($tag)) ?></a>
+                                <?php endforeach; ?>
+                            <?php else: ?>
+                                <p>No tags available.</p>
+                            <?php endif; ?>
                         </div>
                     </div>
+
                 </div>
             </div>
         </div>
     </div>
     <!-- get blog End -->
+
+    <!-- Modal Structure -->
+    <div class="modal fade" id="blogModal" tabindex="-1" role="dialog" aria-labelledby="blogModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document" style="max-width: 50%;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="blogModalLabel">Blog Details</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <!-- Blog details will be loaded here -->
+                    <div id="modalContent">
+                        <p>Loading...</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- Footer Start -->
     <div id="footer"></div>
@@ -268,12 +323,10 @@ $result = mysqli_query($conn, $sql);
     <script src="lib/tempusdominus/js/moment-timezone.min.js"></script>
     <script src="lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
 
-    <!-- Contact Javascript File -->
-    <script src="mail/jqBootstrapValidation.min.js"></script>
-    <script src="mail/contact.js"></script>
-
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
+    <script src="js/blog-modal.js"></script>
+    <script src="js/search-blog.js"></script>
 </body>
 
 </html>
