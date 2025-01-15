@@ -28,7 +28,7 @@ $about_us = $about_us_result->fetch_assoc();
     <meta content="Free HTML Templates" name="keywords">
     <meta content="Free HTML Templates" name="description">
 
-   <!-- Base URL -->
+    <!-- Base URL -->
     <base href="/explorer-center/">
 
     <!-- Favicon -->
@@ -101,6 +101,26 @@ $about_us = $about_us_result->fetch_assoc();
                         <div class="p-3" style="max-width: 900px;">
                             <h4 class="text-white text-uppercase mb-md-3">Magic of Ceylon</h4>
                             <h1 class="display-3 text-white mb-md-4">Sri Lanka a Journey Unforgettable</h1>
+                            <a href="" class="btn btn-primary py-md-3 px-md-5 mt-2">Book Now</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img class="w-100" src="img/carousel-3.jpg" alt="Image">
+                    <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
+                        <div class="p-3" style="max-width: 900px;">
+                            <h4 class="text-white text-uppercase mb-md-3">Land of Ancient Glory</h4>
+                            <h1 class="display-3 text-white mb-md-4">Discover Sri Lanka's Rich Heritage</h1>
+                            <a href="" class="btn btn-primary py-md-3 px-md-5 mt-2">Book Now</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img class="w-100" src="img/carousel-4.jpg" alt="Image">
+                    <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
+                        <div class="p-3" style="max-width: 900px; max-height: 1080px;">
+                            <h4 class="text-white text-uppercase mb-md-3">Serenity Awaits</h4>
+                            <h1 class="display-3 text-white mb-md-4">Unwind in Sri Lanka's Natural Beauty</h1>
                             <a href="" class="btn btn-primary py-md-3 px-md-5 mt-2">Book Now</a>
                         </div>
                     </div>
