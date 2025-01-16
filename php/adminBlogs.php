@@ -39,6 +39,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $description = $_POST['description'];
     $date = $_POST['date'];
 
+    $imageUrl = null; // Initialize image URL as null
+
     if (!empty($_FILES['image']['tmp_name'])) {
         $image = $_FILES['image']['tmp_name'];
         try {
@@ -48,8 +50,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             echo "<script>alert('Image upload failed: " . $e->getMessage() . "');</script>";
             exit;
         }
-    } else {
-        $imageUrl = null;
     }
 
     if ($blogId) {
@@ -60,12 +60,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 topic = '$topic', 
                 description = '$description', 
                 date = '$date', 
-                image_url = " . ($imageUrl ? "'$imageUrl'" : "image_url") . " 
+                image_url = " . ($imageUrl !== null ? "'$imageUrl'" : "NULL") . " 
                 WHERE id = $blogId";
     } else {
         // Insert new blog
         $sql = "INSERT INTO blogs (author, category, topic, description, date, image_url) 
-                VALUES ('$author', '$category', '$topic', '$description', '$date', '$imageUrl')";
+                VALUES ('$author', '$category', '$topic', '$description', '$date', " . ($imageUrl !== null ? "'$imageUrl'" : "NULL") . ")";
     }
 
     if (mysqli_query($conn, $sql)) {
