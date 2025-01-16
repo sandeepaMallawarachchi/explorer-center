@@ -50,11 +50,16 @@ if (!isset($_SESSION['user_id'])) {
 
 <body>
     <!-- User Information -->
-    <div class="user-info">
-        <img src="img/user.png" alt="User Icon">
-        <div>
-            <h5>Hello, <?= htmlspecialchars($_SESSION['username']); ?></h5>
-            <a href="php/logout.php" onclick="return confirmLogout()">Logout</a>
+    <div class="head">
+        <a href="php/adminDashboard.php">
+            <img class="dashboardImg" src="img/dashboard.png" alt="dashboard Icon">
+        </a>
+        <div class="user-info">
+            <img src="img/user.png" alt="User Icon">
+            <div>
+                <h5>Hello, <?= htmlspecialchars($_SESSION['username']); ?></h5>
+                <a href="php/logout.php" onclick="return confirmLogout()">Logout</a>
+            </div>
         </div>
     </div>
 

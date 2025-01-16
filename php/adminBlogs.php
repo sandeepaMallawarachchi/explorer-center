@@ -73,6 +73,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     } else {
         echo "<script>alert('Error: " . mysqli_error($conn) . "');</script>";
     }
+
+    // Redirect to prevent form resubmission
+    header("Location: adminBlogs.php");
 }
 
 if ($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['action']) && $_GET['action'] == 'delete') {
@@ -86,7 +89,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['action']) && $_GET['acti
     }
 
     // Redirect back to the blog management page
-    header('Location: /adminBlogs.php');
+    header('Location: adminBlogs.php');
     exit;
 }
 
@@ -135,11 +138,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['action']) && $_GET['acti
 <body>
 
     <!-- User Information -->
-    <div class="user-info">
-        <img src="img/user.png" alt="User Icon">
-        <div>
-            <h5>Hello, <?= htmlspecialchars($_SESSION['username']); ?></h5>
-            <a href="php/logout.php" onclick="return confirmLogout()">Logout</a>
+    <div>
+        <a href="php/adminDashboard.php">
+            <img class="dashboardImg" src="img/dashboard.png" alt="dashboard Icon">
+        </a>
+        <div class="user-info">
+            <img src="img/user.png" alt="User Icon">
+            <div>
+                <h5>Hello, <?= htmlspecialchars($_SESSION['username']); ?></h5>
+                <a href="php/logout.php" onclick="return confirmLogout()">Logout</a>
+            </div>
         </div>
     </div>
 
