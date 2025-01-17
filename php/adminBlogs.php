@@ -1,4 +1,5 @@
 <?php
+include('blog_helpers.php');
 
 session_start();
 
@@ -9,7 +10,6 @@ if (!isset($_SESSION['user_id'])) {
 }
 
 // Include database connection
-include('db.php');
 require '../vendor/autoload.php';
 
 use Cloudinary\Configuration\Configuration;
@@ -28,8 +28,19 @@ Configuration::instance([
 ]);
 
 //fetch all blogs
-$sql = "SELECT * FROM blogs ORDER BY date DESC";
-$result = mysqli_query($conn, $sql);
+// $sql = "SELECT * FROM blogs ORDER BY date DESC";
+// $result = mysqli_query($conn, $sql);
+
+// Fetch pagination details
+$blogsPerPage = 6;
+$page = isset($_GET['page']) && is_numeric($_GET['page']) ? intval($_GET['page']) : 1;
+$totalBlogs = getTotalBlogsCount($conn);
+$totalPages = getTotalPages($totalBlogs, $blogsPerPage);
+
+// Fetch blogs
+$searchKeyword = isset($_GET['search']) ? $_GET['search'] : '';
+$categoryFilter = isset($_GET['category']) ? $_GET['category'] : '';
+$result = getBlogs($conn, $searchKeyword, $categoryFilter, $page, $blogsPerPage);
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $blogId = $_POST['blogId'];
@@ -53,15 +64,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 
     if ($blogId) {
-        // Update blog
         $sql = "UPDATE blogs SET 
                 author = '$author', 
                 category = '$category', 
                 topic = '$topic', 
                 description = '$description', 
-                date = '$date', 
-                image_url = " . ($imageUrl !== null ? "'$imageUrl'" : "NULL") . " 
-                WHERE id = $blogId";
+                date = '$date'";
+
+        if ($imageUrl !== null) {
+            $sql .= ", image_url = '$imageUrl'";
+        }
+
+        $sql .= " WHERE id = $blogId";
     } else {
         // Insert new blog
         $sql = "INSERT INTO blogs (author, category, topic, description, date, image_url) 
@@ -200,6 +214,35 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['action']) && $_GET['acti
                         }
                         ?>
                     </div>
+                    <!-- page navigation -->
+                    <div class="col-12">
+                        <nav aria-label="Page navigation">
+                            <ul class="pagination pagination-lg justify-content-center bg-white mb-0" style="padding: 30px;">
+                                <!-- Previous Button -->
+                                <li class="page-item <?php echo $page <= 1 ? 'disabled' : ''; ?>">
+                                    <a class="page-link" href="php/adminBlogs.php?page=<?php echo $page - 1; ?>" aria-label="Previous">
+                                        <span aria-hidden="true">&laquo;</span>
+                                        <span class="sr-only">Previous</span>
+                                    </a>
+                                </li>
+
+                                <!-- Page Numbers -->
+                                <?php for ($i = 1; $i <= $totalPages; $i++): ?>
+                                    <li class="page-item <?php echo $i == $page ? 'active' : ''; ?>">
+                                        <a class="page-link" href="php/adminBlogs.php?page=<?php echo $i; ?>"><?php echo $i; ?></a>
+                                    </li>
+                                <?php endfor; ?>
+
+                                <!-- Next Button -->
+                                <li class="page-item <?php echo $page >= $totalPages ? 'disabled' : ''; ?>">
+                                    <a class="page-link" href="php/adminBlogs.php?page=<?php echo $page + 1; ?>" aria-label="Next">
+                                        <span aria-hidden="true">&raquo;</span>
+                                        <span class="sr-only">Next</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
                 </div>
             </div>
         </div>
@@ -242,7 +285,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['action']) && $_GET['acti
                         <div class="text-center mb-2">
                             <div class="img-upload-container" id="img-upload-container">
                                 <img src="img/upload.png" alt="Upload Image" class="img-upload-bg">
-                                <input type="file" id="img-upload-input" class="img-upload-input" accept="image/*" name="image" onchange="previewImage(event)">
+                                <input type="file" id="image_url" class="img-upload-input" accept="image/*" name="image" onchange="previewImage(event)">
                                 <div class="upload-text">Click or Drag to Upload</div>
                             </div>
                         </div>

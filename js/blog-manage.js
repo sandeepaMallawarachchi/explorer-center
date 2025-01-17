@@ -7,6 +7,14 @@ function editBlog(blog) {
     document.getElementById('description').value = blog.description;
     document.getElementById('date').value = blog.date;
 
+    const currentImage = document.querySelector('.img-upload-bg');
+    if (blog.image_url) {
+        currentImage.src = blog.image_url; // Display current image
+        currentImage.style.display = 'block';
+    } else {
+        currentImage.src = 'img/upload.png'; // Default placeholder
+    }
+
     // Open the modal
     $('#blogModal').modal('show');
 }
