@@ -216,7 +216,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             <img class='img-fluid mx-auto' src='$imagePath' style='width: 100px; height: 100px;'>
                             <div class='testimonial-text bg-white p-4 mt-n5'>
                                 <p class='mt-5'>" . htmlspecialchars($row['review_text']) . "</p>
-                                <h5 class='text-truncate'>" . htmlspecialchars($row['name']) . " Name</h5>
+                                <h5 class='text-truncate'>" . htmlspecialchars($row['name']) . "</h5>
                                 <span>" . date("d F Y", strtotime($row['review_date'])) . "</span>
                             </div>
                         </div>";
@@ -226,6 +226,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 }
                 ?>
             </div>
+
         </div>
     </div>
     <!-- Testimonial End -->
@@ -309,6 +310,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
+    <script src="js/upload.js"></script>
 </body>
 
 </html>
