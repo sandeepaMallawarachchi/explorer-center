@@ -1,9 +1,59 @@
 <?php
 include('blog_helpers.php');
 
-$sql = "SELECT * FROM reviews order by desc review_date";
+$sql = "SELECT * FROM reviews";
 $result = mysqli_query($conn, $sql);
 
+require '../vendor/autoload.php';
+
+use Cloudinary\Configuration\Configuration;
+use Cloudinary\Api\Upload\UploadApi;
+
+// Configure Cloudinary
+Configuration::instance([
+    'cloud' => [
+        'cloud_name' => 'dfssg1dxr',
+        'api_key' => '521587614913943',
+        'api_secret' => 'VRClcvauG_qw2tKOn16RIpgzp3Q'
+    ],
+    'url' => [
+        'secure' => true
+    ]
+]);
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    // Retrieve form data
+    $name = $_POST['name'];
+    $review_date = $_POST['review_date'];
+    $review_text = $_POST['review_text'];
+
+    // Handle image upload to Cloudinary
+    if (!empty($_FILES['image']['tmp_name'])) {
+        $image = $_FILES['image']['tmp_name'];
+
+        try {
+            $uploadResult = (new UploadApi())->upload($image);
+            $imageUrl = $uploadResult['secure_url'];
+        } catch (Exception $e) {
+            echo "<script>alert('Image upload failed: " . $e->getMessage() . "');</script>";
+            exit;
+        }
+    } else {
+        $imageUrl = null;
+    }
+
+    // Insert into the blogs table
+    $sql = "INSERT INTO reviews (name, photo_url, review_date, review_text) 
+            VALUES ('$name', '$imageUrl', '$review_date', '$review_text')";
+
+    if (mysqli_query($conn, $sql)) {
+        echo "<script>alert('Review successfully created!');</script>";
+    } else {
+        echo "<script>alert('Error: " . mysqli_error($conn) . "');</script>";
+    }
+    // Redirect to prevent form resubmission
+    header("Location: testimonial.php");
+}
 ?>
 
 <!DOCTYPE html>
@@ -35,6 +85,8 @@ $result = mysqli_query($conn, $sql);
 
     <!-- Customized Bootstrap Stylesheet -->
     <link href="css/style.css" rel="stylesheet">
+    <link href="css/upload.css" rel="stylesheet">
+
 </head>
 
 <body>
@@ -151,6 +203,9 @@ $result = mysqli_query($conn, $sql);
                 <h6 class="text-primary text-uppercase" style="letter-spacing: 5px;">Testimonial</h6>
                 <h1>What Say Our Clients</h1>
             </div>
+            <div class="text-center mb-3 pb-3">
+                <button class="btn btn-primary" data-toggle="modal" data-target="#reviewModal">Add New Review</button>
+            </div>
             <div class="owl-carousel testimonial-carousel">
                 <?php
                 if ($result && mysqli_num_rows($result) > 0) {
@@ -162,7 +217,7 @@ $result = mysqli_query($conn, $sql);
                             <div class='testimonial-text bg-white p-4 mt-n5'>
                                 <p class='mt-5'>" . htmlspecialchars($row['review_text']) . "</p>
                                 <h5 class='text-truncate'>" . htmlspecialchars($row['name']) . " Name</h5>
-                                <span>" . date("d", strtotime($row['review_date'])) . "</span>
+                                <span>" . date("d F Y", strtotime($row['review_date'])) . "</span>
                             </div>
                         </div>";
                     }
@@ -174,6 +229,48 @@ $result = mysqli_query($conn, $sql);
         </div>
     </div>
     <!-- Testimonial End -->
+
+
+    <!-- Review Modal -->
+    <div class="modal fade" id="reviewModal" tabindex="-1" role="dialog" aria-labelledby="reviewModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="reviewModalLabel">Add Review</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="reviewForm" method="POST" action="php/testimonial.php" enctype="multipart/form-data">
+                        <div class="text-center mb-2">
+                            <div class="img-upload-container" id="img-upload-container">
+                                <img src="img/profilepic.jpg" alt="Upload Image" class="img-upload-bg">
+                                <input type="file" id="image_url" class="img-upload-input" accept="image/*" name="image" onchange="previewImage(event)">
+                                <div class="upload-text">Click or Drag to Upload</div>
+                            </div>
+                        </div>
+                        <div class="control-group mb-2">
+                            <input type="text" class="form-control p-4" id="name" name="name" placeholder="Your Name"
+                                required="required" data-validation-required-message="Please enter your name" />
+                        </div>
+                        <div class="control-group mb-2">
+                            <textarea type="text" class="form-control p-4" id="review_text" name="review_text" placeholder="Enter review text"
+                                required="required" data-validation-required-message="Please enter review text"></textarea>
+                        </div>
+                        <div class="control-group mb-2">
+                            <input type="text" class="form-control p-4" id="review_date" name="review_date"
+                                value="<?php echo date('Y-m-d'); ?>" readonly placeholder="Current Date" />
+                        </div>
+
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-primary" id="saveReviewBtn">Save Review</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 
 
     <!-- Footer Start -->
