@@ -14,7 +14,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $user = $result->fetch_assoc();
         $_SESSION['user_id'] = $user['id'];
         $_SESSION['username'] = $user['username'];
-        header("Location: /explorer-center/php/index.php");
+        header("Location: /explorer-center/php/adminDashboard.php");
         exit;
     } else {
         $_SESSION['error'] = "Invalid username or password.";
@@ -111,8 +111,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                 <p class="help-block text-danger"></p>
                             </div>
                             <div class="text-center">
-                                <button class="btn btn-primary py-3 px-4" type="submit" id="sendMessageButton">Login</button>
+                            <a href="php/forgot_password.php" style="color: rgb(91, 197, 232); text-decoration: none; margin-top: 10px; display: inline-block;">Forgot Password?</a>
+                            <br><br>
+                            <button class="btn btn-primary py-3 px-4" type="submit" id="sendMessageButton">Login</button>
+                                <br>
                             </div>
+
                         </form>
                     </div>
                 </div>

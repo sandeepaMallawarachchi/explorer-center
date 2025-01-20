@@ -3,6 +3,16 @@ include('db.php');
 
 $sql = "SELECT * FROM reviews";
 $result = mysqli_query($conn, $sql);
+
+// Fetch all records for tours
+$tours_query = "SELECT * FROM tours";
+$tours_result = $conn->query($tours_query);
+
+// Fetch the latest record for about_us
+$about_us_query = "SELECT * FROM about_us LIMIT 1";
+$about_us_result = $conn->query($about_us_query);
+$about_us = $about_us_result->fetch_assoc();
+
 ?>
 
 <!DOCTYPE html>
@@ -92,17 +102,30 @@ $result = mysqli_query($conn, $sql);
                         </div>
                     </div>
                 </div>
+                <div class="carousel-item">
+                    <img class="w-100" src="img/carousel-3.jpg" alt="Image">
+                    <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
+                        <div class="p-3" style="max-width: 900px;">
+                            <h4 class="text-white text-uppercase mb-md-3">Land of Ancient Glory</h4>
+                            <h1 class="display-3 text-white mb-md-4">Discover Sri Lanka's Rich Heritage</h1>
+                            <a href="" class="btn btn-primary py-md-3 px-md-5 mt-2">Book Now</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img class="w-100" src="img/carousel-4.jpg" alt="Image">
+                    <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
+                        <div class="p-3" style="max-width: 900px; max-height: 1080px;">
+                            <h4 class="text-white text-uppercase mb-md-3">Serenity Awaits</h4>
+                            <h1 class="display-3 text-white mb-md-4">Unwind in Sri Lanka's Natural Beauty</h1>
+                            <a href="" class="btn btn-primary py-md-3 px-md-5 mt-2">Book Now</a>
+                        </div>
+                    </div>
+                </div>
             </div>
             <a class="carousel-control-prev" href="#header-carousel" data-slide="prev">
                 <div class="btn btn-dark" style="width: 45px; height: 45px;">
                     <span class="carousel-control-prev-icon mb-n2"></span>
-                </div>
-            </a>
-
-            </a>
-            <a class="carousel-control-next" href="#header-carousel" data-slide="next">
-                <div class="btn btn-dark" style="width: 45px; height: 45px;">
-                    <span class="carousel-control-next-icon mb-n2"></span>
                 </div>
             </a>
         </div>
@@ -111,82 +134,26 @@ $result = mysqli_query($conn, $sql);
     <!-- Carousel End -->
 
 
-    <!-- Booking Start -->
-    <!-- <div class="container-fluid booking mt-5 pb-5">
-        <div class="container pb-5">
-            <div class="bg-light shadow" style="padding: 30px;">
-                <div class="row align-items-center" style="min-height: 60px;">
-                    <div class="col-md-10">
-                        <div class="row">
-                            <div class="col-md-3">
-                                <div class="mb-3 mb-md-0">
-                                    <select class="custom-select px-4" style="height: 47px;">
-                                        <option selected>Destination</option>
-                                        <option value="1">Destination 1</option>
-                                        <option value="2">Destination 1</option>
-                                        <option value="3">Destination 1</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-md-3">
-                                <div class="mb-3 mb-md-0">
-                                    <div class="date" id="date1" data-target-input="nearest">
-                                        <input type="text" class="form-control p-4 datetimepicker-input" placeholder="Depart Date" data-target="#date1" data-toggle="datetimepicker"/>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-3">
-                                <div class="mb-3 mb-md-0">
-                                    <div class="date" id="date2" data-target-input="nearest">
-                                        <input type="text" class="form-control p-4 datetimepicker-input" placeholder="Return Date" data-target="#date2" data-toggle="datetimepicker"/>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-3">
-                                <div class="mb-3 mb-md-0">
-                                    <select class="custom-select px-4" style="height: 47px;">
-                                        <option selected>Duration</option>
-                                        <option value="1">Duration 1</option>
-                                        <option value="2">Duration 1</option>
-                                        <option value="3">Duration 1</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-2">
-                        <button class="btn btn-primary btn-block" type="submit" style="height: 47px; margin-top: -2px;">Submit</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>  -->
-    <!-- Booking End -->
-
-
     <!-- About Start -->
     <div class="container-fluid py-5">
         <div class="container pt-5">
             <div class="row">
-                <div class="col-lg-6" style="min-height: 500px;">
+                <div class="col-lg-6" style="min-height: 500px">
                     <div class="position-relative h-100">
-                        <img class="position-absolute w-100 h-100" src="img/aboutImg.jpeg" style="object-fit: cover;">
+                        <img class="position-absolute w-100 h-100" src="<?= $about_us['image_main'] ?>" style="object-fit: cover" />
                     </div>
                 </div>
                 <div class="col-lg-6 pt-5 pb-lg-5">
                     <div class="about-text bg-white p-4 p-lg-5 my-lg-5">
-                        <h6 class="text-primary text-uppercase" style="letter-spacing: 5px;">About Us</h6>
-                        <h1 class="mb-3">Discover the Best of Sri Lanka with Our Expert Tourism Operator!</h1>
-                        <p>Welcome to our Sri Lankan tour company, where we strive to provide unforgettable travel
-                            experiences. From pristine beaches to misty mountain tops, exotic wildlife to rich cultural
-                            heritage, our tailored packages cater to your every need. Our expert guides and competitive
-                            pricing ensure a seamless and stress-free journey. Let's explore Sri Lanka together!</p>
+                        <h6 class="text-primary text-uppercase" style="letter-spacing: 5px"><?= $about_us['subtitle'] ?></h6>
+                        <h1 class="mb-3"><?= $about_us['title'] ?></h1>
+                        <p><?= nl2br($about_us['description']) ?></p>
                         <div class="row mb-4">
                             <div class="col-6">
-                                <img class="img-fluid" src="img/about-1.jpg" alt="">
+                                <img class="img-fluid" src="<?= $about_us['image_1'] ?>" alt="" />
                             </div>
                             <div class="col-6">
-                                <img class="img-fluid" src="img/about-2.jpg" alt="">
+                                <img class="img-fluid" src="<?= $about_us['image_2'] ?>" alt="" />
                             </div>
                         </div>
                         <a href="" class="btn btn-primary mt-1">Book Now</a>
@@ -248,67 +215,25 @@ $result = mysqli_query($conn, $sql);
 
 
     <!-- Destination Start -->
-    <div class="container-fluid py-5">
+   <!-- Tours Section -->
+   <div class="container-fluid py-5">
         <div class="container pt-5 pb-3">
             <div class="text-center mb-3 pb-3">
                 <h6 class="text-primary text-uppercase" style="letter-spacing: 5px;">Tours</h6>
                 <h1>Explore Top Tours</h1>
             </div>
             <div class="row">
-                <div class="col-lg-4 col-md-6 mb-4">
-                    <div class="destination-item position-relative overflow-hidden mb-2">
-                        <img class="img-fluid" src="img/destination-1.jpg" alt="">
-                        <a class="destination-overlay text-white text-decoration-none" href="">
-                            <h5 class="text-white">Sun Sand Sea</h5>
-                            <span>Sandy shores, turquoise waters, bliss.</span>
-                        </a>
+                <?php while ($row = $tours_result->fetch_assoc()): ?>
+                    <div class="col-lg-4 col-md-6 mb-4">
+                        <div class="destination-item position-relative overflow-hidden mb-2">
+                            <img class="img-fluid" src="<?= $row['image_main'] ?>" alt="<?= $row['title'] ?>">
+                            <a class="destination-overlay text-white text-decoration-none" href="">
+                                <h5 class="text-white"><?= $row['title'] ?></h5>
+                                <span><?= $row['description'] ?></span>
+                            </a>
+                        </div>
                     </div>
-                </div>
-                <div class="col-lg-4 col-md-6 mb-4">
-                    <div class="destination-item position-relative overflow-hidden mb-2">
-                        <img class="img-fluid" src="img/destination-2.jpg" alt="">
-                        <a class="destination-overlay text-white text-decoration-none" href="">
-                            <h5 class="text-white">Wildlife</h5>
-                            <span>Biodiverse wonders, thrilling safari adventures.</span>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 mb-4">
-                    <div class="destination-item position-relative overflow-hidden mb-2">
-                        <img class="img-fluid" src="img/destination-3.jpg" alt="">
-                        <a class="destination-overlay text-white text-decoration-none" href="">
-                            <h5 class="text-white">History</h5>
-                            <span>Rich heritage, ancient marvels preserved.</span>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 mb-4">
-                    <div class="destination-item position-relative overflow-hidden mb-2">
-                        <img class="img-fluid" src="img/destination-4.jpg" alt="">
-                        <a class="destination-overlay text-white text-decoration-none" href="">
-                            <h5 class="text-white">Ayurvedha & Wellness</h5>
-                            <span>Healing for body and soul.</span>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 mb-4">
-                    <div class="destination-item position-relative overflow-hidden mb-2">
-                        <img class="img-fluid" src="img/destination-5.jpg" alt="">
-                        <a class="destination-overlay text-white text-decoration-none" href="">
-                            <h5 class="text-white">Highland & Tea Country</h5>
-                            <span>Misty mountains, lush tea plantations.</span>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 mb-4">
-                    <div class="destination-item position-relative overflow-hidden mb-2">
-                        <img class="img-fluid" src="img/destination-6.jpg" alt="">
-                        <a class="destination-overlay text-white text-decoration-none" href="">
-                            <h5 class="text-white">Adventure</h5>
-                            <span>Outdoor escapades, heart-pumping experiences.</span>
-                        </a>
-                    </div>
-                </div>
+                <?php endwhile; ?>
             </div>
         </div>
     </div>
