@@ -1,5 +1,5 @@
 <?php
-include('blog_helpers.php');
+include('db.php');
 
 $sql = "SELECT * FROM reviews";
 $result = mysqli_query($conn, $sql);
