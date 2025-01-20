@@ -85,13 +85,15 @@
                     <h6 class="text-white text-uppercase mt-4 mb-3" style="letter-spacing: 5px;">Newsletter</h6>
                     <div class="w-100">
                         <div class="input-group">
-                            <input type="text" class="form-control border-light" style="padding: 25px;"
-                                placeholder="Your Email">
-                            <div class="input-group-append">
-                                <button class="btn btn-primary px-3">Sign Up</button>
-                            </div>
+                            <form action="php/send_news_email.php" method="POST">
+                                <input type="email" name="email" class="form-control border-light" style="padding: 25px;" placeholder="Your Email" required>
+                                <div class="input-group-append">
+                                    <button class="btn btn-primary px-3" type="submit">Sign Up</button>
+                                </div>
+                            </form>
                         </div>
                     </div>
+                    
                 </div>
             </div>
         </div>
