@@ -14,7 +14,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $user = $result->fetch_assoc();
         $_SESSION['user_id'] = $user['id'];
         $_SESSION['username'] = $user['username'];
-        header("Location: /explorer-center/index.html");
+        header("Location: /explorer-center/php/index.php");
         exit;
     } else {
         $_SESSION['error'] = "Invalid username or password.";

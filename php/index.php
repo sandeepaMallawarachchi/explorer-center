@@ -1,3 +1,10 @@
+<?php
+include('db.php');
+
+$sql = "SELECT * FROM reviews";
+$result = mysqli_query($conn, $sql);
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -8,7 +15,7 @@
     <meta content="Free HTML Templates" name="keywords">
     <meta content="Free HTML Templates" name="description">
 
-   <!-- Base URL -->
+    <!-- Base URL -->
     <base href="/explorer-center/">
 
     <!-- Favicon -->
@@ -354,55 +361,27 @@
                 <h1>What Say Our Clients</h1>
             </div>
             <div class="owl-carousel testimonial-carousel">
-                <div class="text-center pb-4">
-                    <!-- <img class="img-fluid mx-auto" src="img/testimonial-1.jpg" style="width: 100px; height: 100px;" > -->
-                    <div class="testimonial-text bg-white p-4 mt-n5">
-                        <p class="mt-5">I recently went on a wildlife tour with ExplorerCentre
-                            tourism operator in Sri Lanka and it was incredible. Their knowledgeable guides and
-                            well-planned itinerary allowed me to see and learn about the diverse wildlife in the
-                            country. I would definitely book with them again!
-                        </p>
-                        <h5 class="text-truncate">Jack Andrews</h5>
-                        <!-- <span>Profession</span> -->
-                    </div>
-                </div>
-                <div class="text-center">
-                    <!-- <img class="img-fluid mx-auto" src="img/testimonial-2.jpg" style="width: 100px; height: 100px;" > -->
-                    <div class="testimonial-text bg-white p-4 mt-n5">
-                        <p class="mt-5">The Explorer Center offered by this tourism operator in Sri Lanka was the
-                            perfect way to experience the country's beautiful beaches. The guides were knowledgeable and
-                            friendly, and the activities were exciting and fun. It was truly a once-in-a-lifetime
-                            experience!
-                        </p>
-                        <h5 class="text-truncate">Abe Warashina</h5>
-                        <!-- <span>Profession</span> -->
-                    </div>
-                </div>
-                <div class="text-center">
-                    <!-- <img class="img-fluid mx-auto" src="img/testimonial-3.jpg" style="width: 100px; height: 100px;" > -->
-                    <div class="testimonial-text bg-white p-4 mt-n5">
-                        <p class="mt-5">I recently visited Sri Lanka and had an amazing experience with this tourism
-                            operator's Explorer Center for kite surfing and hillside activities. The instructors were
-                            experienced and patient, and the equipment was top-notch. I also loved exploring the scenic
-                            hillsides. Highly recommend this tour operator!
-                        </p>
-                        <h5 class="text-truncate">John Perera</h5>
-                        <!-- <span>Profession</span> -->
-                    </div>
-                </div>
-                <div class="text-center">
-                    <!-- <img class="img-fluid mx-auto" src="img/testimonial-4.jpg" style="width: 100px; height: 100px;" > -->
-                    <div class="testimonial-text bg-white p-4 mt-n5">
-                        <p class="mt-5">I booked the Explorer Center tour with this tourism operator in Sri Lanka and it
-                            was an unforgettable experience. From the delicious food tours to the breathtaking beaches,
-                            and the fascinating wildlife and historical sites, the tour had it all. The guides were
-                            knowledgeable and friendly, making the trip even more enjoyable. Highly recommend this tour
-                            operator!
-                        </p>
-                        <h5 class="text-truncate">Susi Fernandez</h5>
-                        <!-- <span>Profession</span> -->
-                    </div>
-                </div>
+                <?php
+                if ($result && mysqli_num_rows($result) > 0) {
+                    while ($row = mysqli_fetch_assoc($result)) {
+                        $imagePath = !empty($row['photo_url']) ? htmlspecialchars($row['photo_url']) : 'img/placeholder.jpg';
+                        echo "
+                        <div class='text-center pb-4'>
+                            <img class='img-fluid mx-auto' src='$imagePath' style='width: 100px; height: 100px;'>
+                            <div class='testimonial-text bg-white p-4 mt-n5'>
+                                <p class='mt-5'>" . htmlspecialchars($row['review_text']) . "</p>
+                                <h5 class='text-truncate'>" . htmlspecialchars($row['name']) . "</h5>
+                                <span>" . date("d F Y", strtotime($row['review_date'])) . "</span>
+                            </div>
+                        </div>";
+                    }
+                } else {
+                    echo "<p>No reviews found.</p>";
+                }
+                ?>
+            </div>
+            <div class="text-center mb-3 pb-3">
+                <a href="php/testimonial.php" class="btn btn-primary">All Reviews</a>
             </div>
         </div>
     </div>
