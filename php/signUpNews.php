@@ -1,5 +1,6 @@
 <?php
 include 'db.php';
+include 'sendNews.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email = isset($_POST['email']) ? trim($_POST['email']) : '';
@@ -22,6 +23,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $stmt->bind_param("s", $email);
 
             if ($stmt->execute()) {
+
+                $sentNewsIds = ''; // Initially, the new subscriber hasn't received any news
+                $unsentBlogs = getUnsentBlogs($conn, $sentNewsIds);
+
+                if (!empty($unsentBlogs)) {
+                    foreach ($unsentBlogs as $blog) {
+                        $subject = $blog['topic'];
+                        $message = $blog['description'];
+
+                        sendEmail($email, $subject, $message);
+
+                        // Update sent_news_ids for this user
+                        updateSentNewsIds($conn, $email, $blog['id']);
+                    }
+                }
+
                 echo "<script>
                     alert('Thank you for signing up!');
                     window.location.href = '/explorer-center/php/allBlogs.php';
@@ -44,4 +61,3 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 
 $conn->close();
-?>
