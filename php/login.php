@@ -7,7 +7,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $password = mysqli_real_escape_string($conn, $_POST['password']);
     $hashed_password = md5($password);
 
-    $sql = "SELECT * FROM login WHERE username = '$username' AND password = '$hashed_password'";
+    $sql = "SELECT * FROM users WHERE username = '$username' AND password = '$hashed_password'";
     $result = $conn->query($sql);
 
     if ($result && $result->num_rows > 0) {
@@ -111,8 +111,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                 <p class="help-block text-danger"></p>
                             </div>
                             <div class="text-center">
-                                <button class="btn btn-primary py-3 px-4" type="submit" id="sendMessageButton">Login</button>
+                            <a href="php/forgot_password.php" style="color: rgb(91, 197, 232); text-decoration: none; margin-top: 10px; display: inline-block;">Forgot Password?</a>
+                            <br><br>
+                            <button class="btn btn-primary py-3 px-4" type="submit" id="sendMessageButton">Login</button>
+                                <br>
                             </div>
+
                         </form>
                     </div>
                 </div>

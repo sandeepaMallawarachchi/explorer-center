@@ -10718,7 +10718,8 @@ h6,
   #header-carousel,
   .page-header,
   .calendar-page-header,
-  .blog-page-header {
+  .blog-page-header,
+  .district-page-header {
     margin-top: -42px;
   }
 }
@@ -10768,6 +10769,11 @@ h6,
 
 .blog-page-header {
   background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(../img/blogImg.jpg) no-repeat center center;
+  background-size: cover;
+}
+
+.district-page-header{
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(../img/destination-2.jpg) no-repeat center center;
   background-size: cover;
 }
 
@@ -10965,4 +10971,31 @@ h6,
   margin: 0;
   padding: 0;
   list-style-type: none;
+}
+
+.district-image-left {
+  width: 300px;
+  height: auto;
+  max-height: 300px;
+  float: left;
+  margin-right: 20px;
+  /* Space between image and text */
+}
+
+.district-image-right {
+  width: 300px;
+  height: auto;
+  max-height: 300px;
+  float: right;
+  margin-left: 20px;
+  /* Space between image and text */
+}
+
+#districtDescription {
+  overflow: auto;
+  /* Clear floats */
+}
+
+.topic{
+  font-size: larger;
 }
