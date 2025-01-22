@@ -37,8 +37,8 @@ function sendEmail($email, $subject, $message)
 
 function getUnsentBlogs($conn, $sentNewsIds)
 {
-    // If sentNewsIds is empty, make sure to select all blogs
-    $blogQuery = "SELECT * FROM blogs";
+    // If sentNewsIds is empty, make sure to select all news
+    $blogQuery = "SELECT * FROM news";
     if (!empty($sentNewsIds)) {
         $blogQuery .= " WHERE id NOT IN ($sentNewsIds)";
     }
@@ -99,25 +99,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $email = $row['email'];
             $sentNewsIds = $row['sent_news_ids'];
 
-            // Get unsent blogs
-            $unsentBlogs = getUnsentBlogs($conn, $sentNewsIds);
+            // Get unsent news
+            $unsentNews = getUnsentBlogs($conn, $sentNewsIds);
 
-            if (!empty($unsentBlogs)) {
-                foreach ($unsentBlogs as $blog) {
-                    $subject = $blog['topic'];
-                    $message = $blog['description'];
+            if (!empty($unsentNews)) {
+                foreach ($unsentNews as $news) {
+                    $subject = $news['topic'];
+                    $message = $news['content'];
 
                     // Send email
                     sendEmail($email, $subject, $message);
 
                     // Update sent news IDs
-                    updateSentNewsIds($conn, $email, $blog['id']);
+                    updateSentNewsIds($conn, $email, $news['id']);
                 }
             }
         }
-
-        // Success alert
-        echo "<script>alert('News sent successfully!');</script>";
     } catch (Exception $e) {
         // Error alert
         echo "<script>alert('An error occurred: " . $e->getMessage() . "');</script>";

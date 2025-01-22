@@ -30,7 +30,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 if (!empty($unsentBlogs)) {
                     foreach ($unsentBlogs as $blog) {
                         $subject = $blog['topic'];
-                        $message = $blog['description'];
+                        $message = $blog['content'];
 
                         sendEmail($email, $subject, $message);
 
