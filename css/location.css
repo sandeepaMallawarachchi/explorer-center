@@ -1,0 +1,98 @@
+/* General Styles */
+.location-link {
+    text-decoration: none;
+    position: absolute;
+    transition: all 0.3s ease; /* Smooth transition for position changes */
+}
+
+/* General Styles */
+.marker-icon {
+    font-size: 2rem; /* Default size for large screens */
+    color: #007bff;
+    animation: pulse 1.5s infinite; /* Apply the pulse animation */
+}
+
+.right-col{
+    margin-top: 0;
+}
+
+.description{
+    overflow-y: auto;
+    max-height: 130vh;
+}
+
+/* Keyframes for the Pulse Animation */
+@keyframes pulse {
+    0% {
+        transform: scale(1); /* Normal size */
+        opacity: 1; /* Fully visible */
+    }
+    50% {
+        transform: scale(1.2); /* Slightly larger */
+        opacity: 0.8; /* Slightly transparent */
+    }
+    100% {
+        transform: scale(1); /* Back to normal size */
+        opacity: 1; /* Fully visible */
+    }
+}
+
+/* Medium screens (tablets) */
+@media (max-width: 1024px) {
+    .marker-icon {
+        font-size: 1.7rem; /* Adjust marker size for tablets */
+    }
+
+    .location-link {
+        margin-top: -18%; 
+    }
+
+    .description{
+        max-height: 120vh;
+        max-width: auto;
+        overflow-y: auto;
+    }
+}
+
+/* Small screens (mobile phones) */
+@media (max-width: 768px) {
+    .marker-icon {
+        font-size: 1.5rem; /* Adjust marker size for small screens */
+    }
+
+    .location-link {
+        margin-top: 4%; 
+    }
+
+    .right-col{
+        margin-top: 150px;
+    }
+
+    .description{
+        max-height: 100vh;
+        max-width: auto;
+        overflow-y: auto;
+    }
+}
+
+/* Extra small screens (very small devices) */
+@media (max-width: 480px) {
+    .marker-icon {
+        font-size: 1.2rem; /* Adjust marker size for very small screens */
+        
+    }
+
+    .location-link {
+        margin-top: -17%; 
+    }
+
+    .right-col{
+        margin-top: 0;
+    }
+
+    .description{
+        max-height: 100vh;
+        max-width: auto;
+        overflow-y: auto;
+    }
+}
