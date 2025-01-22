@@ -125,34 +125,45 @@ if (isset($_GET['delete'])) {
 
         <!-- Tours List -->
         <table class="table table-bordered table-striped">
-            <thead class="thead-dark">
-                <tr>
-                    <th>Title</th>
-                    <th>Description</th>
-                    <th>Main Image</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php while ($row = $result->fetch_assoc()): ?>
-                    <tr>
-                        <form method="POST">
-                            <input type="hidden" name="id" value="<?= $row['id'] ?>">
-                            <td><input type="text" name="title" class="form-control" value="<?= $row['title'] ?>"></td>
-                            <td><textarea name="description" class="form-control" rows="3"><?= $row['description'] ?></textarea></td>
-                            <td>
-    <img src="<?= $row['image_main'] ?>" alt="Image" style="width: 100px; height: auto; object-fit: cover; border-radius: 5px;">
-    <input type="text" name="image_main" class="form-control mt-2" value="<?= $row['image_main'] ?>">
-</td>
-                            <td>
-                                <button type="submit" name="update" class="btn btn-success">Update</button>
-                                <a href="?delete=<?= $row['id'] ?>" onclick="return confirm('Are you sure?')" class="btn btn-danger">Delete</a>
-                            </td>
-                        </form>
-                    </tr>
-                <?php endwhile; ?>
-            </tbody>
-        </table>
+    <thead class="thead-dark">
+        <tr>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Main Image</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        <?php while ($row = $result->fetch_assoc()): ?>
+            <tr>
+                <form method="POST">
+                    <input type="hidden" name="id" value="<?= $row['id'] ?>">
+                    <td>
+                        <input type="text" name="title" class="form-control" value="<?= htmlspecialchars($row['title']) ?>" placeholder="Enter title">
+                    </td>
+                    <td>
+                        <textarea name="description" class="form-control" rows="3" placeholder="Enter description"><?= htmlspecialchars($row['description']) ?></textarea>
+                    </td>
+                    <td class="text-center">
+                        <img src="<?= htmlspecialchars($row['image_main']) ?>" alt="Image" class="img-thumbnail" style="width: 100px; height: auto;">
+                        <input type="text" name="image_main" class="form-control mt-2" value="<?= htmlspecialchars($row['image_main']) ?>" placeholder="Image URL">
+                    </td>
+                    <td class="text-center">
+                        <!-- Update Button -->
+                        <button type="submit" name="update" class="btn btn-success btn-sm mb-2" title="Update">
+                            <i class="fas fa-save"></i> Save
+                        </button>
+                        <!-- Delete Button -->
+                        <a href="?delete=<?= $row['id'] ?>" onclick="return confirm('Are you sure?')" class="btn btn-danger btn-sm" title="Delete">
+                            <i class="fas fa-trash-alt"></i> Delete
+                        </a>
+                    </td>
+                </form>
+            </tr>
+        <?php endwhile; ?>
+    </tbody>
+</table>
+
     </div>
 
     <!-- Bootstrap JS -->
