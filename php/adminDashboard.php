@@ -46,6 +46,46 @@ if (!isset($_SESSION['user_id'])) {
     }
 </script>
 
+
+<style>
+    .destination-item {
+        height: 300px; /* Ensures all cards are of the same height */
+        position: relative;
+        overflow: hidden;
+    }
+
+    .destination-item img {
+        object-fit: cover;
+        height: 100%;
+        width: 100%;
+    }
+
+    .destination-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent overlay */
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+    }
+
+    .destination-item:hover .destination-overlay {
+        opacity: 1; /* Show overlay on hover */
+    }
+
+    .destination-overlay h5, .destination-overlay span {
+        margin: 0;
+        text-align: center;
+    }
+</style>
+
+
 </head>
 
 <body>
@@ -71,19 +111,23 @@ if (!isset($_SESSION['user_id'])) {
                 <h1>Dashboard</h1>
             </div>
             <div class="row">
-                <div class="col-lg-4 col-md-6 mb-4">
-                    <div class="destination-item position-relative overflow-hidden mb-2">
-                        <img class="img-fluid" src="img/destination-1.jpg" alt="">
-                        <a class="destination-overlay text-white text-decoration-none" href="./php/adminIndex.php">
-                            <h5 class="text-white">Home Page</h5>
-                            <span>Tours & About Us</span>
-                        </a>
-                    </div>
+            <div class="col-lg-4 col-md-6 mb-4">
+        <div class="destination-item position-relative overflow-hidden mb-2">
+            <img class="img-fluid" src="img/destination-1.jpg" alt="">
+            <div class="destination-overlay text-white text-decoration-none">
+                <h5 class="text-white">Home Page</h5>
+                <span>Tours & About Us</span>
+                <div class="mt-3">
+                    <a href="php/adminIndex.php" class="btn btn-primary btn-sm mx-2">Tours</a>
+                    <a href="php/adminAbout.php" class="btn btn-secondary btn-sm mx-2">About Us</a>
                 </div>
+            </div>
+        </div>
+    </div>
                 <div class="col-lg-4 col-md-6 mb-4">
                     <div class="destination-item position-relative overflow-hidden mb-2">
                         <img class="img-fluid" src="img/destination-2.jpg" alt="">
-                        <a class="destination-overlay text-white text-decoration-none" href="">
+                        <a class="destination-overlay text-white text-decoration-none" href="/exploration.html">
                             <h5 class="text-white">Exploration</h5>
                             <span>Biodiverse wonders, thrilling safari adventures.</span>
                         </a>

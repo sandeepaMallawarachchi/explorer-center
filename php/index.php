@@ -9,6 +9,7 @@ $tours_query = "SELECT * FROM tours";
 $tours_result = $conn->query($tours_query);
 
 // Fetch the latest record for about_us
+
 $about_us_query = "SELECT * FROM about_us LIMIT 1";
 $about_us_result = $conn->query($about_us_query);
 $about_us = $about_us_result->fetch_assoc();
@@ -134,8 +135,8 @@ $about_us = $about_us_result->fetch_assoc();
     <!-- Carousel End -->
 
 
-    <!-- About Start -->
-    <div class="container-fluid py-5">
+  <!-- About Start -->
+  <div class="container-fluid py-5">
         <div class="container pt-5">
             <div class="row">
                 <div class="col-lg-6" style="min-height: 500px">
@@ -163,7 +164,6 @@ $about_us = $about_us_result->fetch_assoc();
         </div>
     </div>
     <!-- About End -->
-
 
     <!-- Feature Start -->
     <div class="container-fluid pb-5">
