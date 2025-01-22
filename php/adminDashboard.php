@@ -125,6 +125,15 @@ if (!isset($_SESSION['user_id'])) {
                         </a>
                     </div>
                 </div>
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="destination-item position-relative overflow-hidden mb-2">
+                        <img class="img-fluid" src="img/destination-7.jpg" alt="">
+                        <a class="destination-overlay text-white text-decoration-none" href="php/adminNews.php">
+                            <h5 class="text-white">News</h5>
+                            <span>News letter</span>
+                        </a>
+                    </div>
+                </div>
 
             </div>
         </div>
