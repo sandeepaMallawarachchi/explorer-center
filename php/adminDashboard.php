@@ -127,7 +127,7 @@ if (!isset($_SESSION['user_id'])) {
                 <div class="col-lg-4 col-md-6 mb-4">
                     <div class="destination-item position-relative overflow-hidden mb-2">
                         <img class="img-fluid" src="img/destination-2.jpg" alt="">
-                        <a class="destination-overlay text-white text-decoration-none" href="/exploration.html">
+                        <a class="destination-overlay text-white text-decoration-none" href="exploration.html">
                             <h5 class="text-white">Exploration</h5>
                             <span>Biodiverse wonders, thrilling safari adventures.</span>
                         </a>
@@ -136,7 +136,7 @@ if (!isset($_SESSION['user_id'])) {
                 <div class="col-lg-4 col-md-6 mb-4">
                     <div class="destination-item position-relative overflow-hidden mb-2">
                         <img class="img-fluid" src="img/destination-3.jpg" alt="">
-                        <a class="destination-overlay text-white text-decoration-none" href="">
+                        <a class="destination-overlay text-white text-decoration-none" href="experience.html">
                             <h5 class="text-white">Experiences</h5>
                             <span>Rich heritage, ancient marvels preserved.</span>
                         </a>
@@ -154,7 +154,7 @@ if (!isset($_SESSION['user_id'])) {
                 <div class="col-lg-4 col-md-6 mb-4">
                     <div class="destination-item position-relative overflow-hidden mb-2">
                         <img class="img-fluid" src="img/destination-5.jpg" alt="">
-                        <a class="destination-overlay text-white text-decoration-none" href="">
+                        <a class="destination-overlay text-white text-decoration-none" href="php/adminTestimonial.php">
                             <h5 class="text-white">Testamonials</h5>
                             <span>Customers and Travel guids</span>
                         </a>
@@ -163,7 +163,7 @@ if (!isset($_SESSION['user_id'])) {
                 <div class="col-lg-4 col-md-6 mb-4">
                     <div class="destination-item position-relative overflow-hidden mb-2">
                         <img class="img-fluid" src="img/destination-6.jpg" alt="">
-                        <a class="destination-overlay text-white text-decoration-none" href="">
+                        <a class="destination-overlay text-white text-decoration-none" href="php/registration.php">
                             <h5 class="text-white">ADMIN</h5>
                             <span>Registration</span>
                         </a>
