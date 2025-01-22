@@ -1,8 +1,8 @@
 <?php
 // Database configuration
-$host = "localhost"; // Server hostname (default for XAMPP is localhost)
-$username = "root"; // Default username for XAMPP
-$password = ""; // Default password for XAMPP (usually empty)
+$host = "explorer-center.czscsemm4fbv.eu-north-1.rds.amazonaws.com"; // Server hostname
+$username = "admin"; // Your database username
+$password = "ExplorerCenter123"; // Your database password
 $dbname = "explorer_center"; // Your database name
 
 // Create a connection
