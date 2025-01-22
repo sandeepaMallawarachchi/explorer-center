@@ -1,5 +1,6 @@
 <?php
 include('blog_helpers.php');
+include 'sendNews.php';
 
 session_start();
 
@@ -83,6 +84,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 
     if (mysqli_query($conn, $sql)) {
+
         echo "<script>alert('Blog successfully saved!');</script>";
     } else {
         echo "<script>alert('Error: " . mysqli_error($conn) . "');</script>";
@@ -123,7 +125,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['action']) && $_GET['acti
     <base href="/explorer-center/">
 
     <!-- Favicon -->
-    <link href="img/favicon.ico" rel="icon">
+    <link href="img/icon.png" rel="icon">
 
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.gstatic.com">

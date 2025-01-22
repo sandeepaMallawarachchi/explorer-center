@@ -38,7 +38,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <base href="/explorer-center/" />
 
     <!-- Favicon -->
-    <link href="img/favicon.ico" rel="icon" />
+    <link href="img/icon.png" rel="icon" />
 
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.gstatic.com" />
@@ -111,10 +111,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                 <p class="help-block text-danger"></p>
                             </div>
                             <div class="text-center">
-                            <a href="php/forgot_password.php" style="color: rgb(91, 197, 232); text-decoration: none; margin-top: 10px; display: inline-block;">Forgot Password?</a>
-                            <br><br>
-                            <button class="btn btn-primary py-3 px-4" type="submit" id="sendMessageButton">Login</button>
+                                <button class="btn btn-primary py-3 px-4" type="submit" id="sendMessageButton">Login</button><br>
+                                <a href="php/forgot_password.php" style="color: rgb(91, 197, 232); text-decoration: none; margin-top: 10px; display: inline-block;">Forgot Password?</a><br>
+                                <a href="php/registration.php" style="color: rgb(91, 197, 232); text-decoration: none; margin-top: 10px; display: inline-block;">If you don't have an account</a>
+
                                 <br>
+
                             </div>
 
                         </form>
