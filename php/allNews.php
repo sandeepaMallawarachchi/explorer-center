@@ -82,8 +82,8 @@ $tags = getNewsTags($conn);
     </script>
     <!-- Navbar End -->
 
-     <!-- Header Start -->
-     <div class="container-fluid news-page-header">
+    <!-- Header Start -->
+    <div class="container-fluid news-page-header">
         <div class="container">
             <div class="d-flex flex-column align-items-center justify-content-center" style="min-height: 400px">
                 <h3 class="display-4 text-white text-uppercase">News Letter</h3>
@@ -164,9 +164,23 @@ $tags = getNewsTags($conn);
                 </div>
 
                 <div class="col-lg-4 mt-5 mt-lg-0">
-                    <!-- The right sidebar content for categories, recent news, search form, and tags can remain unchanged from the blog implementation -->
 
-                    <!-- Replace blog terms with news as necessary -->
+                    <!-- Search Form -->
+                    <div class="mb-5">
+                        <div class="bg-white" style="padding: 30px;">
+                            <form method="GET" action="php/allNews.php">
+                                <div class="input-group">
+                                    <input type="text" name="search" class="form-control p-4" id="searchInput" placeholder="Keyword" value="<?php echo htmlspecialchars($searchKeyword); ?>">
+                                    <div class="input-group-append">
+                                        <button type="submit" class="input-group-text bg-primary border-primary text-white" id="searchBtn">
+                                            <i class="fa fa-search"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    
                 </div>
             </div>
         </div>
