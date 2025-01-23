@@ -12,7 +12,7 @@ function getNews($conn, $searchKeyword = '', $categoryFilter = '', $page = 1, $n
         $searchKeyword = mysqli_real_escape_string($conn, $searchKeyword);
         $categoryFilter = mysqli_real_escape_string($conn, $categoryFilter);
         $sql = "SELECT * FROM news 
-            WHERE (LOWER(`News Title`) LIKE '%$searchKeyword%' OR LOWER(category) LIKE '%$searchKeyword%' 
+            WHERE (LOWER(`topic`) LIKE '%$searchKeyword%' OR LOWER(category) LIKE '%$searchKeyword%' 
                    OR LOWER(content) LIKE '%$searchKeyword%') 
                   AND category = '$categoryFilter' 
             ORDER BY date DESC 
@@ -20,7 +20,7 @@ function getNews($conn, $searchKeyword = '', $categoryFilter = '', $page = 1, $n
     } elseif ($searchKeyword) {
         $searchKeyword = mysqli_real_escape_string($conn, $searchKeyword);
         $sql = "SELECT * FROM news 
-            WHERE LOWER(`News Title`) LIKE '%$searchKeyword%' OR LOWER(category) LIKE '%$searchKeyword%' 
+            WHERE LOWER(`topic`) LIKE '%$searchKeyword%' OR LOWER(category) LIKE '%$searchKeyword%' 
                   OR LOWER(content) LIKE '%$searchKeyword%' 
             ORDER BY date DESC 
             LIMIT $offset, $newsPerPage";
@@ -40,7 +40,7 @@ function getNews($conn, $searchKeyword = '', $categoryFilter = '', $page = 1, $n
     return mysqli_query($conn, $sql);
 }
 
-// Fetch categories and blog counts
+// Fetch categories and news counts
 function getNewsCategories($conn)
 {
     $sql = "SELECT category, COUNT(*) as count FROM news GROUP BY category";

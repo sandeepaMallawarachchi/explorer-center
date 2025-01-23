@@ -32,7 +32,7 @@ $tags = getNewsTags($conn);
     <base href="/explorer-center/">
 
     <!-- Favicon -->
-    <link href="img/favicon.ico" rel="icon">
+    <link href="img/icon.png" rel="icon">
 
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -82,15 +82,15 @@ $tags = getNewsTags($conn);
     </script>
     <!-- Navbar End -->
 
-     <!-- Header Start -->
-     <div class="container-fluid blog-page-header">
+    <!-- Header Start -->
+    <div class="container-fluid news-page-header">
         <div class="container">
             <div class="d-flex flex-column align-items-center justify-content-center" style="min-height: 400px">
-                <h3 class="display-4 text-white text-uppercase">News</h3>
+                <h3 class="display-4 text-white text-uppercase">News Letter</h3>
                 <div class="d-inline-flex text-white">
-                    <p class="m-0 text-uppercase"><a class="text-white" href="">Home</a></p>
+                    <p class="m-0 text-uppercase"><a class="text-white" href="php/index.php">Home</a></p>
                     <i class="fa fa-angle-double-right pt-1 px-3"></i>
-                    <p class="m-0 text-uppercase">News</p>
+                    <p class="m-0 text-uppercase">News Letter</p>
                 </div>
             </div>
         </div>
@@ -106,24 +106,22 @@ $tags = getNewsTags($conn);
                         <?php
                         if ($result && mysqli_num_rows($result) > 0) {
                             while ($row = mysqli_fetch_assoc($result)) {
-                                $imagePath = !empty($row['image']) ? htmlspecialchars($row['image']) : 'img/placeholder.jpg';
+                                $imagePath = !empty($row['image_url']) ? htmlspecialchars($row['image_url']) : 'img/placeholder.jpg';
                                 echo "
                                 <div class='col-md-6 mb-4 pb-2'>
-                                    <div class='news-item'>
+                                    <div class='blog-item'>
                                         <div class='position-relative'>
-                                            <img class='img-fluid w-100' src='$imagePath' alt='News Image'>
-                                            <div class='news-date'>
+                                            <img class='img-fluid w-100' src='$imagePath' alt='News Image' style='max-height: 350px; object-fit: cover;'>
+                                            <div class='blog-date'>
                                                 <h6 class='font-weight-bold mb-n1'>" . date("d", strtotime($row['date'])) . "</h6>
                                                 <small class='text-white text-uppercase'>" . date("M", strtotime($row['date'])) . "</small>
                                             </div>
                                         </div>
                                         <div class='bg-white p-4'>
                                             <div class='d-flex mb-2'>
-                                                <span class='text-primary text-uppercase text-decoration-none'>" . htmlspecialchars($row['author']) . "</span>
-                                                <span class='text-primary px-2'>|</span>
                                                 <a class='text-primary text-uppercase text-decoration-none' href='#'>" . htmlspecialchars($row['category']) . "</a>
                                             </div>
-                                            <a class='h5 m-0 text-decoration-none' href='php/news.php?id=" . $row['id'] . "'>" . htmlspecialchars($row['News Title']) . "</a>
+                                            <a class='h5 m-0 text-decoration-none' href='php/news.php?id=" . $row['id'] . "'>" . htmlspecialchars($row['topic']) . "</a>
                                         </div>
                                     </div>
                                 </div>";
@@ -166,9 +164,23 @@ $tags = getNewsTags($conn);
                 </div>
 
                 <div class="col-lg-4 mt-5 mt-lg-0">
-                    <!-- The right sidebar content for categories, recent news, search form, and tags can remain unchanged from the blog implementation -->
 
-                    <!-- Replace blog terms with news as necessary -->
+                    <!-- Search Form -->
+                    <div class="mb-5">
+                        <div class="bg-white" style="padding: 30px;">
+                            <form method="GET" action="php/allNews.php">
+                                <div class="input-group">
+                                    <input type="text" name="search" class="form-control p-4" id="searchInput" placeholder="Keyword" value="<?php echo htmlspecialchars($searchKeyword); ?>">
+                                    <div class="input-group-append">
+                                        <button type="submit" class="input-group-text bg-primary border-primary text-white" id="searchBtn">
+                                            <i class="fa fa-search"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    
                 </div>
             </div>
         </div>
