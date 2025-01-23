@@ -11,23 +11,20 @@ function sendEmail($email, $subject, $message)
     $mail = new PHPMailer(true);
 
     try {
-        // Server settings
         $mail->isSMTP();
-        $mail->Host = 'smtp.gmail.com'; // Replace with your SMTP server
+        $mail->Host = 'smtp.gmail.com';
         $mail->SMTPAuth = true;
         $mail->Username = 'sandeepamallawarachchi444@gmail.com';
         $mail->Password = 'qkxx lmnw intx twru';
-        $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS; // Enable TLS encryption
-        $mail->Port = 587; // SMTP port
+        $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+        $mail->Port = 587;
 
-        //Recipients
         $mail->setFrom('sandeepamallawarachchi444@gmail.com', 'Explorer Center');
-        $mail->addAddress($email); // Add the recipient's email
+        $mail->addAddress($email);
 
-        // Content
         $mail->isHTML(true);
         $mail->Subject = $subject;
-        $mail->Body    = $message;
+        $mail->Body = $message;
 
         $mail->send();
     } catch (Exception $e) {
@@ -35,37 +32,31 @@ function sendEmail($email, $subject, $message)
     }
 }
 
-function getUnsentBlogs($conn, $sentNewsIds)
+function getUnsentNews($conn, $sentNewsIds)
 {
-    // If sentNewsIds is empty, make sure to select all news
-    $blogQuery = "SELECT * FROM news";
+    $newsQuery = "SELECT id, topic, category, content, image_url FROM news";
     if (!empty($sentNewsIds)) {
-        $blogQuery .= " WHERE id NOT IN ($sentNewsIds)";
+        $newsQuery .= " WHERE id NOT IN ($sentNewsIds)";
     }
-    $result = $conn->query($blogQuery);
+    $result = $conn->query($newsQuery);
     return $result->fetch_all(MYSQLI_ASSOC);
 }
 
 function getSentNewsIds($conn, $email)
 {
-
     $sentNewsIds = '';
-
     $stmt = $conn->prepare("SELECT sent_news_ids FROM signup_news WHERE email = ?");
     $stmt->bind_param("s", $email);
     $stmt->execute();
     $stmt->bind_result($sentNewsIds);
     $stmt->fetch();
     $stmt->close();
-
-    // Return an empty string if no sent news ids exist
     return $sentNewsIds ?: '';
 }
 
 function updateSentNewsIds($conn, $email, $newSentIdsString)
 {
     $currentSentIdsString = '';
-    // Fetch current sent IDs
     $stmt = $conn->prepare("SELECT sent_news_ids FROM signup_news WHERE email = ?");
     $stmt->bind_param("s", $email);
     $stmt->execute();
@@ -73,17 +64,11 @@ function updateSentNewsIds($conn, $email, $newSentIdsString)
     $stmt->fetch();
     $stmt->close();
 
-    // Convert strings to arrays
     $currentSentIdsArray = !empty($currentSentIdsString) ? explode(',', $currentSentIdsString) : [];
     $newSentIdsArray = explode(',', $newSentIdsString);
-
-    // Merge arrays and remove duplicates
     $updatedSentIdsArray = array_unique(array_merge($currentSentIdsArray, $newSentIdsArray));
-
-    // Convert back to string
     $updatedSentIdsString = implode(',', $updatedSentIdsArray);
 
-    // Update database
     $stmt = $conn->prepare("UPDATE signup_news SET sent_news_ids = ? WHERE email = ?");
     $stmt->bind_param("ss", $updatedSentIdsString, $email);
     $stmt->execute();
@@ -98,27 +83,40 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         while ($row = $emailsResult->fetch_assoc()) {
             $email = $row['email'];
             $sentNewsIds = $row['sent_news_ids'];
-
-            // Get unsent news
-            $unsentNews = getUnsentBlogs($conn, $sentNewsIds);
+            $unsentNews = getUnsentNews($conn, $sentNewsIds);
 
             if (!empty($unsentNews)) {
                 foreach ($unsentNews as $news) {
                     $subject = $news['topic'];
-                    $message = $news['content'];
+                    $message = "
+                        <html>
+                            <head>
+                                <style>
+                                    body { font-family: Arial, sans-serif; }
+                                    .content { margin: 20px; }
+                                    .header { font-size: 18px; font-weight: bold; margin-bottom: 10px; }
+                                    .category { font-size: 14px; color: #555; margin-bottom: 20px; }
+                                    img { max-width: 100%; height: auto; }
+                                </style>
+                            </head>
+                            <body>
+                                <div class='content'>
+                                    <div class='header'>{$news['topic']}</div>
+                                    <div class='category'>Category: {$news['category']}</div>
+                                    <div>{$news['content']}</div>
+                                    <div><img src='{$news['image_url']}' alt='Image'></div>
+                                </div>
+                            </body>
+                        </html>
+                    ";
 
-                    // Send email
                     sendEmail($email, $subject, $message);
-
-                    // Update sent news IDs
                     updateSentNewsIds($conn, $email, $news['id']);
                 }
             }
         }
     } catch (Exception $e) {
-        // Error alert
         echo "<script>alert('An error occurred: " . $e->getMessage() . "');</script>";
     }
 }
-
 ?>

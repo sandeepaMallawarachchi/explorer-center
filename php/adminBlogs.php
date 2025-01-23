@@ -1,6 +1,5 @@
 <?php
 include('blog_helpers.php');
-include 'sendNews.php';
 
 session_start();
 

@@ -24,19 +24,33 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             if ($stmt->execute()) {
 
-                $sentNewsIds = ''; // Initially, the new subscriber hasn't received any news
-                $unsentBlogs = getUnsentBlogs($conn, $sentNewsIds);
+                foreach ($unsentNews as $news) {
+                    $subject = $news['topic'];
+                    $message = "
+                        <html>
+                            <head>
+                                <style>
+                                    body { font-family: Arial, sans-serif; }
+                                    .content { margin: 20px; }
+                                    .header { font-size: 18px; font-weight: bold; margin-bottom: 10px; }
+                                    .category { font-size: 14px; color: #555; margin-bottom: 20px; }
+                                    img { max-width: 100%; height: auto; }
+                                </style>
+                            </head>
+                            <body>
+                                <div class='content'>
+                                    <div class='header'>{$news['topic']}</div>
+                                    <div class='category'>Category: {$news['category']}</div>
+                                    <div>{$news['content']}</div>
+                                    <div><img src='{$news['image_url']}' alt='News Image'></div>
+                                </div>
+                            </body>
+                        </html>
+                    ";
 
-                if (!empty($unsentBlogs)) {
-                    foreach ($unsentBlogs as $blog) {
-                        $subject = $blog['topic'];
-                        $message = $blog['content'];
+                    sendEmail($email, $subject, $message);
 
-                        sendEmail($email, $subject, $message);
-
-                        // Update sent_news_ids for this user
-                        updateSentNewsIds($conn, $email, $blog['id']);
-                    }
+                    updateSentNewsIds($conn, $email, $news['id']);
                 }
 
                 echo "<script>

@@ -78,22 +78,41 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 
     if (mysqli_query($conn, $sql)) {
-        // Get the last inserted or updated news ID
         $newsId = $newsId ?: mysqli_insert_id($conn);
-
-        // Fetch all subscribers
         $emailsQuery = "SELECT email FROM signup_news";
         $emailsResult = $conn->query($emailsQuery);
 
-        // Send email notifications
         while ($row = $emailsResult->fetch_assoc()) {
             $email = $row['email'];
-            $subject = "New Update: $topic";
-            $message = "<h1>$topic</h1><p>$content</p>";
+            $subject = "Latest News Update: $topic";
+            $message = "
+                <html>
+                    <head>
+                        <style>
+                            body { font-family: Arial, sans-serif; line-height: 1.6; }
+                            .container { margin: 20px; padding: 10px; }
+                            .header { font-size: 22px; font-weight: bold; color: #333; }
+                            .category { font-size: 14px; color: #777; margin-bottom: 10px; }
+                            img { max-width: 100%; height: auto; margin-top: 15px; }
+                        </style>
+                    </head>
+                    <body>
+                        <div class='container'>
+                            <div class='header'>$topic</div>
+                            <div class='category'>Category: $category | Date: $date</div>
+                            <div>$content</div>";
+
+            if ($imageUrl !== null) {
+                $message .= "<div><img src='$imageUrl' alt='News Image'></div>";
+            }
+
+            $message .= "
+                        </div>
+                    </body>
+                </html>
+            ";
 
             sendEmail($email, $subject, $message);
-
-            // Update sent news IDs for each subscriber
             updateSentNewsIds($conn, $email, $newsId);
         }
 
