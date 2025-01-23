@@ -1,5 +1,12 @@
 <?php
+session_start();
 include 'db.php'; // Include your database connection
+
+// Check if the user is authenticated
+if (!isset($_SESSION['user_id'])) {
+    header("Location: login.php"); // Redirect to login page if not authenticated
+    exit;
+}
 
 // Fetch all records
 $query = "SELECT * FROM about_us";
@@ -7,20 +14,24 @@ $result = $conn->query($query);
 
 // Handle Create
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['create'])) {
-    $title = $_POST['title'];
-    $subtitle = $_POST['subtitle'];
-    $description = $_POST['description'];
-    $image_main = $_POST['image_main'];
-    $image_1 = $_POST['image_1'];
-    $image_2 = $_POST['image_2'];
-    $button_text = $_POST['button_text'];
+    $title = mysqli_real_escape_string($conn, $_POST['title']);
+    $subtitle = mysqli_real_escape_string($conn, $_POST['subtitle']);
+    $description = mysqli_real_escape_string($conn, $_POST['description']);
+    $image_main = mysqli_real_escape_string($conn, $_POST['image_main']);
+    $image_1 = mysqli_real_escape_string($conn, $_POST['image_1']);
+    $image_2 = mysqli_real_escape_string($conn, $_POST['image_2']);
+    $button_text = mysqli_real_escape_string($conn, $_POST['button_text']);
 
-    $create_query = "INSERT INTO about_us (title, subtitle, description, image_main, image_1, image_2, button_text) VALUES ('$title', '$subtitle', '$description', '$image_main', '$image_1', '$image_2', '$button_text')";
-    $conn->query($create_query);
-    header('Location: adminAbout.php');
+    $create_query = "INSERT INTO about_us (title, subtitle, description, image_main, image_1, image_2, button_text) 
+                     VALUES ('$title', '$subtitle', '$description', '$image_main', '$image_1', '$image_2', '$button_text')";
+
+    if ($conn->query($create_query)) {
+        header('Location: adminAbout.php');
+    } else {
+        echo "Error: " . $conn->error;
+    }
 }
 
-// Handle Update
 // Handle Update
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['update'])) {
     $id = $_POST['id'];
@@ -52,9 +63,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['update'])) {
 // Handle Delete
 if (isset($_GET['delete'])) {
     $id = $_GET['delete'];
+
+    // Sanitize the ID
+    $id = intval($id);
+
     $delete_query = "DELETE FROM about_us WHERE id = $id";
-    $conn->query($delete_query);
-    header('Location: adminAbout.php');
+
+    if ($conn->query($delete_query)) {
+        header('Location: adminAbout.php');
+    } else {
+        echo "Error: " . $conn->error;
+    }
 }
 ?>
 
@@ -168,50 +187,58 @@ if (isset($_GET['delete'])) {
             </div>
             <button type="submit" name="create" class="btn btn-primary">Create</button>
         </form>
-
         <table class="table table-bordered table-striped bg-white shadow-sm">
-            <thead class="table-dark">
-                <tr>
-                    <th>Title</th>
-                    <th>Subtitle</th>
-                    <th>Description</th>
-                    <th>Main Image</th>
-                    <th>Image 1</th>
-                    <th>Image 2</th>
-                    <th>Button Text</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php while ($row = $result->fetch_assoc()): ?>
-                    <tr>
-                        <form method="POST">
-                            <input type="hidden" name="id" value="<?= $row['id'] ?>">
-                            <td><input type="text" name="title" class="form-control" value="<?= $row['title'] ?>"></td>
-                            <td><input type="text" name="subtitle" class="form-control" value="<?= $row['subtitle'] ?>"></td>
-                            <td><textarea name="description" class="form-control" rows="3"><?= $row['description'] ?></textarea></td>
-                            <td>
-                                <img src="<?= $row['image_main'] ?>" alt="Main Image" class="img-thumbnail mb-2" style="width: 100px;">
-                                <input type="text" name="image_main" class="form-control" value="<?= $row['image_main'] ?>">
-                            </td>
-                            <td>
-                                <img src="<?= $row['image_1'] ?>" alt="Image 1" class="img-thumbnail mb-2" style="width: 100px;">
-                                <input type="text" name="image_1" class="form-control" value="<?= $row['image_1'] ?>">
-                            </td>
-                            <td>
-                                <img src="<?= $row['image_2'] ?>" alt="Image 2" class="img-thumbnail mb-2" style="width: 100px;">
-                                <input type="text" name="image_2" class="form-control" value="<?= $row['image_2'] ?>">
-                            </td>
-                            <td><input type="text" name="button_text" class="form-control" value="<?= $row['button_text'] ?>"></td>
-                            <td>
-                                <button type="submit" name="update" class="btn btn-success btn-sm">Update</button>
-                                <a href="?delete=<?= $row['id'] ?>" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure?')">Delete</a>
-                            </td>
-                        </form>
-                    </tr>
-                <?php endwhile; ?>
-            </tbody>
-        </table>
+    <thead class="table-dark">
+        <tr>
+            <th>Title</th>
+            <th>Subtitle</th>
+            <th>Description</th>
+            <th>Main Image</th>
+            <th>Image 1</th>
+            <th>Image 2</th>
+            <th>Button Text</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        <?php while ($row = $result->fetch_assoc()): ?>
+            <tr>
+                <form method="POST">
+                    <input type="hidden" name="id" value="<?= $row['id'] ?>">
+
+                    <td><input type="text" name="title" class="form-control mb-2" value="<?= htmlspecialchars($row['title']) ?>" placeholder="Enter Title"></td>
+
+                    <td><input type="text" name="subtitle" class="form-control mb-2" value="<?= htmlspecialchars($row['subtitle']) ?>" placeholder="Enter Subtitle"></td>
+
+                    <td><textarea name="description" class="form-control mb-2" rows="3" placeholder="Enter Description"><?= htmlspecialchars($row['description']) ?></textarea></td>
+
+                    <td>
+                        <img src="<?= htmlspecialchars($row['image_main']) ?>" alt="Main Image" class="img-thumbnail mb-2" style="width: 100px; height: auto;">
+                        <input type="text" name="image_main" class="form-control mb-2" value="<?= htmlspecialchars($row['image_main']) ?>" placeholder="Main Image URL">
+                    </td>
+
+                    <td>
+                        <img src="<?= htmlspecialchars($row['image_1']) ?>" alt="Image 1" class="img-thumbnail mb-2" style="width: 100px; height: auto;">
+                        <input type="text" name="image_1" class="form-control mb-2" value="<?= htmlspecialchars($row['image_1']) ?>" placeholder="Image 1 URL">
+                    </td>
+
+                    <td>
+                        <img src="<?= htmlspecialchars($row['image_2']) ?>" alt="Image 2" class="img-thumbnail mb-2" style="width: 100px; height: auto;">
+                        <input type="text" name="image_2" class="form-control mb-2" value="<?= htmlspecialchars($row['image_2']) ?>" placeholder="Image 2 URL">
+                    </td>
+
+                    <td><input type="text" name="button_text" class="form-control mb-2" value="<?= htmlspecialchars($row['button_text']) ?>" placeholder="Button Text"></td>
+
+                    <td>
+                        <button type="submit" name="update" class="btn btn-success btn-sm mb-2">Update</button>
+                        <a href="?delete=<?= $row['id'] ?>" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure?')">Delete</a>
+                    </td>
+                </form>
+            </tr>
+        <?php endwhile; ?>
+    </tbody>
+</table>
+
     </div>
  <!-- Footer Start -->
  <div id="footer"></div>

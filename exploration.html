@@ -19,6 +19,22 @@
       rel="stylesheet"
     /> -->
 
+    <!-- Favicon -->
+    <link href="img/icon.png" rel="icon" />
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Font Awesome -->
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css"
+      rel="stylesheet"
+    />
+
     <!-- Vendor CSS Files -->
     <link
       href="assets/vendor/bootstrap/css/bootstrap.min.css"
@@ -37,10 +53,94 @@
 
     <!-- Main CSS File -->
     <link href="css/main.css" rel="stylesheet" />
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="css/style.css" rel="stylesheet" />
+
+    <style>
+      /* Basic styles for the popup (modal) */
+      .popup-overlay {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.6);
+        z-index: 1000;
+      }
+
+      .popup-content {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background: white;
+        padding: 20px;
+        border-radius: 8px;
+        text-align: center;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        width: 300px;
+      }
+
+      .popup-content p {
+        margin: 10px 0;
+        font-size: 16px;
+        color: #333;
+      }
+
+      .popup-content button {
+        padding: 10px 20px;
+        background-color: #007bff;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 14px;
+      }
+
+      .popup-content button:hover {
+        background-color: #0056b3;
+      }
+    </style>
   </head>
 
   <body class="index-page">
-    <header id="header" class="header d-flex align-items-center fixed-top">
+    <!-- Topbar Start -->
+    <div id="topbar"></div>
+
+    <script>
+      fetch("components/topbar.html")
+        .then((response) => response.text())
+        .then((data) => {
+          const tempDiv = document.createElement("div");
+          tempDiv.innerHTML = data;
+          const template = tempDiv.querySelector("template");
+          document
+            .getElementById("topbar")
+            .appendChild(template.content.cloneNode(true));
+        })
+        .catch((error) => console.error("Error loading topbar:", error));
+    </script>
+    <!-- Topbar End -->
+
+    <!-- Navbar Start -->
+    <div id="header"></div>
+    <script>
+      fetch("components/header.html")
+        .then((response) => response.text())
+        .then((data) => {
+          const tempDiv = document.createElement("div");
+          tempDiv.innerHTML = data;
+          const template = tempDiv.querySelector("template");
+          document
+            .getElementById("header")
+            .appendChild(template.content.cloneNode(true));
+        })
+        .catch((error) => console.error("Error loading header:", error));
+    </script>
+    <!-- Navbar End -->
+
+    <!-- <header id="header" class="header d-flex align-items-center fixed-top">
       <div
         class="container position-relative d-flex align-items-center justify-content-between"
       >
@@ -64,7 +164,7 @@
 
         <a class="cta-btn" href="#about">Get Started</a>
       </div>
-    </header>
+    </header> -->
 
     <main class="main">
       <!-- Hero Section -->
@@ -93,6 +193,28 @@
         </div>
       </section>
       <!-- /Hero Section -->
+
+      <div id="popup" class="popup-overlay">
+        <div class="popup-content">
+          <p>
+            This service will be available soon on the website. Until then,
+            please contact us by email.
+          </p>
+          <button onclick="closePopup()">Close</button>
+        </div>
+      </div>
+
+      <script>
+        // Function to show the popup
+        function showPopup() {
+          document.getElementById("popup").style.display = "block";
+        }
+
+        // Function to close the popup
+        function closePopup() {
+          document.getElementById("popup").style.display = "none";
+        }
+      </script>
 
       <!-- About Section -->
       <section id="about" class="about section">
@@ -346,8 +468,8 @@
                 island’s wonders — book your adventure now!
               </p>
             </div>
-            <div class="col-xl-3 cta-btn-container text-center">
-              <a class="cta-btn align-middle" href="/book-now">Book Now</a>
+            <div class="btn-wrap">
+              <a href="#" class="btn-buy" onclick="showPopup()">Book Now</a>
             </div>
           </div>
         </div>
@@ -684,7 +806,7 @@
                   <li class="na">Airport pick-up</li>
                 </ul>
                 <div class="btn-wrap">
-                  <a href="#" class="btn-buy">Book Now</a>
+                  <a href="#" class="btn-buy" onclick="showPopup()">Book Now</a>
                 </div>
               </div>
             </div>
@@ -708,7 +830,7 @@
                   <li>24/7 support</li>
                 </ul>
                 <div class="btn-wrap">
-                  <a href="#" class="btn-buy">Book Now</a>
+                  <a href="#" class="btn-buy" onclick="showPopup()">Book Now</a>
                 </div>
               </div>
             </div>
@@ -731,7 +853,7 @@
                   <li>All-inclusive services</li>
                 </ul>
                 <div class="btn-wrap">
-                  <a href="#" class="btn-buy">Book Now</a>
+                  <a href="#" class="btn-buy" onclick="showPopup()">Book Now</a>
                 </div>
               </div>
             </div>

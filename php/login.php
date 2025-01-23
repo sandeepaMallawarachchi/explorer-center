@@ -65,6 +65,24 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <!-- Topbar Start -->
     <div id="topbar"></div>
 
+        <!-- Navbar Start -->
+        <div id="header"></div>
+    <script>
+      fetch("components/header.html")
+        .then((response) => response.text())
+        .then((data) => {
+          const tempDiv = document.createElement("div");
+          tempDiv.innerHTML = data;
+          const template = tempDiv.querySelector("template");
+          document
+            .getElementById("header")
+            .appendChild(template.content.cloneNode(true));
+        })
+        .catch((error) => console.error("Error loading header:", error));
+    </script>
+    <!-- Navbar End -->
+
+
     <script>
         fetch("components/topbar.html")
             .then((response) => response.text())
@@ -127,7 +145,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </div>
     <!-- login End -->
 
-
+   <!-- Footer Start -->
+   <div id="footer"></div>
+    <script>
+      fetch("components/footer.html")
+        .then((response) => response.text())
+        .then((data) => {
+          const tempDiv = document.createElement("div");
+          tempDiv.innerHTML = data;
+          const template = tempDiv.querySelector("template");
+          document
+            .getElementById("footer")
+            .appendChild(template.content.cloneNode(true));
+        })
+        .catch((error) => console.error("Error loading footer:", error));
+    </script>
+    <!-- Footer End -->
 
     <!-- Back to Top -->
     <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="fa fa-angle-double-up"></i></a>
