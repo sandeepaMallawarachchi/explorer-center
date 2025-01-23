@@ -219,7 +219,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['action']) && $_GET['acti
                                     <div class='col-md-6 mb-4 pb-2'>
                                         <div class='blog-item'>
                                             <div class='position-relative'>
-                                                <img class='img-fluid w-100' src='$imagePath' alt='News Image'>
+                                                <img class='img-fluid w-100' src='$imagePath' alt='News Image' style='max-height: 350px; object-fit: cover;'>
                                                 <div class='blog-date'>
                                                     <h6 class='font-weight-bold mb-n1'>" . date("d", strtotime($row['date'])) . "</h6>
                                                     <small class='text-white text-uppercase'>" . date("M", strtotime($row['date'])) . "</small>

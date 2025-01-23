@@ -14,7 +14,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if ($checkStmt->num_rows > 0) {
             echo "<script>
                 alert('You are already signed up!');
-                window.location.href = '/explorer-center/php/allBlogs.php';
+                window.location.href = '/explorer-center/php/allNews.php';
             </script>";
         } else {
             $checkStmt->close();
@@ -24,38 +24,51 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             if ($stmt->execute()) {
 
-                foreach ($unsentNews as $news) {
-                    $subject = $news['topic'];
+                $newsQuery = "SELECT * FROM news";
+                $newsResult = $conn->query($newsQuery);
+
+                while ($news = $newsResult->fetch_assoc()) {
+                    $topic = $news['topic'];
+                    $category = $news['category'];
+                    $content = $news['content'];
+                    $date = $news['date'];
+                    $imageUrl = $news['image_url'];
+
+                    $subject = "Latest News Update: $topic";
                     $message = "
                         <html>
                             <head>
                                 <style>
-                                    body { font-family: Arial, sans-serif; }
-                                    .content { margin: 20px; }
-                                    .header { font-size: 18px; font-weight: bold; margin-bottom: 10px; }
-                                    .category { font-size: 14px; color: #555; margin-bottom: 20px; }
-                                    img { max-width: 100%; height: auto; }
+                                    body { font-family: Arial, sans-serif; line-height: 1.6; }
+                                    .container { margin: 20px; padding: 10px; }
+                                    .header { font-size: 22px; font-weight: bold; color: #333; }
+                                    .category { font-size: 14px; color: #777; margin-bottom: 10px; }
+                                    img { max-width: 100%; height: auto; margin-top: 15px; }
                                 </style>
                             </head>
                             <body>
-                                <div class='content'>
-                                    <div class='header'>{$news['topic']}</div>
-                                    <div class='category'>Category: {$news['category']}</div>
-                                    <div>{$news['content']}</div>
-                                    <div><img src='{$news['image_url']}' alt='News Image'></div>
+                                <div class='container'>
+                                    <div class='header'>$topic</div>
+                                    <div class='category'>Category: $category | Date: $date</div>
+                                    <div>$content</div>";
+
+                    if (!empty($imageUrl)) {
+                        $message .= "<div><img src='$imageUrl' alt='News Image'></div>";
+                    }
+
+                    $message .= "
                                 </div>
                             </body>
                         </html>
                     ";
 
                     sendEmail($email, $subject, $message);
-
                     updateSentNewsIds($conn, $email, $news['id']);
                 }
 
                 echo "<script>
-                    alert('Thank you for signing up!');
-                    window.location.href = '/explorer-center/php/allBlogs.php';
+                    alert('Thank you for signing up! All news has been sent to your email.');
+                    window.location.href = '/explorer-center/php/allNews.php';
                 </script>";
             } else {
                 echo "<script>
