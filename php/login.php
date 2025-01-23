@@ -38,7 +38,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <base href="/explorer-center/" />
 
     <!-- Favicon -->
-    <link href="img/favicon.ico" rel="icon" />
+    <link href="img/icon.png" rel="icon" />
 
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.gstatic.com" />
@@ -64,6 +64,24 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <body>
     <!-- Topbar Start -->
     <div id="topbar"></div>
+
+        <!-- Navbar Start -->
+        <div id="header"></div>
+    <script>
+      fetch("components/header.html")
+        .then((response) => response.text())
+        .then((data) => {
+          const tempDiv = document.createElement("div");
+          tempDiv.innerHTML = data;
+          const template = tempDiv.querySelector("template");
+          document
+            .getElementById("header")
+            .appendChild(template.content.cloneNode(true));
+        })
+        .catch((error) => console.error("Error loading header:", error));
+    </script>
+    <!-- Navbar End -->
+
 
     <script>
         fetch("components/topbar.html")
@@ -111,10 +129,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                 <p class="help-block text-danger"></p>
                             </div>
                             <div class="text-center">
-                            <a href="php/forgot_password.php" style="color: rgb(91, 197, 232); text-decoration: none; margin-top: 10px; display: inline-block;">Forgot Password?</a>
-                            <br><br>
-                            <button class="btn btn-primary py-3 px-4" type="submit" id="sendMessageButton">Login</button>
+                                <button class="btn btn-primary py-3 px-4" type="submit" id="sendMessageButton">Login</button><br>
+                                <a href="php/forgot_password.php" style="color: rgb(91, 197, 232); text-decoration: none; margin-top: 10px; display: inline-block;">Forgot Password?</a><br>
+                                <a href="php/registration.php" style="color: rgb(91, 197, 232); text-decoration: none; margin-top: 10px; display: inline-block;">If you don't have an account</a>
+
                                 <br>
+
                             </div>
 
                         </form>
@@ -125,7 +145,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </div>
     <!-- login End -->
 
-
+   <!-- Footer Start -->
+   <div id="footer"></div>
+    <script>
+      fetch("components/footer.html")
+        .then((response) => response.text())
+        .then((data) => {
+          const tempDiv = document.createElement("div");
+          tempDiv.innerHTML = data;
+          const template = tempDiv.querySelector("template");
+          document
+            .getElementById("footer")
+            .appendChild(template.content.cloneNode(true));
+        })
+        .catch((error) => console.error("Error loading footer:", error));
+    </script>
+    <!-- Footer End -->
 
     <!-- Back to Top -->
     <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="fa fa-angle-double-up"></i></a>

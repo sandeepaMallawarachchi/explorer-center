@@ -1,6 +1,14 @@
 <?php
+
 session_start();
-include('db.php');
+include 'db.php'; // Include your database connection
+
+// Check if the user is authenticated
+if (!isset($_SESSION['user_id'])) {
+    header("Location: login.php"); // Redirect to login page if not authenticated
+    exit;
+}
+
 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
@@ -81,7 +89,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <base href="/explorer-center/" />
 
     <!-- Favicon -->
-    <link href="img/favicon.ico" rel="icon" />
+    <link href="img/icon.png" rel="icon" />
 
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.gstatic.com" />

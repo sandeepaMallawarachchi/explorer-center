@@ -37,10 +37,47 @@
 
     <!-- Main CSS File -->
     <link href="css/main.css" rel="stylesheet" />
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="css/style.css" rel="stylesheet" />
   </head>
 
   <body class="index-page">
-    <header id="header" class="header d-flex align-items-center fixed-top">
+    <!-- Topbar Start -->
+    <div id="topbar"></div>
+
+    <script>
+      fetch("components/topbar.html")
+        .then((response) => response.text())
+        .then((data) => {
+          const tempDiv = document.createElement("div");
+          tempDiv.innerHTML = data;
+          const template = tempDiv.querySelector("template");
+          document
+            .getElementById("topbar")
+            .appendChild(template.content.cloneNode(true));
+        })
+        .catch((error) => console.error("Error loading topbar:", error));
+    </script>
+    <!-- Topbar End -->
+
+    <!-- Navbar Start -->
+    <div id="header"></div>
+    <script>
+      fetch("components/header.html")
+        .then((response) => response.text())
+        .then((data) => {
+          const tempDiv = document.createElement("div");
+          tempDiv.innerHTML = data;
+          const template = tempDiv.querySelector("template");
+          document
+            .getElementById("header")
+            .appendChild(template.content.cloneNode(true));
+        })
+        .catch((error) => console.error("Error loading header:", error));
+    </script>
+    <!-- Navbar End -->
+
+    <!-- <header id="header" class="header d-flex align-items-center fixed-top">
       <div
         class="container position-relative d-flex align-items-center justify-content-between"
       >
@@ -64,7 +101,7 @@
 
         <a class="cta-btn" href="#about">Get Started</a>
       </div>
-    </header>
+    </header> -->
 
     <main class="main">
       <!-- Hero Section -->
