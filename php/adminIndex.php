@@ -1,6 +1,13 @@
 <?php
-include 'db.php';
-// Fetch all records
+session_start();
+include 'db.php'; // Include your database connection
+
+// Check if the user is authenticated
+if (!isset($_SESSION['user_id'])) {
+    header("Location: login.php"); // Redirect to login page if not authenticated
+    exit;
+}
+ 
 $query = "SELECT * FROM tours";
 $result = $conn->query($query);
 

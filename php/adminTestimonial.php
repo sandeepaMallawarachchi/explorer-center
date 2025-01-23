@@ -1,5 +1,13 @@
 <?php
-include('db.php');
+session_start();
+include 'db.php'; // Include your database connection
+
+// Check if the user is authenticated
+if (!isset($_SESSION['user_id'])) {
+    header("Location: login.php"); // Redirect to login page if not authenticated
+    exit;
+}
+
 
 $sql = "SELECT * FROM reviews";
 $result = mysqli_query($conn, $sql);
