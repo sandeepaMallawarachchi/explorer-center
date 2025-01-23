@@ -107,6 +107,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             }
 
             $message .= "
+                        <div>Read more: <a href='http://localhost/explorer-center/php/allNews.php'>click here</a></div>
                         </div>
                     </body>
                 </html>
