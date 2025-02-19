@@ -124,7 +124,7 @@ if (!isset($_SESSION['user_id'])) {
                     </div>
                 </div>
             </div>
-                <div class="col-lg-4 col-md-6 mb-4">
+                <!-- <div class="col-lg-4 col-md-6 mb-4">
                     <div class="destination-item position-relative overflow-hidden mb-2" style="height: 300px;">
                         <img class="img-fluid" src="img/explo.jpg" alt="" style="object-fit: cover; width: 100%; height: 78%;">
                         <a class="destination-overlay text-white text-decoration-none" href="exploration.html">
@@ -142,7 +142,7 @@ if (!isset($_SESSION['user_id'])) {
                             <span>Rich heritage, ancient marvels preserved.</span>
                         </a>
                     </div>
-                </div>
+                </div> -->
                 <div class="col-lg-4 col-md-6 mb-4">
                     <div class="destination-item position-relative overflow-hidden mb-2" style="height: 300px;">
                         <img class="img-fluid" src="img/blog.jpg" alt="" style="object-fit: cover; width: 100%; height: 78%;">
