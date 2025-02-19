@@ -112,56 +112,19 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['add_review'])) {
 </head>
 
 <body>
-    <!-- Topbar Start -->
-    <div id="topbar"></div>
-
-    <script>
-        fetch('components/topbar.html')
-            .then(response => response.text())
-            .then(data => {
-                const tempDiv = document.createElement('div');
-                tempDiv.innerHTML = data;
-                const template = tempDiv.querySelector('template');
-                document.getElementById('topbar').appendChild(template.content.cloneNode(true));
-            })
-            .catch(error => console.error('Error loading header:', error));
-    </script>
-    <!-- Topbar End -->
-
-    <!-- Navbar Start -->
-    <div id="header"></div>
-    <script>
-        fetch('components/header.html')
-            .then(response => response.text())
-            .then(data => {
-                const tempDiv = document.createElement('div');
-                tempDiv.innerHTML = data;
-                const template = tempDiv.querySelector('template');
-                document.getElementById('header').appendChild(template.content.cloneNode(true));
-            })
-            .catch(error => console.error('Error loading header:', error));
-    </script>
-    <!-- Navbar End -->
-
-
-    <!-- Header Start -->
-    <div class="container-fluid page-header">
-        <div class="container">
-            <div class="d-flex flex-column align-items-center justify-content-center" style="min-height: 400px">
-                <h3 class="display-4 text-white text-uppercase">Testimonial</h3>
-                <div class="d-inline-flex text-white">
-                    <p class="m-0 text-uppercase"><a class="text-white" href="">Home</a></p>
-                    <i class="fa fa-angle-double-right pt-1 px-3"></i>
-                    <p class="m-0 text-uppercase">Testimonial</p>
-                </div>
+    <!-- User Information -->
+    <div>
+        <a href="php/adminDashboard.php">
+            <img class="dashboardImg" src="img/dashboard.png" alt="dashboard Icon">
+        </a>
+        <div class="user-info">
+            <img src="img/user.png" alt="User Icon">
+            <div>
+                <h5>Hello, <?= htmlspecialchars($_SESSION['username']); ?></h5>
+                <a href="php/logout.php" onclick="return confirmLogout()">Logout</a>
             </div>
         </div>
     </div>
-    <!-- Header End -->
-
-
-
-
 
     <!-- Testimonial Start -->
     <div class="container-fluid py-5">
