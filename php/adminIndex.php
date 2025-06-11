@@ -7,7 +7,7 @@ if (!isset($_SESSION['user_id'])) {
     header("Location: login.php"); // Redirect to login page if not authenticated
     exit;
 }
- 
+
 $query = "SELECT * FROM tours";
 $result = $conn->query($query);
 
@@ -45,6 +45,7 @@ if (isset($_GET['delete'])) {
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8">
     <title>Explorer Center-Sri Lanka</title>
@@ -73,43 +74,24 @@ if (isset($_GET['delete'])) {
     <link href="css/style.css" rel="stylesheet">
 </head>
 
-<!-- Topbar Start -->
-<div id="topbar"></div>
+<body>
 
-<script>
-    fetch('components/topbar.html')
-        .then(response => response.text())
-        .then(data => {
-            const tempDiv = document.createElement('div');
-            tempDiv.innerHTML = data;
-            const template = tempDiv.querySelector('template');
-            document.getElementById('topbar').appendChild(template.content.cloneNode(true));
-        })
-        .catch(error => console.error('Error loading topbar:', error));
-</script>
-<!-- Topbar End -->
-
-<!-- Navbar Start -->
-<div id="header"></div>
-<script>
-    fetch('components/header.html')
-        .then(response => response.text())
-        .then(data => {
-            const tempDiv = document.createElement('div');
-            tempDiv.innerHTML = data;
-            const template = tempDiv.querySelector('template');
-            document.getElementById('header').appendChild(template.content.cloneNode(true));
-        })
-        .catch(error => console.error('Error loading header:', error));
-</script>
-<!-- Navbar End -->
-
-<body style="background-image: url('https://images.unsplash.com/photo-1504309092620-4d0ec726efa4?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'); background-size: cover; background-repeat: no-repeat; background-attachment: fixed;">
+    <!-- User Information -->
+    <div>
+        <a href="php/adminDashboard.php">
+            <img class="dashboardImg" src="img/dashboard.png" alt="dashboard Icon">
+        </a>
+        <div class="user-info">
+            <img src="img/user.png" alt="User Icon">
+            <div>
+                <h5>Hello, <?= htmlspecialchars($_SESSION['username']); ?></h5>
+                <a href="php/logout.php" onclick="return confirmLogout()">Logout</a>
+            </div>
+        </div>
+    </div>
 
 
-
-
-    <div class="container py-5" style="background-color: rgba(255, 255, 255, 0.9); border-radius: 10px;">
+    <div class="container py-5 mt-5" style="background-color: rgba(255, 255, 255, 0.9); border-radius: 10px;">
         <div class="text-center mb-4">
             <h6 class="text-primary text-uppercase" style="letter-spacing: 5px;">Tours</h6>
             <h1>Manage Tours</h1>
@@ -132,65 +114,66 @@ if (isset($_GET['delete'])) {
 
         <!-- Tours List -->
         <table class="table table-bordered table-striped">
-    <thead class="thead-dark">
-        <tr>
-            <th>Title</th>
-            <th>Description</th>
-            <th>Main Image</th>
-            <th>Actions</th>
-        </tr>
-    </thead>
-    <tbody>
-        <?php while ($row = $result->fetch_assoc()): ?>
-            <tr>
-                <form method="POST">
-                    <input type="hidden" name="id" value="<?= $row['id'] ?>">
-                    <td>
-                        <input type="text" name="title" class="form-control" value="<?= htmlspecialchars($row['title']) ?>" placeholder="Enter title">
-                    </td>
-                    <td>
-                        <textarea name="description" class="form-control" rows="3" placeholder="Enter description"><?= htmlspecialchars($row['description']) ?></textarea>
-                    </td>
-                    <td class="text-center">
-                        <img src="<?= htmlspecialchars($row['image_main']) ?>" alt="Image" class="img-thumbnail" style="width: 100px; height: auto;">
-                        <input type="text" name="image_main" class="form-control mt-2" value="<?= htmlspecialchars($row['image_main']) ?>" placeholder="Image URL">
-                    </td>
-                    <td class="text-center">
-                        <!-- Update Button -->
-                        <button type="submit" name="update" class="btn btn-success btn-sm mb-2" title="Update">
-                            <i class="fas fa-save"></i> Save
-                        </button>
-                        <!-- Delete Button -->
-                        <a href="?delete=<?= $row['id'] ?>" onclick="return confirm('Are you sure?')" class="btn btn-danger btn-sm" title="Delete">
-                            <i class="fas fa-trash-alt"></i> Delete
-                        </a>
-                    </td>
-                </form>
-            </tr>
-        <?php endwhile; ?>
-    </tbody>
-</table>
+            <thead class="thead-dark">
+                <tr>
+                    <th>Title</th>
+                    <th>Description</th>
+                    <th>Main Image</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php while ($row = $result->fetch_assoc()): ?>
+                    <tr>
+                        <form method="POST">
+                            <input type="hidden" name="id" value="<?= $row['id'] ?>">
+                            <td>
+                                <input type="text" name="title" class="form-control" value="<?= htmlspecialchars($row['title']) ?>" placeholder="Enter title">
+                            </td>
+                            <td>
+                                <textarea name="description" class="form-control" rows="3" placeholder="Enter description"><?= htmlspecialchars($row['description']) ?></textarea>
+                            </td>
+                            <td class="text-center">
+                                <img src="<?= htmlspecialchars($row['image_main']) ?>" alt="Image" class="img-thumbnail" style="width: 100px; height: auto;">
+                                <input type="text" name="image_main" class="form-control mt-2" value="<?= htmlspecialchars($row['image_main']) ?>" placeholder="Image URL">
+                            </td>
+                            <td class="text-center">
+                                <!-- Update Button -->
+                                <button type="submit" name="update" class="btn btn-success btn-sm mb-2" title="Update">
+                                    <i class="fas fa-save"></i> Save
+                                </button>
+                                <!-- Delete Button -->
+                                <a href="?delete=<?= $row['id'] ?>" onclick="return confirm('Are you sure?')" class="btn btn-danger btn-sm" title="Delete">
+                                    <i class="fas fa-trash-alt"></i> Delete
+                                </a>
+                            </td>
+                        </form>
+                    </tr>
+                <?php endwhile; ?>
+            </tbody>
+        </table>
 
     </div>
 
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 
-     <!-- Footer Start -->
- <div id="footer"></div>
- <script>
-   fetch("components/footer.html")
-     .then((response) => response.text())
-     .then((data) => {
-       const tempDiv = document.createElement("div");
-       tempDiv.innerHTML = data;
-       const template = tempDiv.querySelector("template");
-       document
-         .getElementById("footer")
-         .appendChild(template.content.cloneNode(true));
-     })
-     .catch((error) => console.error("Error loading footer:", error));
- </script>
- <!-- Footer End -->
+    <!-- Footer Start -->
+    <div id="footer"></div>
+    <script>
+        fetch("components/footer.html")
+            .then((response) => response.text())
+            .then((data) => {
+                const tempDiv = document.createElement("div");
+                tempDiv.innerHTML = data;
+                const template = tempDiv.querySelector("template");
+                document
+                    .getElementById("footer")
+                    .appendChild(template.content.cloneNode(true));
+            })
+            .catch((error) => console.error("Error loading footer:", error));
+    </script>
+    <!-- Footer End -->
 </body>
+
 </html>

@@ -65,20 +65,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <!-- Topbar Start -->
     <div id="topbar"></div>
 
-        <!-- Navbar Start -->
-        <div id="header"></div>
+    <!-- Navbar Start -->
+    <div id="header"></div>
     <script>
-      fetch("components/header.html")
-        .then((response) => response.text())
-        .then((data) => {
-          const tempDiv = document.createElement("div");
-          tempDiv.innerHTML = data;
-          const template = tempDiv.querySelector("template");
-          document
-            .getElementById("header")
-            .appendChild(template.content.cloneNode(true));
-        })
-        .catch((error) => console.error("Error loading header:", error));
+        fetch("components/header.html")
+            .then((response) => response.text())
+            .then((data) => {
+                const tempDiv = document.createElement("div");
+                tempDiv.innerHTML = data;
+                const template = tempDiv.querySelector("template");
+                document
+                    .getElementById("header")
+                    .appendChild(template.content.cloneNode(true));
+            })
+            .catch((error) => console.error("Error loading header:", error));
     </script>
     <!-- Navbar End -->
 
@@ -131,8 +131,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             <div class="text-center">
                                 <button class="btn btn-primary py-3 px-4" type="submit" id="sendMessageButton">Login</button><br>
                                 <a href="php/forgot_password.php" style="color: rgb(91, 197, 232); text-decoration: none; margin-top: 10px; display: inline-block;">Forgot Password?</a><br>
-                                <a href="php/registration.php" style="color: rgb(91, 197, 232); text-decoration: none; margin-top: 10px; display: inline-block;">If you don't have an account</a>
-
                                 <br>
 
                             </div>
@@ -145,20 +143,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </div>
     <!-- login End -->
 
-   <!-- Footer Start -->
-   <div id="footer"></div>
+    <!-- Footer Start -->
+    <div id="footer"></div>
     <script>
-      fetch("components/footer.html")
-        .then((response) => response.text())
-        .then((data) => {
-          const tempDiv = document.createElement("div");
-          tempDiv.innerHTML = data;
-          const template = tempDiv.querySelector("template");
-          document
-            .getElementById("footer")
-            .appendChild(template.content.cloneNode(true));
-        })
-        .catch((error) => console.error("Error loading footer:", error));
+        fetch("components/footer.html")
+            .then((response) => response.text())
+            .then((data) => {
+                const tempDiv = document.createElement("div");
+                tempDiv.innerHTML = data;
+                const template = tempDiv.querySelector("template");
+                document
+                    .getElementById("footer")
+                    .appendChild(template.content.cloneNode(true));
+            })
+            .catch((error) => console.error("Error loading footer:", error));
     </script>
     <!-- Footer End -->
 
