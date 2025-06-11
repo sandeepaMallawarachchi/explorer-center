@@ -3,13 +3,6 @@
 session_start();
 include 'db.php'; // Include your database connection
 
-// Check if the user is authenticated
-if (!isset($_SESSION['user_id'])) {
-    header("Location: login.php"); // Redirect to login page if not authenticated
-    exit;
-}
-
-
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
@@ -38,7 +31,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $mail->Host = 'smtp.gmail.com';  // Set the SMTP server to Gmail
             $mail->SMTPAuth = true;
             $mail->Username = 'sandeepamallawarachchi444@gmail.com';  // Your Gmail address
-            $mail->Password = 'qkxx lmnw intx twru';  // App password (if 2FA is enabled)
+            $mail->Password = 'qkxx lmnw intx twru';  // App password
             $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
             $mail->Port = 587;
 
