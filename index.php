@@ -25,7 +25,7 @@ $about_us = $about_us_result->fetch_assoc();
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="Free HTML Templates" name="keywords">
     <meta content="Free HTML Templates" name="description">
-    
+
     <!-- Favicon -->
     <link href="img/icon.webp" rel="icon">
 
@@ -126,14 +126,19 @@ $about_us = $about_us_result->fetch_assoc();
                     <span class="carousel-control-prev-icon mb-n2"></span>
                 </div>
             </a>
+            <a class="carousel-control-next" href="#header-carousel" data-slide="next">
+                <div class="btn btn-dark" style="width: 45px; height: 45px;">
+                    <span class="carousel-control-next-icon mb-n2"></span>
+                </div>
+            </a>
         </div>
     </div>
 
     <!-- Carousel End -->
 
 
-  <!-- About Start -->
-  <div class="container-fluid py-5">
+    <!-- About Start -->
+    <div class="container-fluid py-5">
         <div class="container pt-5">
             <div class="row">
                 <div class="col-lg-6" style="min-height: 500px">
@@ -212,8 +217,8 @@ $about_us = $about_us_result->fetch_assoc();
 
 
     <!-- Destination Start -->
-   <!-- Tours Section -->
-   <div class="container-fluid py-5">
+    <!-- Tours Section -->
+    <div class="container-fluid py-5">
         <div class="container pt-5 pb-3">
             <div class="text-center mb-3 pb-3">
                 <h6 class="text-primary text-uppercase" style="letter-spacing: 5px;">Tours</h6>
