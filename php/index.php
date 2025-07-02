@@ -151,10 +151,10 @@ $about_us = $about_us_result->fetch_assoc();
                         <p><?= nl2br($about_us['description']) ?></p>
                         <div class="row mb-4">
                             <div class="col-6">
-                                <img class="img-fluid" src="<?= $about_us['image_1'] ?>" alt="" />
+                                <img class="about-img" src="<?= $about_us['image_1'] ?>" alt="" />
                             </div>
                             <div class="col-6">
-                                <img class="img-fluid" src="<?= $about_us['image_2'] ?>" alt="" />
+                                <img class="about-img" src="<?= $about_us['image_2'] ?>" alt="" />
                             </div>
                         </div>
                         <a href="" class="btn btn-primary mt-1">Book Now</a>

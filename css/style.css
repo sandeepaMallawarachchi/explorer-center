@@ -568,9 +568,19 @@ mark,
   content: "\2014\00A0";
 }
 
+.footer-des{
+  font-size: 14px;
+  padding-top: 20px;
+}
+
 .img-fluid {
   max-width: 100%;
   height: auto;
+}
+
+.about-img {
+  width: 250px;
+  height: 150px;
 }
 
 .img-thumbnail {
@@ -10817,6 +10827,7 @@ h6,
 
 .service-item {
   transition: .5s;
+  height: 300px;
 }
 
 .service-item:hover {
