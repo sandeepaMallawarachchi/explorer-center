@@ -77,23 +77,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </head>
 
 <body>
-    <!-- Topbar Start -->
-    <div id="topbar"></div>
-
-    <script>
-        fetch("components/topbar.html")
-            .then((response) => response.text())
-            .then((data) => {
-                const tempDiv = document.createElement("div");
-                tempDiv.innerHTML = data;
-                const template = tempDiv.querySelector("template");
-                document
-                    .getElementById("topbar")
-                    .appendChild(template.content.cloneNode(true));
-            })
-            .catch((error) => console.error("Error loading header:", error));
-    </script>
-    <!-- Topbar End -->
+    <!-- User Information -->
+    <div>
+        <a href="php/adminDashboard.php">
+            <img class="dashboardImg" src="img/dashboard.png" alt="dashboard Icon">
+        </a>
+        <div class="user-info">
+            <img src="img/user.png" alt="User Icon">
+            <div>
+                <h5>Hello, <?= htmlspecialchars($_SESSION['username']); ?></h5>
+                <a href="php/logout.php" onclick="return confirmLogout()">Logout</a>
+            </div>
+        </div>
+    </div>
 
     <!-- Registration Start -->
     <div class="container-fluid py-5">
