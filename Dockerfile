@@ -1,21 +1,27 @@
 FROM php:8.1-apache
 
-# Install required PHP extensions
+# Install PHP extensions
 RUN docker-php-ext-install mysqli
 
-# Enable Apache modules
-RUN a2enmod rewrite headers mime
+# Install Composer
+COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
 # Set working directory
 WORKDIR /var/www/html
 
-# Copy all files into container
+# Copy all project files into the container
 COPY . .
 
-# Set proper Apache config to allow .htaccess overrides
+# Install PHP dependencies (Cloudinary etc.)
+RUN composer install
+
+# Enable necessary Apache modules
+RUN a2enmod rewrite headers mime
+
+# Allow .htaccess to override Apache config
 RUN sed -i 's|AllowOverride None|AllowOverride All|g' /etc/apache2/apache2.conf
 
-# (Optional) Set DirectoryIndex to load index.php first
+# Set default homepage to index.php
 RUN echo "DirectoryIndex index.php" >> /etc/apache2/apache2.conf
 
 EXPOSE 80
