@@ -1,7 +1,11 @@
 FROM php:8.1-apache
 
 # Install PHP extensions
-RUN docker-php-ext-install mysqli
+RUN apt-get update && apt-get install -y \
+    git \
+    unzip \
+    zip \
+    && docker-php-ext-install mysqli
 
 # Enable Apache modules
 RUN a2enmod rewrite headers mime
@@ -16,7 +20,7 @@ WORKDIR /var/www/html
 COPY . .
 
 # Install PHP dependencies
-RUN composer install --no-dev --optimize-autoloader
+RUN composer install --no-dev --optimize-autoloader --no-interaction
 
 # Allow .htaccess
 RUN sed -i 's|AllowOverride None|AllowOverride All|g' /etc/apache2/apache2.conf
