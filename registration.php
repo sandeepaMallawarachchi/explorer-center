@@ -50,7 +50,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta content="Free HTML Templates" name="description" />
 
     <!-- Base URL -->
-    <base href="/explorer-center/" />
+    <!-- <base href="/" /> -->
 
     <!-- Favicon -->
     <link href="img/icon.webp" rel="icon" />
@@ -79,14 +79,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <body>
     <!-- User Information -->
     <div>
-        <a href="/explorer-center/adminDashboard.php">
+        <a href="/adminDashboard.php">
             <img class="dashboardImg" src="img/dashboard.png" alt="dashboard Icon">
         </a>
         <div class="user-info">
             <img src="img/user.png" alt="User Icon">
             <div>
                 <h5>Hello, <?= htmlspecialchars($_SESSION['username']); ?></h5>
-                <a href="/explorer-center/logout.php" onclick="return confirmLogout()">Logout</a>
+                <a href="/logout.php" onclick="return confirmLogout()">Logout</a>
             </div>
         </div>
     </div>
@@ -114,7 +114,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             unset($_SESSION['success']);
                         }
                         ?>
-                        <form action="/explorer-center/registration.php" method="POST">
+                        <form action="/registration.php" method="POST">
                             <div class="control-group">
                                 <input type="text" class="form-control p-4" id="username" placeholder="Your username" name="username"
                                     required="required" data-validation-required-message="Please enter your username" />
@@ -138,7 +138,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             <div class="text-center">
                                 <button class="btn btn-primary py-3 px-4" type="submit" id="sendMessageButton">Register</button>
                                 <br><br>
-                                <a href="/explorer-center/login.php" style="color: rgb(91, 197, 232); text-decoration: none;">Already have an account? Login</a>
+                                <a href="/login.php" style="color: rgb(91, 197, 232); text-decoration: none;">Already have an account? Login</a>
                             </div>
                         </form>
                     </div>

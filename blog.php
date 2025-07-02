@@ -52,7 +52,7 @@ $tags = getBlogTags($conn);
     <meta content="Free HTML Templates" name="description">
 
     <!-- Base URL -->
-    <!-- <base href="/explorer-center/"> -->
+    <!-- <base href="/"> -->
 
     <!-- Favicon -->
     <link href="img/icon.webp" rel="icon">
@@ -284,7 +284,7 @@ $tags = getBlogTags($conn);
                     <!-- Search Form -->
                     <div class="mb-5">
                         <div class="bg-white" style="padding: 30px;">
-                            <form method="GET" action="/explorer-center/allBlogs.php">
+                            <form method="GET" action="/allBlogs.php">
                                 <div class="input-group">
                                     <input type="text" name="search" class="form-control p-4" id="searchInput" placeholder="Keyword" value="<?php echo htmlspecialchars($searchKeyword); ?>">
                                     <div class="input-group-append">
@@ -309,7 +309,7 @@ $tags = getBlogTags($conn);
                                         $categoryCount = $row['count'];
                                         ?>
                                         <li class='mb-3 d-flex justify-content-between align-items-center'>
-                                            <a class='text-dark' href='/explorer-center/allBlogs.php?category=<?= urlencode($categoryName) ?>&search=<?= urlencode($searchKeyword) ?>'>
+                                            <a class='text-dark' href='/allBlogs.php?category=<?= urlencode($categoryName) ?>&search=<?= urlencode($searchKeyword) ?>'>
                                                 <i class='fa fa-angle-right text-primary mr-2'></i><?= $categoryName ?>
                                             </a>
                                             <span class='badge badge-primary badge-pill'><?= $categoryCount ?></span>
@@ -331,7 +331,7 @@ $tags = getBlogTags($conn);
                                 $imagePath = !empty($row['image_url']) ? htmlspecialchars($row['image_url']) : 'img/placeholder.webp';
                                 $formattedDate = date("M d, Y", strtotime($row['date']));
                                 ?>
-                                <a class="d-flex align-items-center text-decoration-none bg-white mb-3" href="/explorer-center/blog.php?id=<?= $row['id'] ?>">
+                                <a class="d-flex align-items-center text-decoration-none bg-white mb-3" href="/blog.php?id=<?= $row['id'] ?>">
                                     <img class="img-fluid" src="<?= $imagePath ?>" alt="Blog Image" style="width: 120px;">
                                     <div class="pl-3">
                                         <h6 class="m-1"><?= htmlspecialchars($row['topic']) ?></h6>
@@ -350,7 +350,7 @@ $tags = getBlogTags($conn);
                         <div class="d-flex flex-wrap m-n1">
                             <?php if (!empty($tags)): ?>
                                 <?php foreach ($tags as $tag): ?>
-                                    <a href="/explorer-center/allBlogs.php?search=<?= urlencode($tag) ?>" class="btn btn-light m-1"><?= ucfirst(htmlspecialchars($tag)) ?></a>
+                                    <a href="/allBlogs.php?search=<?= urlencode($tag) ?>" class="btn btn-light m-1"><?= ucfirst(htmlspecialchars($tag)) ?></a>
                                 <?php endforeach; ?>
                             <?php else: ?>
                                 <p>No tags available.</p>

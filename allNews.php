@@ -29,7 +29,7 @@ $tags = getNewsTags($conn);
     <meta content="Free HTML Templates" name="description">
 
     <!-- Base URL -->
-    <!-- <base href="/explorer-center/"> -->
+    <!-- <base href="/"> -->
 
     <!-- Favicon -->
     <link href="img/icon.webp" rel="icon">
@@ -88,7 +88,7 @@ $tags = getNewsTags($conn);
             <div class="d-flex flex-column align-items-center justify-content-center" style="min-height: 400px">
                 <h3 class="display-4 text-white text-uppercase">News Letter</h3>
                 <div class="d-inline-flex text-white">
-                    <p class="m-0 text-uppercase"><a class="text-white" href="/explorer-center/index.php">Home</a></p>
+                    <p class="m-0 text-uppercase"><a class="text-white" href="/index.php">Home</a></p>
                     <i class="fa fa-angle-double-right pt-1 px-3"></i>
                     <p class="m-0 text-uppercase">News Letter</p>
                 </div>
@@ -121,7 +121,7 @@ $tags = getNewsTags($conn);
                                             <div class='d-flex mb-2'>
                                                 <a class='text-primary text-uppercase text-decoration-none' href='#'>" . htmlspecialchars($row['category']) . "</a>
                                             </div>
-                                            <a class='h5 m-0 text-decoration-none' href='/explorer-center/news.php?id=" . $row['id'] . "'>" . htmlspecialchars($row['topic']) . "</a>
+                                            <a class='h5 m-0 text-decoration-none' href='/news.php?id=" . $row['id'] . "'>" . htmlspecialchars($row['topic']) . "</a>
                                         </div>
                                     </div>
                                 </div>";
@@ -138,7 +138,7 @@ $tags = getNewsTags($conn);
                             <ul class="pagination pagination-lg justify-content-center bg-white mb-0" style="padding: 30px;">
                                 <!-- Previous Button -->
                                 <li class="page-item <?php echo $page <= 1 ? 'disabled' : ''; ?>">
-                                    <a class="page-link" href="/explorer-center/allnews.php?page=<?php echo $page - 1; ?>" aria-label="Previous">
+                                    <a class="page-link" href="/allnews.php?page=<?php echo $page - 1; ?>" aria-label="Previous">
                                         <span aria-hidden="true">&laquo;</span>
                                         <span class="sr-only">Previous</span>
                                     </a>
@@ -147,13 +147,13 @@ $tags = getNewsTags($conn);
                                 <!-- Page Numbers -->
                                 <?php for ($i = 1; $i <= $totalPages; $i++): ?>
                                     <li class="page-item <?php echo $i == $page ? 'active' : ''; ?>">
-                                        <a class="page-link" href="/explorer-center/allnews.php?page=<?php echo $i; ?>"><?php echo $i; ?></a>
+                                        <a class="page-link" href="/allnews.php?page=<?php echo $i; ?>"><?php echo $i; ?></a>
                                     </li>
                                 <?php endfor; ?>
 
                                 <!-- Next Button -->
                                 <li class="page-item <?php echo $page >= $totalPages ? 'disabled' : ''; ?>">
-                                    <a class="page-link" href="/explorer-center/allnews.php?page=<?php echo $page + 1; ?>" aria-label="Next">
+                                    <a class="page-link" href="/allnews.php?page=<?php echo $page + 1; ?>" aria-label="Next">
                                         <span aria-hidden="true">&raquo;</span>
                                         <span class="sr-only">Next</span>
                                     </a>
@@ -168,7 +168,7 @@ $tags = getNewsTags($conn);
                     <!-- Search Form -->
                     <div class="mb-5">
                         <div class="bg-white" style="padding: 30px;">
-                            <form method="GET" action="/explorer-center/allNews.php">
+                            <form method="GET" action="/allNews.php">
                                 <div class="input-group">
                                     <input type="text" name="search" class="form-control p-4" id="searchInput" placeholder="Keyword" value="<?php echo htmlspecialchars($searchKeyword); ?>">
                                     <div class="input-group-append">

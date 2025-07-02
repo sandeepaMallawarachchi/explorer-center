@@ -71,7 +71,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <meta content="Free HTML Templates" name="description">
 
     <!-- Base URL -->
-    <!-- <base href="/explorer-center/"> -->
+    <!-- <base href="/"> -->
 
     <!-- Favicon -->
     <link href="img/icon.webp" rel="icon">
@@ -104,7 +104,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <div class="col-lg-8">
                     <div class="contact-form bg-white" style="padding: 30px;">
                         <div id="success"></div>
-                        <form method="POST" action="/explorer-center/createNews.php" enctype="multipart/form-data">
+                        <form method="POST" action="/createNews.php" enctype="multipart/form-data">
                             <div class="control-group mb-2">
                                 <input type="text" class="form-control p-4" id="title" name="title" placeholder="News Title"
                                     required="required" data-validation-required-message="Please enter the news title" />

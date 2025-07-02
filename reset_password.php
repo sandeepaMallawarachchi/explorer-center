@@ -58,7 +58,7 @@ if (isset($_GET['token'])) {
     <meta content="Free HTML Templates" name="description" />
 
     <!-- Base URL -->
-    <base href="/explorer-center/" />
+    <!-- <base href="/" /> -->
 
     <!-- Favicon -->
     <link href="img/icon.webp" rel="icon" />
@@ -117,7 +117,7 @@ if (isset($_GET['token'])) {
                             unset($_SESSION['message']);
                         }
                         ?>
-                        <form action="/explorer-center/reset_password.php?token=<?php echo $token; ?>" method="POST">
+                        <form action="/reset_password.php?token=<?php echo $token; ?>" method="POST">
                             <div class="control-group">
                                 <input type="password" class="form-control p-4" id="new_password" placeholder="New password" name="new_password" required="required" /><br>
                             </div>

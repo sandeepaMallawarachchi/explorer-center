@@ -14,7 +14,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if ($checkStmt->num_rows > 0) {
             echo "<script>
                 alert('You are already signed up!');
-                window.location.href = '/explorer-center//explorer-center/allNews.php';
+                window.location.href = '//allNews.php';
             </script>";
         } else {
             $checkStmt->close();
@@ -57,7 +57,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     }
 
                     $message .= "
-                                <div>Read more: <a href='http://localhost/explorer-center//explorer-center/allNews.php'>click here</a></div>
+                                <div>Read more: <a href='http://localhost//allNews.php'>click here</a></div>
                                 </div>
                             </body>
                         </html>
@@ -69,7 +69,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
                 echo "<script>
                     alert('Thank you for signing up! All news has been sent to your email.');
-                    window.location.href = '/explorer-center//explorer-center/allNews.php';
+                    window.location.href = '//allNews.php';
                 </script>";
             } else {
                 echo "<script>

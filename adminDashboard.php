@@ -17,7 +17,7 @@ if (!isset($_SESSION['user_id'])) {
 <meta content="Free HTML Templates" name="description">
 
 <!-- Base URL -->
-<!-- <base href="/explorer-center/"> -->
+<!-- <base href="/"> -->
 
 <!-- Favicon -->
 <link href="img/icon.webp" rel="icon">
@@ -95,14 +95,14 @@ if (!isset($_SESSION['user_id'])) {
 <body>
     <!-- User Information -->
     <div class="head">
-        <a href="/explorer-center/adminDashboard.php">
+        <a href="/adminDashboard.php">
             <img class="dashboardImg" src="img/dashboard.webp" alt="dashboard Icon">
         </a>
         <div class="user-info">
             <img src="img/user.webp" alt="User Icon">
             <div>
                 <h5>Hello, <?= htmlspecialchars($_SESSION['username']); ?></h5>
-                <a href="/explorer-center/logout.php" onclick="return confirmLogout()">Logout</a>
+                <a href="/logout.php" onclick="return confirmLogout()">Logout</a>
             </div>
         </div>
     </div>
@@ -122,8 +122,8 @@ if (!isset($_SESSION['user_id'])) {
                             <h5 class="text-white">Home Page</h5>
                             <span>Tours & About Us</span>
                             <div class="mt-3">
-                                <a href="/explorer-center/adminIndex.php" class="btn btn-primary btn-sm mx-2">Tours</a>
-                                <a href="/explorer-center/adminAbout.php" class="btn btn-secondary btn-sm mx-2">About Us</a>
+                                <a href="/adminIndex.php" class="btn btn-primary btn-sm mx-2">Tours</a>
+                                <a href="/adminAbout.php" class="btn btn-secondary btn-sm mx-2">About Us</a>
                             </div>
                         </div>
                     </div>
@@ -150,7 +150,7 @@ if (!isset($_SESSION['user_id'])) {
                 <div class="col-lg-4 col-md-6 mb-4">
                     <div class="destination-item position-relative overflow-hidden mb-2" style="height: 300px;">
                         <img class="img-fluid" src="img/blog.webp" alt="" style="object-fit: cover; width: 100%; height: 78%;">
-                        <a class="destination-overlay text-white text-decoration-none" href="/explorer-center/adminBlogs.php">
+                        <a class="destination-overlay text-white text-decoration-none" href="/adminBlogs.php">
                             <h5 class="text-white">Blogs</h5>
                             <span>Grids & Details</span>
                         </a>
@@ -159,7 +159,7 @@ if (!isset($_SESSION['user_id'])) {
                 <div class="col-lg-4 col-md-6 mb-4">
                     <div class="destination-item position-relative overflow-hidden mb-2" style="height: 300px;">
                         <img class="img-fluid" src="img/review.webp" alt="" style="object-fit: cover; width: 100%; height: 78%;">
-                        <a class="destination-overlay text-white text-decoration-none" href="/explorer-center/adminTestimonial.php">
+                        <a class="destination-overlay text-white text-decoration-none" href="/adminTestimonial.php">
                             <h5 class="text-white">Testamonials</h5>
                             <span>Customers and Travel guids</span>
                         </a>
@@ -169,7 +169,7 @@ if (!isset($_SESSION['user_id'])) {
 
                     <div class="destination-item position-relative overflow-hidden mb-2" style="height: 300px;">
                         <img class="img-fluid" src="img/reg.webp" alt="" style="object-fit: cover; width: 100%; height: 78%;">
-                        <a class="destination-overlay text-white text-decoration-none" href="/explorer-center/registration.php">
+                        <a class="destination-overlay text-white text-decoration-none" href="/registration.php">
                             <h5 class="text-white">ADMIN</h5>
                             <span>Registration</span>
                         </a>
@@ -178,7 +178,7 @@ if (!isset($_SESSION['user_id'])) {
                 <div class="col-lg-4 col-md-6 mb-4">
                     <div class="destination-item position-relative overflow-hidden mb-2" style="height: 300px;">
                         <img class="img-fluid" src="img/news.webp" alt="" style="object-fit: cover; width: 100%; height: 78%;">
-                        <a class="destination-overlay text-white text-decoration-none" href="/explorer-center/adminNews.php">
+                        <a class="destination-overlay text-white text-decoration-none" href="/adminNews.php">
                             <h5 class="text-white">News</h5>
                             <span>News letter</span>
                         </a>

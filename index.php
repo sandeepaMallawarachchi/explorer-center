@@ -27,7 +27,7 @@ $about_us = $about_us_result->fetch_assoc();
     <meta content="Free HTML Templates" name="description">
 
     <!-- Base URL -->
-    <!-- <!-- <base href="/explorer-center/"> --> -->
+    <!-- <!-- <base href="/"> --> -->
 
     <!-- Favicon -->
     <link href="img/icon.webp" rel="icon">
@@ -307,7 +307,7 @@ $about_us = $about_us_result->fetch_assoc();
                 ?>
             </div>
             <div class="text-center mb-3 pb-3">
-                <a href="/explorer-center/testimonial.php" class="btn btn-primary">All Reviews</a>
+                <a href="/testimonial.php" class="btn btn-primary">All Reviews</a>
             </div>
         </div>
     </div>

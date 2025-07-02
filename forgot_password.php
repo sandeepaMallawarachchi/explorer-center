@@ -19,7 +19,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         $conn->query("UPDATE users SET reset_token = '$token', reset_expiry = '$expiry' WHERE email = '$email'");
 
-        $reset_link = "http://localhost/explorer-center/reset_password.php?token=$token";
+        $reset_link = "http://localhost/reset_password.php?token=$token";
         $subject = "Password Reset Request";
         $message = "Click the following link to reset your password: $reset_link";
 
@@ -79,7 +79,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta content="Free HTML Templates" name="description" />
 
     <!-- Base URL -->
-    <base href="/explorer-center/" />
+    <!-- <base href="/" /> -->
 
     <!-- Favicon -->
     <link href="img/icon.webp" rel="icon" />
@@ -147,7 +147,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             unset($_SESSION['success']);
                         }
                         ?>
-                        <form method="POST" action="/explorer-center/forgot_password.php">
+                        <form method="POST" action="/forgot_password.php">
                             <div class="control-group">
                                 <input type="email" class="form-control p-4" id="email" placeholder="Your Email Address" name="email"
                                     required="required" data-validation-required-message="Please enter your email" />
