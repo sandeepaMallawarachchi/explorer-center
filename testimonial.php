@@ -4,7 +4,7 @@ include('db.php');
 $sql = "SELECT * FROM reviews";
 $result = mysqli_query($conn, $sql);
 
-require '../vendor/autoload.php';
+require './vendor/autoload.php';
 
 use Cloudinary\Configuration\Configuration;
 use Cloudinary\Api\Upload\UploadApi;
