@@ -124,7 +124,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['action']) && $_GET['acti
     <base href="/explorer-center/">
 
     <!-- Favicon -->
-    <link href="img/icon.png" rel="icon">
+    <link href="img/icon.webp" rel="icon">
 
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -155,10 +155,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['action']) && $_GET['acti
     <!-- User Information -->
     <div>
         <a href="php/adminDashboard.php">
-            <img class="dashboardImg" src="img/dashboard.png" alt="dashboard Icon">
+            <img class="dashboardImg" src="img/dashboard.webp" alt="dashboard Icon">
         </a>
         <div class="user-info">
-            <img src="img/user.png" alt="User Icon">
+            <img src="img/user.webp" alt="User Icon">
             <div>
                 <h5>Hello, <?= htmlspecialchars($_SESSION['username']); ?></h5>
                 <a href="php/logout.php" onclick="return confirmLogout()">Logout</a>
@@ -182,7 +182,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['action']) && $_GET['acti
                         <?php
                         if ($result && mysqli_num_rows($result) > 0) {
                             while ($row = mysqli_fetch_assoc($result)) {
-                                $imagePath = !empty($row['image_url']) ? htmlspecialchars($row['image_url']) : 'img/placeholder.jpg';
+                                $imagePath = !empty($row['image_url']) ? htmlspecialchars($row['image_url']) : 'img/placeholder.webp';
                                 echo "
                                     <div class='col-md-6 mb-4 pb-2'>
                                         <div class='blog-item'>
@@ -285,7 +285,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['action']) && $_GET['acti
                         </div>
                         <div class="text-center mb-2">
                             <div class="img-upload-container" id="img-upload-container">
-                                <img src="img/upload.png" alt="Upload Image" class="img-upload-bg">
+                                <img src="img/upload.webp" alt="Upload Image" class="img-upload-bg">
                                 <input type="file" id="image_url" class="img-upload-input" accept="image/*" name="image" onchange="previewImage(event)">
                                 <div class="upload-text">Click or Drag to Upload</div>
                             </div>

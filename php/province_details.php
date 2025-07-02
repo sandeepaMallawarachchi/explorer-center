@@ -5,47 +5,47 @@ $province = isset($_GET['province']) ? htmlspecialchars($_GET['province']) : 'Un
 $provinces = [
     "province1" => [
         "name" => "Southern Province",
-        "image" => "img/destination-1.jpg",
+        "image" => "img/destination-1.webp",
         "description" => "Southern Province is known for its beautiful beaches, historical landmarks like Galle Fort, and rich biodiversity. Enjoy whale watching in Mirissa, visit the iconic stilt fishermen, and explore the dense rainforest of Sinharaja."
     ],
     "province2" => [
         "name" => "Western Province",
-        "image" => "img/destination-2.jpg",
+        "image" => "img/destination-2.webp",
         "description" => "Western Province is the economic hub of Sri Lanka, home to Colombo, vibrant nightlife, and modern infrastructure. Discover the bustling Pettah Market, iconic Colombo Lotus Tower, and sandy beaches like Negombo."
     ],
     "province3" => [
         "name" => "Central Province",
-        "image" => "img/destination-3.jpg",
+        "image" => "img/destination-3.webp",
         "description" => "Central Province is famous for tea plantations, breathtaking landscapes, and ancient cities like Kandy. Visit the Sacred Tooth Relic Temple, explore Horton Plains, and climb the majestic Sigiriya Rock Fortress."
     ],
     "province4" => [
         "name" => "Eastern Province",
-        "image" => "img/destination-4.jpg",
+        "image" => "img/destination-4.webp",
         "description" => "Eastern Province features pristine beaches, diverse culture, and ancient temples. Relax at Arugam Bay, visit the serene Kumana National Park, and enjoy the cultural richness of Batticaloa and Trincomalee."
     ],
     "province5" => [
         "name" => "Northern Province",
-        "image" => "img/destination-5.jpg",
+        "image" => "img/destination-5.webp",
         "description" => "Northern Province boasts unique Tamil culture, ancient ruins, and stunning lagoons. Explore the Jaffna Peninsula, visit the sacred Nallur Kovil, and relax at Casuarina Beach."
     ],
     "province6" => [
         "name" => "North Western Province",
-        "image" => "img/destination-6.jpg",
+        "image" => "img/destination-6.webp",
         "description" => "North Western Province offers ancient cities and serene landscapes. Discover Wilpattu National Park, explore Yapahuwa rock fortress, and visit the historic Panduwasnuwara ruins."
     ],
     "province7" => [
         "name" => "North Central Province",
-        "image" => "img/destination-7.jpg",
+        "image" => "img/destination-7.webp",
         "description" => "North Central Province is the cultural heart of Sri Lanka, home to ancient cities. Visit the ruins of Anuradhapura and Polonnaruwa, and explore the Minneriya National Park, known for the 'Gathering' of elephants."
     ],
     "province8" => [
         "name" => "Uva Province",
-        "image" => "img/destination-8.jpg",
+        "image" => "img/destination-8.webp",
         "description" => "Uva Province is renowned for its scenic beauty and cool climate. Discover Ella's Nine Arches Bridge, trek Little Adam's Peak, and visit the historic Rawana Falls and Lipton's Seat."
     ],
     "province9" => [
         "name" => "Sabaragamuwa Province",
-        "image" => "img/destination-9.jpg",
+        "image" => "img/destination-9.webp",
         "description" => "Sabaragamuwa Province is famous for its gem mines, wildlife, and waterfalls. Explore the gem city of Ratnapura, visit Udawalawe National Park, and hike through the lush greenery of Kitulgala."
     ]
 ];
@@ -70,7 +70,7 @@ $province_details = $provinces[$province_id] ?? null;
     <base href="/explorer-center/">
 
     <!-- Favicon -->
-    <link href="img/icon.png" rel="icon">
+    <link href="img/icon.webp" rel="icon">
 
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -143,7 +143,7 @@ $province_details = $provinces[$province_id] ?? null;
             <div class="row">
                 <!-- Left Column for Image -->
                 <div class="col-lg-6" style="position: relative; max-height: 720px; margin-bottom: 50px" >
-                    <img src="img/map.png" alt="Sri Lanka Map" style="width: 100%; max-height: 800px;">
+                    <img src="img/map.webp" alt="Sri Lanka Map" style="width: 100%; max-height: 800px;">
 
                     <!-- Dynamic Location Links -->
                     <?php
@@ -271,55 +271,55 @@ $province_details = $provinces[$province_id] ?? null;
                     <div class="mb-5">
                         <h4 class=" text-uppercase mb-4" style="letter-spacing: 5px;">Province</h4>
                         <a class="d-flex align-items-center text-decoration-none bg-white mb-3" href="php/province_details.php?province=province2">
-                            <img class="img-fluid" src="img/destination-2.jpg" alt="" style="max-width: 150px; width: 120px; max-height: 100px;">
+                            <img class="img-fluid" src="img/destination-2.webp" alt="" style="max-width: 150px; width: 120px; max-height: 100px;">
                             <div class="pl-3">
                                 <h6 class="m-1">Western Province</h6>
                             </div>
                         </a>
                         <a class="d-flex align-items-center text-decoration-none bg-white mb-3" href="php/province_details.php?province=province1">
-                            <img class="img-fluid" src="img/destination-1.jpg" alt="" style="max-width: 150px; width: 120px; max-height: 100px;">
+                            <img class="img-fluid" src="img/destination-1.webp" alt="" style="max-width: 150px; width: 120px; max-height: 100px;">
                             <div class="pl-3">
                                 <h6 class="m-1">Southern Province</h6>
                             </div>
                         </a>
                         <a class="d-flex align-items-center text-decoration-none bg-white mb-3" href="php/province_details.php?province=province3">
-                            <img class="img-fluid" src="img/destination-6.jpg" alt="" style="max-width: 150px; width: 120px; max-height: 100px;">
+                            <img class="img-fluid" src="img/destination-6.webp" alt="" style="max-width: 150px; width: 120px; max-height: 100px;">
                             <div class="pl-3">
                                 <h6 class="m-1">Central Province</h6>
                             </div>
                         </a>
                         <a class="d-flex align-items-center text-decoration-none bg-white mb-3" href="php/province_details.php?province=province4">
-                            <img class="img-fluid" src="img/destination-4.jpg" alt="" style="max-width: 150px; width: 120px; max-height: 100px;">
+                            <img class="img-fluid" src="img/destination-4.webp" alt="" style="max-width: 150px; width: 120px; max-height: 100px;">
                             <div class="pl-3">
                                 <h6 class="m-1">Eastern Province</h6>
                             </div>
                         </a>
                         <a class="d-flex align-items-center text-decoration-none bg-white mb-3" href="php/province_details.php?province=province5">
-                            <img class="img-fluid" src="img/destination-5.jpg" alt="" style="max-width: 150px; width: 120px; max-height: 100px;">
+                            <img class="img-fluid" src="img/destination-5.webp" alt="" style="max-width: 150px; width: 120px; max-height: 100px;">
                             <div class="pl-3">
                                 <h6 class="m-1">Northern Province</h6>
                             </div>
                         </a>
                         <a class="d-flex align-items-center text-decoration-none bg-white mb-3" href="php/province_details.php?province=province6">
-                            <img class="img-fluid" src="img/destination-3.jpg" alt="" style="max-width: 150px; width: 120px; max-height: 100px;">
+                            <img class="img-fluid" src="img/destination-3.webp" alt="" style="max-width: 150px; width: 120px; max-height: 100px;">
                             <div class="pl-3">
                                 <h6 class="m-1">North Western Province</h6>
                             </div>
                         </a>
                         <a class="d-flex align-items-center text-decoration-none bg-white mb-3" href="php/province_details.php?province=province7">
-                            <img class="img-fluid" src="img/destination-7.jpg" alt="" style="max-width: 150px; width: 120px; max-height: 100px;">
+                            <img class="img-fluid" src="img/destination-7.webp" alt="" style="max-width: 150px; width: 120px; max-height: 100px;">
                             <div class="pl-3">
                                 <h6 class="m-1">North Central Province</h6>
                             </div>
                         </a>
                         <a class="d-flex align-items-center text-decoration-none bg-white mb-3" href="php/province_details.php?province=province8">
-                            <img class="img-fluid" src="img/destination-8.jpg" alt="" style="max-width: 150px; width: 120px; max-height: 100px;">
+                            <img class="img-fluid" src="img/destination-8.webp" alt="" style="max-width: 150px; width: 120px; max-height: 100px;">
                             <div class="pl-3">
                                 <h6 class="m-1">Uva Province</h6>
                             </div>
                         </a>
                         <a class="d-flex align-items-center text-decoration-none bg-white mb-3" href="php/province_details.php?province=province9">
-                            <img class="img-fluid" src="img/destination-9.jpg" alt="" style="max-width: 150px; width: 120px; max-height: 100px;">
+                            <img class="img-fluid" src="img/destination-9.webp" alt="" style="max-width: 150px; width: 120px; max-height: 100px;">
                             <div class="pl-3">
                                 <h6 class="m-1">Sabaragamuwa Province</h6>
                             </div>

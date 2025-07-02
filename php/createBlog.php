@@ -74,7 +74,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <base href="/explorer-center/">
 
     <!-- Favicon -->
-    <link href="img/icon.png" rel="icon">
+    <link href="img/icon.webp" rel="icon">
 
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -127,7 +127,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             </div>
                             <div class="text-center mb-2">
                                 <div class="img-upload-container" id="img-upload-container">
-                                    <img src="img/upload.png" alt="Upload Image" class="img-upload-bg">
+                                    <img src="img/upload.webp" alt="Upload Image" class="img-upload-bg">
                                     <input type="file" id="img-upload-input" class="img-upload-input" accept="image/*" name="image" onchange="previewImage(event)">
                                     <div class="upload-text">Click or Drag to Upload</div>
                                 </div>

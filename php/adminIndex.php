@@ -57,7 +57,7 @@ if (isset($_GET['delete'])) {
     <base href="/explorer-center/">
 
     <!-- Favicon -->
-    <link href="img/icon.png" rel="icon">
+    <link href="img/icon.webp" rel="icon">
 
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -79,10 +79,10 @@ if (isset($_GET['delete'])) {
     <!-- User Information -->
     <div>
         <a href="php/adminDashboard.php">
-            <img class="dashboardImg" src="img/dashboard.png" alt="dashboard Icon">
+            <img class="dashboardImg" src="img/dashboard.webp" alt="dashboard Icon">
         </a>
         <div class="user-info">
-            <img src="img/user.png" alt="User Icon">
+            <img src="img/user.webp" alt="User Icon">
             <div>
                 <h5>Hello, <?= htmlspecialchars($_SESSION['username']); ?></h5>
                 <a href="php/logout.php" onclick="return confirmLogout()">Logout</a>

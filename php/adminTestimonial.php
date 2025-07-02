@@ -115,10 +115,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['add_review'])) {
     <!-- User Information -->
     <div>
         <a href="php/adminDashboard.php">
-            <img class="dashboardImg" src="img/dashboard.png" alt="dashboard Icon">
+            <img class="dashboardImg" src="img/dashboard.webp" alt="dashboard Icon">
         </a>
         <div class="user-info">
-            <img src="img/user.png" alt="User Icon">
+            <img src="img/user.webp" alt="User Icon">
             <div>
                 <h5>Hello, <?= htmlspecialchars($_SESSION['username']); ?></h5>
                 <a href="php/logout.php" onclick="return confirmLogout()">Logout</a>
@@ -138,7 +138,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['add_review'])) {
                 <?php
                 if ($result && mysqli_num_rows($result) > 0) {
                     while ($row = mysqli_fetch_assoc($result)) {
-                        $imagePath = !empty($row['photo_url']) ? htmlspecialchars($row['photo_url']) : 'img/placeholder.jpg';
+                        $imagePath = !empty($row['photo_url']) ? htmlspecialchars($row['photo_url']) : 'img/placeholder.webp';
                         echo "
             <div class='text-center pb-4'>
                 <img class='img-fluid mx-auto' src='$imagePath' style='width: 100px; height: 100px;'>
