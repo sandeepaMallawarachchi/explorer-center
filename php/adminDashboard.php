@@ -49,7 +49,8 @@ if (!isset($_SESSION['user_id'])) {
 
 <style>
     .destination-item {
-        height: 300px; /* Ensures all cards are of the same height */
+        height: 300px;
+        /* Ensures all cards are of the same height */
         position: relative;
         overflow: hidden;
     }
@@ -66,7 +67,8 @@ if (!isset($_SESSION['user_id'])) {
         left: 0;
         width: 100%;
         height: 100%;
-        background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent overlay */
+        background-color: rgba(0, 0, 0, 0.5);
+        /* Semi-transparent overlay */
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -76,10 +78,12 @@ if (!isset($_SESSION['user_id'])) {
     }
 
     .destination-item:hover .destination-overlay {
-        opacity: 1; /* Show overlay on hover */
+        opacity: 1;
+        /* Show overlay on hover */
     }
 
-    .destination-overlay h5, .destination-overlay span {
+    .destination-overlay h5,
+    .destination-overlay span {
         margin: 0;
         text-align: center;
     }
@@ -111,20 +115,20 @@ if (!isset($_SESSION['user_id'])) {
                 <h1>Dashboard</h1>
             </div>
             <div class="row">
-            <div class="col-lg-4 col-md-6 mb-4">
-                <div class="destination-item position-relative overflow-hidden mb-2" style="height: 300px;">
-                    <img class="img-fluid" src="img/tour.jpg" alt="" style="object-fit: cover; width: 100%; height: 78%;">
-                    <div class="destination-overlay text-white text-decoration-none">
-                      <h5 class="text-white">Home Page</h5>
-                       <span>Tours & About Us</span>
-                       <div class="mt-3">
-                          <a href="php/adminIndex.php" class="btn btn-primary btn-sm mx-2">Tours</a>
-                          <a href="php/adminAbout.php" class="btn btn-secondary btn-sm mx-2">About Us</a>
-                      </div>
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="destination-item position-relative overflow-hidden mb-2" style="height: 300px;">
+                        <img class="img-fluid" src="img/tour.jpg" alt="" style="object-fit: cover; width: 100%; height: 78%;">
+                        <div class="destination-overlay text-white text-decoration-none">
+                            <h5 class="text-white">Home Page</h5>
+                            <span>Tours & About Us</span>
+                            <div class="mt-3">
+                                <a href="php/adminIndex.php" class="btn btn-primary btn-sm mx-2">Tours</a>
+                                <a href="php/adminAbout.php" class="btn btn-secondary btn-sm mx-2">About Us</a>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
-                <div class="col-lg-4 col-md-6 mb-4">
+                <!-- <div class="col-lg-4 col-md-6 mb-4">
                     <div class="destination-item position-relative overflow-hidden mb-2" style="height: 300px;">
                         <img class="img-fluid" src="img/explo.jpg" alt="" style="object-fit: cover; width: 100%; height: 78%;">
                         <a class="destination-overlay text-white text-decoration-none" href="exploration.html">
@@ -132,8 +136,8 @@ if (!isset($_SESSION['user_id'])) {
                             <span>Biodiverse wonders, thrilling safari adventures.</span>
                         </a>
                     </div>
-                </div>
-                <div class="col-lg-4 col-md-6 mb-4">
+                </div> -->
+                <!-- <div class="col-lg-4 col-md-6 mb-4">
 
                     <div class="destination-item position-relative overflow-hidden mb-2" style="height: 300px;">
                         <img class="img-fluid" src="img/experience.jpg" alt="" style="object-fit: cover; width: 100%; height: 78%;">
@@ -142,7 +146,7 @@ if (!isset($_SESSION['user_id'])) {
                             <span>Rich heritage, ancient marvels preserved.</span>
                         </a>
                     </div>
-                </div>
+                </div> -->
                 <div class="col-lg-4 col-md-6 mb-4">
                     <div class="destination-item position-relative overflow-hidden mb-2" style="height: 300px;">
                         <img class="img-fluid" src="img/blog.jpg" alt="" style="object-fit: cover; width: 100%; height: 78%;">
