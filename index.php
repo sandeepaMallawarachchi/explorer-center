@@ -27,7 +27,7 @@ $about_us = $about_us_result->fetch_assoc();
     <meta content="Free HTML Templates" name="description">
 
     <!-- Base URL -->
-    <base href="/explorer-center/">
+    <!-- <base href="/explorer-center/"> -->
 
     <!-- Favicon -->
     <link href="img/icon.webp" rel="icon">
