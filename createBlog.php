@@ -71,7 +71,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <meta content="Free HTML Templates" name="description">
 
     <!-- Base URL -->
-    <base href="/explorer-center/">
+    <!-- <base href="/explorer-center/"> -->
 
     <!-- Favicon -->
     <link href="img/icon.webp" rel="icon">
