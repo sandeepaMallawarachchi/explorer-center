@@ -21,6 +21,6 @@ function editNews(news) {
 function deleteNews(newsId) {
     if (confirm('Are you sure you want to delete this news?')) {
         // Redirect to the delete handler
-        window.location.href = `php/adminNews.php?action=delete&id=${newsId}`;
+        window.location.href = `/explorer-center/adminNews.php?action=delete&id=${newsId}`;
     }
 }

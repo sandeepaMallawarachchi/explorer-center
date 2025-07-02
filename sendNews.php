@@ -105,7 +105,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                     <div class='category'>Category: {$news['category']}</div>
                                     <div>{$news['content']}</div>
                                     <div><img src='{$news['image_url']}' alt='Image'></div>
-                                    <div>Read more: <a href='http://localhost/explorer-center/php/allNews.php'>click here</a></div>
+                                    <div>Read more: <a href='http://localhost/explorer-center//explorer-center/allNews.php'>click here</a></div>
                                 </div>
                             </body>
                         </html>

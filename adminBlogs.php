@@ -154,14 +154,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['action']) && $_GET['acti
 
     <!-- User Information -->
     <div>
-        <a href="php/adminDashboard.php">
+        <a href="/explorer-center/adminDashboard.php">
             <img class="dashboardImg" src="img/dashboard.webp" alt="dashboard Icon">
         </a>
         <div class="user-info">
             <img src="img/user.webp" alt="User Icon">
             <div>
                 <h5>Hello, <?= htmlspecialchars($_SESSION['username']); ?></h5>
-                <a href="php/logout.php" onclick="return confirmLogout()">Logout</a>
+                <a href="/explorer-center/logout.php" onclick="return confirmLogout()">Logout</a>
             </div>
         </div>
     </div>
@@ -221,7 +221,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['action']) && $_GET['acti
                             <ul class="pagination pagination-lg justify-content-center bg-white mb-0" style="padding: 30px;">
                                 <!-- Previous Button -->
                                 <li class="page-item <?php echo $page <= 1 ? 'disabled' : ''; ?>">
-                                    <a class="page-link" href="php/adminBlogs.php?page=<?php echo $page - 1; ?>" aria-label="Previous">
+                                    <a class="page-link" href="/explorer-center/adminBlogs.php?page=<?php echo $page - 1; ?>" aria-label="Previous">
                                         <span aria-hidden="true">&laquo;</span>
                                         <span class="sr-only">Previous</span>
                                     </a>
@@ -230,13 +230,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['action']) && $_GET['acti
                                 <!-- Page Numbers -->
                                 <?php for ($i = 1; $i <= $totalPages; $i++): ?>
                                     <li class="page-item <?php echo $i == $page ? 'active' : ''; ?>">
-                                        <a class="page-link" href="php/adminBlogs.php?page=<?php echo $i; ?>"><?php echo $i; ?></a>
+                                        <a class="page-link" href="/explorer-center/adminBlogs.php?page=<?php echo $i; ?>"><?php echo $i; ?></a>
                                     </li>
                                 <?php endfor; ?>
 
                                 <!-- Next Button -->
                                 <li class="page-item <?php echo $page >= $totalPages ? 'disabled' : ''; ?>">
-                                    <a class="page-link" href="php/adminBlogs.php?page=<?php echo $page + 1; ?>" aria-label="Next">
+                                    <a class="page-link" href="/explorer-center/adminBlogs.php?page=<?php echo $page + 1; ?>" aria-label="Next">
                                         <span aria-hidden="true">&raquo;</span>
                                         <span class="sr-only">Next</span>
                                     </a>
@@ -261,7 +261,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['action']) && $_GET['acti
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form id="blogForm" method="POST" action="php/adminBlogs.php" enctype="multipart/form-data">
+                    <form id="blogForm" method="POST" action="/explorer-center/adminBlogs.php" enctype="multipart/form-data">
                         <input type="hidden" id="blogId" name="blogId">
                         <div class="control-group mb-2">
                             <input type="text" class="form-control p-4" id="author" name="author" placeholder="Your Name"

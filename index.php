@@ -307,7 +307,7 @@ $about_us = $about_us_result->fetch_assoc();
                 ?>
             </div>
             <div class="text-center mb-3 pb-3">
-                <a href="php/testimonial.php" class="btn btn-primary">All Reviews</a>
+                <a href="/explorer-center/testimonial.php" class="btn btn-primary">All Reviews</a>
             </div>
         </div>
     </div>

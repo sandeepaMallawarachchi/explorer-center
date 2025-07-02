@@ -270,55 +270,55 @@ $province_details = $provinces[$province_id] ?? null;
                     <!-- province Post -->
                     <div class="mb-5">
                         <h4 class=" text-uppercase mb-4" style="letter-spacing: 5px;">Province</h4>
-                        <a class="d-flex align-items-center text-decoration-none bg-white mb-3" href="php/province_details.php?province=province2">
+                        <a class="d-flex align-items-center text-decoration-none bg-white mb-3" href="/explorer-center/province_details.php?province=province2">
                             <img class="img-fluid" src="img/destination-2.webp" alt="" style="max-width: 150px; width: 120px; max-height: 100px;">
                             <div class="pl-3">
                                 <h6 class="m-1">Western Province</h6>
                             </div>
                         </a>
-                        <a class="d-flex align-items-center text-decoration-none bg-white mb-3" href="php/province_details.php?province=province1">
+                        <a class="d-flex align-items-center text-decoration-none bg-white mb-3" href="/explorer-center/province_details.php?province=province1">
                             <img class="img-fluid" src="img/destination-1.webp" alt="" style="max-width: 150px; width: 120px; max-height: 100px;">
                             <div class="pl-3">
                                 <h6 class="m-1">Southern Province</h6>
                             </div>
                         </a>
-                        <a class="d-flex align-items-center text-decoration-none bg-white mb-3" href="php/province_details.php?province=province3">
+                        <a class="d-flex align-items-center text-decoration-none bg-white mb-3" href="/explorer-center/province_details.php?province=province3">
                             <img class="img-fluid" src="img/destination-6.webp" alt="" style="max-width: 150px; width: 120px; max-height: 100px;">
                             <div class="pl-3">
                                 <h6 class="m-1">Central Province</h6>
                             </div>
                         </a>
-                        <a class="d-flex align-items-center text-decoration-none bg-white mb-3" href="php/province_details.php?province=province4">
+                        <a class="d-flex align-items-center text-decoration-none bg-white mb-3" href="/explorer-center/province_details.php?province=province4">
                             <img class="img-fluid" src="img/destination-4.webp" alt="" style="max-width: 150px; width: 120px; max-height: 100px;">
                             <div class="pl-3">
                                 <h6 class="m-1">Eastern Province</h6>
                             </div>
                         </a>
-                        <a class="d-flex align-items-center text-decoration-none bg-white mb-3" href="php/province_details.php?province=province5">
+                        <a class="d-flex align-items-center text-decoration-none bg-white mb-3" href="/explorer-center/province_details.php?province=province5">
                             <img class="img-fluid" src="img/destination-5.webp" alt="" style="max-width: 150px; width: 120px; max-height: 100px;">
                             <div class="pl-3">
                                 <h6 class="m-1">Northern Province</h6>
                             </div>
                         </a>
-                        <a class="d-flex align-items-center text-decoration-none bg-white mb-3" href="php/province_details.php?province=province6">
+                        <a class="d-flex align-items-center text-decoration-none bg-white mb-3" href="/explorer-center/province_details.php?province=province6">
                             <img class="img-fluid" src="img/destination-3.webp" alt="" style="max-width: 150px; width: 120px; max-height: 100px;">
                             <div class="pl-3">
                                 <h6 class="m-1">North Western Province</h6>
                             </div>
                         </a>
-                        <a class="d-flex align-items-center text-decoration-none bg-white mb-3" href="php/province_details.php?province=province7">
+                        <a class="d-flex align-items-center text-decoration-none bg-white mb-3" href="/explorer-center/province_details.php?province=province7">
                             <img class="img-fluid" src="img/destination-7.webp" alt="" style="max-width: 150px; width: 120px; max-height: 100px;">
                             <div class="pl-3">
                                 <h6 class="m-1">North Central Province</h6>
                             </div>
                         </a>
-                        <a class="d-flex align-items-center text-decoration-none bg-white mb-3" href="php/province_details.php?province=province8">
+                        <a class="d-flex align-items-center text-decoration-none bg-white mb-3" href="/explorer-center/province_details.php?province=province8">
                             <img class="img-fluid" src="img/destination-8.webp" alt="" style="max-width: 150px; width: 120px; max-height: 100px;">
                             <div class="pl-3">
                                 <h6 class="m-1">Uva Province</h6>
                             </div>
                         </a>
-                        <a class="d-flex align-items-center text-decoration-none bg-white mb-3" href="php/province_details.php?province=province9">
+                        <a class="d-flex align-items-center text-decoration-none bg-white mb-3" href="/explorer-center/province_details.php?province=province9">
                             <img class="img-fluid" src="img/destination-9.webp" alt="" style="max-width: 150px; width: 120px; max-height: 100px;">
                             <div class="pl-3">
                                 <h6 class="m-1">Sabaragamuwa Province</h6>

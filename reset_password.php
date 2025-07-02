@@ -117,7 +117,7 @@ if (isset($_GET['token'])) {
                             unset($_SESSION['message']);
                         }
                         ?>
-                        <form action="php/reset_password.php?token=<?php echo $token; ?>" method="POST">
+                        <form action="/explorer-center/reset_password.php?token=<?php echo $token; ?>" method="POST">
                             <div class="control-group">
                                 <input type="password" class="form-control p-4" id="new_password" placeholder="New password" name="new_password" required="required" /><br>
                             </div>

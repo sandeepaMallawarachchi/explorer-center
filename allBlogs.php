@@ -109,7 +109,7 @@ $tags = getBlogTags($conn);
                                 $imagePath = !empty($row['image_url']) ? htmlspecialchars($row['image_url']) : 'img/placeholder.webp';
                                 echo "
                                     <div class='col-md-6 mb-4 pb-2'>
-                                        <a href='php/blog.php?id=" . $row['id'] . "' class='text-decoration-none'>
+                                        <a href='/explorer-center/blog.php?id=" . $row['id'] . "' class='text-decoration-none'>
                                         <div class='blog-item'>
                                             <div class='position-relative'>
                                                 <img class='img-fluid w-100' src='$imagePath' alt='Blog Image' style='height: 250px; object-fit: cover;'>
@@ -142,7 +142,7 @@ $tags = getBlogTags($conn);
                             <ul class="pagination pagination-lg justify-content-center bg-white mb-0" style="padding: 30px;">
                                 <!-- Previous Button -->
                                 <li class="page-item <?php echo $page <= 1 ? 'disabled' : ''; ?>">
-                                    <a class="page-link" href="php/allBlogs.php?page=<?php echo $page - 1; ?>" aria-label="Previous">
+                                    <a class="page-link" href="/explorer-center/allBlogs.php?page=<?php echo $page - 1; ?>" aria-label="Previous">
                                         <span aria-hidden="true">&laquo;</span>
                                         <span class="sr-only">Previous</span>
                                     </a>
@@ -151,13 +151,13 @@ $tags = getBlogTags($conn);
                                 <!-- Page Numbers -->
                                 <?php for ($i = 1; $i <= $totalPages; $i++): ?>
                                     <li class="page-item <?php echo $i == $page ? 'active' : ''; ?>">
-                                        <a class="page-link" href="php/allBlogs.php?page=<?php echo $i; ?>"><?php echo $i; ?></a>
+                                        <a class="page-link" href="/explorer-center/allBlogs.php?page=<?php echo $i; ?>"><?php echo $i; ?></a>
                                     </li>
                                 <?php endfor; ?>
 
                                 <!-- Next Button -->
                                 <li class="page-item <?php echo $page >= $totalPages ? 'disabled' : ''; ?>">
-                                    <a class="page-link" href="php/allBlogs.php?page=<?php echo $page + 1; ?>" aria-label="Next">
+                                    <a class="page-link" href="/explorer-center/allBlogs.php?page=<?php echo $page + 1; ?>" aria-label="Next">
                                         <span aria-hidden="true">&raquo;</span>
                                         <span class="sr-only">Next</span>
                                     </a>
@@ -195,7 +195,7 @@ $tags = getBlogTags($conn);
                     <!-- Search Form -->
                     <div class="mb-5">
                         <div class="bg-white" style="padding: 30px;">
-                            <form method="GET" action="php/allBlogs.php">
+                            <form method="GET" action="/explorer-center/allBlogs.php">
                                 <div class="input-group">
                                     <input type="text" name="search" class="form-control p-4" id="searchInput" placeholder="Keyword" value="<?php echo htmlspecialchars($searchKeyword); ?>">
                                     <div class="input-group-append">
@@ -220,7 +220,7 @@ $tags = getBlogTags($conn);
                                         $categoryCount = $row['count'];
                                         ?>
                                         <li class='mb-3 d-flex justify-content-between align-items-center'>
-                                            <a class='text-dark' href='php/allBlogs.php?category=<?= urlencode($categoryName) ?>&search=<?= urlencode($searchKeyword) ?>'>
+                                            <a class='text-dark' href='/explorer-center/allBlogs.php?category=<?= urlencode($categoryName) ?>&search=<?= urlencode($searchKeyword) ?>'>
                                                 <i class='fa fa-angle-right text-primary mr-2'></i><?= $categoryName ?>
                                             </a>
                                             <span class='badge badge-primary badge-pill'><?= $categoryCount ?></span>
@@ -242,7 +242,7 @@ $tags = getBlogTags($conn);
                                 $imagePath = !empty($row['image_url']) ? htmlspecialchars($row['image_url']) : 'img/placeholder.webp';
                                 $formattedDate = date("M d, Y", strtotime($row['date']));
                                 ?>
-                                <a class="d-flex align-items-center text-decoration-none bg-white mb-3" href="php/blog.php?id=<?= $row['id'] ?>">
+                                <a class="d-flex align-items-center text-decoration-none bg-white mb-3" href="/explorer-center/blog.php?id=<?= $row['id'] ?>">
                                     <img class="img-fluid" src="<?= $imagePath ?>" alt="Blog Image" style="width: 120px;">
                                     <div class="pl-3">
                                         <h6 class="m-1"><?= htmlspecialchars($row['topic']) ?></h6>
@@ -261,7 +261,7 @@ $tags = getBlogTags($conn);
                         <div class="d-flex flex-wrap m-n1">
                             <?php if (!empty($tags)): ?>
                                 <?php foreach ($tags as $tag): ?>
-                                    <a href="php/allBlogs.php?search=<?= urlencode($tag) ?>" class="btn btn-light m-1"><?= ucfirst(htmlspecialchars($tag)) ?></a>
+                                    <a href="/explorer-center/allBlogs.php?search=<?= urlencode($tag) ?>" class="btn btn-light m-1"><?= ucfirst(htmlspecialchars($tag)) ?></a>
                                 <?php endforeach; ?>
                             <?php else: ?>
                                 <p>No tags available.</p>

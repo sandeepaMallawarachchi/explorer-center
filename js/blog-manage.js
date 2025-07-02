@@ -22,6 +22,6 @@ function editBlog(blog) {
 function deleteBlog(blogId) {
     if (confirm('Are you sure you want to delete this blog?')) {
         // Redirect to the delete handler
-        window.location.href = `php/adminBlogs.php?action=delete&id=${blogId}`;
+        window.location.href = `/explorer-center/adminBlogs.php?action=delete&id=${blogId}`;
     }
 }

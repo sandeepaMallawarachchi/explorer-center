@@ -3,7 +3,7 @@ $(document).ready(function () {
         const blogId = $(e.relatedTarget).data('id');
         if (blogId) {
             $.ajax({
-                url: '/explorer-center/php/blogModal.php',
+                url: '/explorer-center//explorer-center/blogModal.php',
                 type: 'GET',
                 data: { id: blogId },
                 success: function (response) {

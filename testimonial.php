@@ -243,7 +243,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form id="reviewForm" method="POST" action="php/testimonial.php" enctype="multipart/form-data">
+                    <form id="reviewForm" method="POST" action="/explorer-center/testimonial.php" enctype="multipart/form-data">
                         <div class="text-center mb-2">
                             <div class="img-upload-container" id="img-upload-container">
                                 <img src="img/profilepic.webp" alt="Upload Image" class="img-upload-bg">

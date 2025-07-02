@@ -114,14 +114,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['add_review'])) {
 <body>
     <!-- User Information -->
     <div>
-        <a href="php/adminDashboard.php">
+        <a href="/explorer-center/adminDashboard.php">
             <img class="dashboardImg" src="img/dashboard.webp" alt="dashboard Icon">
         </a>
         <div class="user-info">
             <img src="img/user.webp" alt="User Icon">
             <div>
                 <h5>Hello, <?= htmlspecialchars($_SESSION['username']); ?></h5>
-                <a href="php/logout.php" onclick="return confirmLogout()">Logout</a>
+                <a href="/explorer-center/logout.php" onclick="return confirmLogout()">Logout</a>
             </div>
         </div>
     </div>

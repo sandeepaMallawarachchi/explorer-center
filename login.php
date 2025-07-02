@@ -14,7 +14,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $user = $result->fetch_assoc();
         $_SESSION['user_id'] = $user['id'];
         $_SESSION['username'] = $user['username'];
-        header("Location: /explorer-center/php/adminDashboard.php");
+        header("Location: /explorer-center//explorer-center/adminDashboard.php");
         exit;
     } else {
         $_SESSION['error'] = "Invalid username or password.";
@@ -117,7 +117,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             unset($_SESSION['error']);
                         }
                         ?>
-                        <form action="php/login.php" method="POST">
+                        <form action="/explorer-center/login.php" method="POST">
                             <div class="control-group">
                                 <input type="text" class="form-control p-4" id="username" placeholder="Your username" name="username"
                                     required="required" data-validation-required-message="Please enter your username" />
@@ -130,7 +130,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             </div>
                             <div class="text-center">
                                 <button class="btn btn-primary py-3 px-4" type="submit" id="sendMessageButton">Login</button><br>
-                                <a href="php/forgot_password.php" style="color: rgb(91, 197, 232); text-decoration: none; margin-top: 10px; display: inline-block;">Forgot Password?</a><br>
+                                <a href="/explorer-center/forgot_password.php" style="color: rgb(91, 197, 232); text-decoration: none; margin-top: 10px; display: inline-block;">Forgot Password?</a><br>
                                 <br>
 
                             </div>
