@@ -117,28 +117,24 @@ function showMonthContent(index) {
     document.getElementById("monthContent").innerHTML = monthContent;
 }
 
-function createMonthCards() {
-    const monthsContainer = document.getElementById("monthsContainer");
+function createCalendarView() {
+    const calendarGrid = document.getElementById("calendarGrid");
     monthsData.forEach((month, index) => {
-        const card = document.createElement("div");
-        card.classList.add("month-card");
-        const icon = `<i class="${monthIcons[month.month]}"></i> `;
-        card.innerHTML = `<h3>${icon}${month.month}</h3>`;
-        
-        card.addEventListener("click", () => {
-            document.querySelectorAll('.month-card').forEach(c => c.classList.remove('selected'));
-            card.classList.add('selected');
+        const cell = document.createElement("div");
+        cell.className = "calendar-cell";
+        cell.innerHTML = `<strong>${month.month}</strong>`;
+        cell.addEventListener("click", () => {
+            document.querySelectorAll('.calendar-cell').forEach(c => c.classList.remove('selected'));
+            cell.classList.add('selected');
             showMonthContent(index);
         });
-
         if (index === 0) {
-            card.classList.add('selected');
+            cell.classList.add('selected');
             showMonthContent(index);
         }
-
-        monthsContainer.appendChild(card);
+        calendarGrid.appendChild(cell);
     });
 }
 
-createMonthCards();
+createCalendarView();
 showMonthContent(currentIndex);
