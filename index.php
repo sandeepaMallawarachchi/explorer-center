@@ -25,10 +25,7 @@ $about_us = $about_us_result->fetch_assoc();
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="Free HTML Templates" name="keywords">
     <meta content="Free HTML Templates" name="description">
-
-    <!-- Base URL -->
-    <!-- <!-- <base href="/"> --> -->
-
+    
     <!-- Favicon -->
     <link href="img/icon.webp" rel="icon">
 
