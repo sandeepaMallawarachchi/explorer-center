@@ -1,9 +1,9 @@
 <?php
 // Database configuration
-$host = "localhost"; 
-$username = "root";
-$password = "";
-$dbname = "explorer_center";
+$host = "explorercenter.c0xa4ysyy76b.us-east-1.rds.amazonaws.com";
+$username = "admin";
+$password = "ExplorerCenter123";
+$dbname = "explorercenter";
 
 // Create a connection
 $conn = new mysqli($host, $username, $password, $dbname);

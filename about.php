@@ -24,7 +24,7 @@ $imageUrls = explode(',', $row['image_urls']); // Split the images if they are s
     <base href="/explorer-center/" />
 
     <!-- Favicon -->
-    <link href="img/icon.png" rel="icon" />
+    <link href="img/icon.webp" rel="icon" />
 
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.gstatic.com" />

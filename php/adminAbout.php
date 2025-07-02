@@ -91,7 +91,7 @@ if (isset($_GET['delete'])) {
     <base href="/explorer-center/" />
 
     <!-- Favicon -->
-    <link href="img/icon.png" rel="icon" />
+    <link href="img/icon.webp" rel="icon" />
 
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.gstatic.com" />
@@ -119,22 +119,24 @@ if (isset($_GET['delete'])) {
 
 <body>
 
-    <!-- User Information -->
-    <div>
-        <a href="php/adminDashboard.php">
-            <img class="dashboardImg" src="img/dashboard.png" alt="dashboard Icon">
-        </a>
-        <div class="user-info">
-            <img src="img/user.png" alt="User Icon">
-            <div>
-                <h5>Hello, <?= htmlspecialchars($_SESSION['username']); ?></h5>
-                <a href="php/logout.php" onclick="return confirmLogout()">Logout</a>
-            </div>
-        </div>
-    </div>
 
     <body>
-        <div class="container py-5">
+
+        <!-- User Information -->
+        <div>
+            <a href="php/adminDashboard.php">
+                <img class="dashboardImg" src="img/dashboard.webp" alt="dashboard Icon">
+            </a>
+            <div class="user-info">
+                <img src="img/user.webp" alt="User Icon">
+                <div>
+                    <h5>Hello, <?= htmlspecialchars($_SESSION['username']); ?></h5>
+                    <a href="php/logout.php" onclick="return confirmLogout()">Logout</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="container py-5 mt-5">
             <h1 class="text-center mb-4">Manage About Us Section</h1>
 
             <form method="POST" class="mb-4 p-4 bg-white rounded shadow-sm">

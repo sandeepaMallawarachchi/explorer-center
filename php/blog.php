@@ -55,7 +55,7 @@ $tags = getBlogTags($conn);
     <base href="/explorer-center/">
 
     <!-- Favicon -->
-    <link href="img/icon.png" rel="icon">
+    <link href="img/icon.webp" rel="icon">
 
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -184,7 +184,7 @@ $tags = getBlogTags($conn);
                         <?php
                         if ($result && mysqli_num_rows($result) > 0) {
                             while ($row = mysqli_fetch_assoc($result)) {
-                                $imagePath = !empty($row['image_url']) ? htmlspecialchars($row['image_url']) : 'img/placeholder.jpg';
+                                $imagePath = !empty($row['image_url']) ? htmlspecialchars($row['image_url']) : 'img/placeholder.webp';
                                 echo "
                                 <div class='blog-item'>
                                     <div class='position-relative'>
@@ -218,7 +218,7 @@ $tags = getBlogTags($conn);
                             while ($comment = mysqli_fetch_assoc($comments_result)) {
                                 echo "
                                 <div class='media mb-4'>
-                                    <img src='img/user.jpg' alt='Image' class='img-fluid mr-3 mt-1' style='width: 45px;'>
+                                    <img src='img/user.webp' alt='Image' class='img-fluid mr-3 mt-1' style='width: 45px;'>
                                     <div class='media-body'>
                                         <h6>" . htmlspecialchars($comment['name']) . " <small><i>" . date("d M Y, h:i A", strtotime($comment['date'])) . "</i></small></h6>
                                         <p>" . htmlspecialchars($comment['message']) . "</p>
@@ -258,8 +258,8 @@ $tags = getBlogTags($conn);
 
                 <div class="col-lg-4 mt-5 mt-lg-0">
                     <!-- Author Bio -->
-                    <div class="d-flex flex-column text-center bg-white mb-5 py-5 px-4">
-                        <img src="img/user.jpg" class="img-fluid mx-auto mb-3" style="width: 100px;">
+                    <!-- <div class="d-flex flex-column text-center bg-white mb-5 py-5 px-4">
+                        <img src="img/user.webp" class="img-fluid mx-auto mb-3" style="width: 100px;">
                         <h3 class="text-primary mb-3">John Doe</h3>
                         <p>Conset elitr erat vero dolor ipsum et diam, eos dolor lorem, ipsum sit no ut est ipsum erat kasd amet elitr</p>
                         <div class="d-flex justify-content-center">
@@ -279,7 +279,7 @@ $tags = getBlogTags($conn);
                                 <i class="fab fa-youtube"></i>
                             </a>
                         </div>
-                    </div>
+                    </div> -->
 
                     <!-- Search Form -->
                     <div class="mb-5">
@@ -328,7 +328,7 @@ $tags = getBlogTags($conn);
                         <?php if ($recentPostsResult && mysqli_num_rows($recentPostsResult) > 0): ?>
                             <?php while ($row = mysqli_fetch_assoc($recentPostsResult)): ?>
                                 <?php
-                                $imagePath = !empty($row['image_url']) ? htmlspecialchars($row['image_url']) : 'img/placeholder.jpg';
+                                $imagePath = !empty($row['image_url']) ? htmlspecialchars($row['image_url']) : 'img/placeholder.webp';
                                 $formattedDate = date("M d, Y", strtotime($row['date']));
                                 ?>
                                 <a class="d-flex align-items-center text-decoration-none bg-white mb-3" href="php/blog.php?id=<?= $row['id'] ?>">

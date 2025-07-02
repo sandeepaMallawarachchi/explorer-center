@@ -70,7 +70,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <base href="/explorer-center/">
 
     <!-- Favicon -->
-    <link href="img/icon.png" rel="icon">
+    <link href="img/icon.webp" rel="icon">
 
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -210,7 +210,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <?php
                 if ($result && mysqli_num_rows($result) > 0) {
                     while ($row = mysqli_fetch_assoc($result)) {
-                        $imagePath = !empty($row['photo_url']) ? htmlspecialchars($row['photo_url']) : 'img/placeholder.jpg';
+                        $imagePath = !empty($row['photo_url']) ? htmlspecialchars($row['photo_url']) : 'img/placeholder.webp';
                         echo "
                         <div class='text-center pb-4'>
                             <img class='img-fluid mx-auto' src='$imagePath' style='width: 100px; height: 100px;'>
@@ -246,7 +246,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     <form id="reviewForm" method="POST" action="php/testimonial.php" enctype="multipart/form-data">
                         <div class="text-center mb-2">
                             <div class="img-upload-container" id="img-upload-container">
-                                <img src="img/profilepic.jpg" alt="Upload Image" class="img-upload-bg">
+                                <img src="img/profilepic.webp" alt="Upload Image" class="img-upload-bg">
                                 <input type="file" id="image_url" class="img-upload-input" accept="image/*" name="image" onchange="previewImage(event)">
                                 <div class="upload-text">Click or Drag to Upload</div>
                             </div>

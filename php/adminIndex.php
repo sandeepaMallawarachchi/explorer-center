@@ -57,7 +57,7 @@ if (isset($_GET['delete'])) {
     <base href="/explorer-center/">
 
     <!-- Favicon -->
-    <link href="img/icon.png" rel="icon">
+    <link href="img/icon.webp" rel="icon">
 
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -74,22 +74,24 @@ if (isset($_GET['delete'])) {
     <link href="css/style.css" rel="stylesheet">
 </head>
 
-<!-- User Information -->
-<div>
-    <a href="php/adminDashboard.php">
-        <img class="dashboardImg" src="img/dashboard.png" alt="dashboard Icon">
-    </a>
-    <div class="user-info">
-        <img src="img/user.png" alt="User Icon">
-        <div>
-            <h5>Hello, <?= htmlspecialchars($_SESSION['username']); ?></h5>
-            <a href="php/logout.php" onclick="return confirmLogout()">Logout</a>
+<body>
+
+    <!-- User Information -->
+    <div>
+        <a href="php/adminDashboard.php">
+            <img class="dashboardImg" src="img/dashboard.webp" alt="dashboard Icon">
+        </a>
+        <div class="user-info">
+            <img src="img/user.webp" alt="User Icon">
+            <div>
+                <h5>Hello, <?= htmlspecialchars($_SESSION['username']); ?></h5>
+                <a href="php/logout.php" onclick="return confirmLogout()">Logout</a>
+            </div>
         </div>
     </div>
-</div>
 
-<body>
-    <div class="container py-5" style="background-color: rgba(255, 255, 255, 0.9); border-radius: 10px;">
+
+    <div class="container py-5 mt-5" style="background-color: rgba(255, 255, 255, 0.9); border-radius: 10px;">
         <div class="text-center mb-4">
             <h6 class="text-primary text-uppercase" style="letter-spacing: 5px;">Tours</h6>
             <h1>Manage Tours</h1>
@@ -155,6 +157,23 @@ if (isset($_GET['delete'])) {
 
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Footer Start -->
+    <div id="footer"></div>
+    <script>
+        fetch("components/footer.html")
+            .then((response) => response.text())
+            .then((data) => {
+                const tempDiv = document.createElement("div");
+                tempDiv.innerHTML = data;
+                const template = tempDiv.querySelector("template");
+                document
+                    .getElementById("footer")
+                    .appendChild(template.content.cloneNode(true));
+            })
+            .catch((error) => console.error("Error loading footer:", error));
+    </script>
+    <!-- Footer End -->
 </body>
 
 </html>

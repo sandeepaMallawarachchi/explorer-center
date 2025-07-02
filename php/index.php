@@ -30,7 +30,7 @@ $about_us = $about_us_result->fetch_assoc();
     <base href="/explorer-center/">
 
     <!-- Favicon -->
-    <link href="img/icon.png" rel="icon">
+    <link href="img/icon.webp" rel="icon">
 
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -84,7 +84,7 @@ $about_us = $about_us_result->fetch_assoc();
         <div id="header-carousel" class="carousel slide" data-ride="carousel">
             <div class="carousel-inner">
                 <div class="carousel-item active">
-                    <img class="w-100" src="img/carousel-2.jpg" alt="Image">
+                    <img class="w-100" src="img/carousel-2.webp" alt="Image">
                     <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
                         <div class="p-3" style="max-width: 900px;">
                             <h4 class="text-white text-uppercase mb-md-3">A Paradise Unveiled</h4>
@@ -94,7 +94,7 @@ $about_us = $about_us_result->fetch_assoc();
                     </div>
                 </div>
                 <div class="carousel-item">
-                    <img class="w-100" src="img/carousel-1.jpg" alt="Image">
+                    <img class="w-100" src="img/carousel-1.webp" alt="Image">
                     <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
                         <div class="p-3" style="max-width: 900px;">
                             <h4 class="text-white text-uppercase mb-md-3">Magic of Ceylon</h4>
@@ -104,7 +104,7 @@ $about_us = $about_us_result->fetch_assoc();
                     </div>
                 </div>
                 <div class="carousel-item">
-                    <img class="w-100" src="img/carousel-3.jpg" alt="Image">
+                    <img class="w-100" src="img/carousel-3.webp" alt="Image">
                     <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
                         <div class="p-3" style="max-width: 900px;">
                             <h4 class="text-white text-uppercase mb-md-3">Land of Ancient Glory</h4>
@@ -114,7 +114,7 @@ $about_us = $about_us_result->fetch_assoc();
                     </div>
                 </div>
                 <div class="carousel-item">
-                    <img class="w-100" src="img/carousel-4.jpg" alt="Image">
+                    <img class="w-100" src="img/carousel-4.webp" alt="Image">
                     <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
                         <div class="p-3" style="max-width: 900px; max-height: 1080px;">
                             <h4 class="text-white text-uppercase mb-md-3">Serenity Awaits</h4>
@@ -151,10 +151,10 @@ $about_us = $about_us_result->fetch_assoc();
                         <p><?= nl2br($about_us['description']) ?></p>
                         <div class="row mb-4">
                             <div class="col-6">
-                                <img class="img-fluid" src="<?= $about_us['image_1'] ?>" alt="" />
+                                <img class="about-img" src="<?= $about_us['image_1'] ?>" alt="" />
                             </div>
                             <div class="col-6">
-                                <img class="img-fluid" src="<?= $about_us['image_2'] ?>" alt="" />
+                                <img class="about-img" src="<?= $about_us['image_2'] ?>" alt="" />
                             </div>
                         </div>
                         <a href="" class="btn btn-primary mt-1">Book Now</a>
@@ -290,7 +290,7 @@ $about_us = $about_us_result->fetch_assoc();
                 <?php
                 if ($result && mysqli_num_rows($result) > 0) {
                     while ($row = mysqli_fetch_assoc($result)) {
-                        $imagePath = !empty($row['photo_url']) ? htmlspecialchars($row['photo_url']) : 'img/placeholder.jpg';
+                        $imagePath = !empty($row['photo_url']) ? htmlspecialchars($row['photo_url']) : 'img/placeholder.webp';
                         echo "
                         <div class='text-center pb-4'>
                             <img class='img-fluid mx-auto' src='$imagePath' style='width: 100px; height: 100px;'>
@@ -325,7 +325,7 @@ $about_us = $about_us_result->fetch_assoc();
                 <div class="col-lg-4 col-md-6 mb-4 pb-2">
                     <div class="blog-item">
                         <div class="position-relative">
-                            <img class="img-fluid w-100" src="img/blog-1.jpg" alt="">
+                            <img class="img-fluid w-100" src="img/blog-1.webp" alt="">
                             <div class="blog-date">
                                 <h6 class="font-weight-bold mb-n1">01</h6>
                                 <small class="text-white text-uppercase">Jan</small>
@@ -344,7 +344,7 @@ $about_us = $about_us_result->fetch_assoc();
                 <div class="col-lg-4 col-md-6 mb-4 pb-2">
                     <div class="blog-item">
                         <div class="position-relative">
-                            <img class="img-fluid w-100" src="img/blog-2.jpg" alt="">
+                            <img class="img-fluid w-100" src="img/blog-2.webp" alt="">
                             <div class="blog-date">
                                 <h6 class="font-weight-bold mb-n1">01</h6>
                                 <small class="text-white text-uppercase">Jan</small>
@@ -363,7 +363,7 @@ $about_us = $about_us_result->fetch_assoc();
                 <div class="col-lg-4 col-md-6 mb-4 pb-2">
                     <div class="blog-item">
                         <div class="position-relative">
-                            <img class="img-fluid w-100" src="img/blog-3.jpg" alt="">
+                            <img class="img-fluid w-100" src="img/blog-3.webp" alt="">
                             <div class="blog-date">
                                 <h6 class="font-weight-bold mb-n1">01</h6>
                                 <small class="text-white text-uppercase">Jan</small>

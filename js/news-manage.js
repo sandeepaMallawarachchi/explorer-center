@@ -11,7 +11,7 @@ function editNews(news) {
         currentImage.src = news.image_url; // Display current image
         currentImage.style.display = 'block';
     } else {
-        currentImage.src = 'img/upload.png'; // Default placeholder
+        currentImage.src = 'img/upload.webp'; // Default placeholder
     }
 
     // Open the modal

@@ -115,10 +115,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['add_review'])) {
     <!-- User Information -->
     <div>
         <a href="php/adminDashboard.php">
-            <img class="dashboardImg" src="img/dashboard.png" alt="dashboard Icon">
+            <img class="dashboardImg" src="img/dashboard.webp" alt="dashboard Icon">
         </a>
         <div class="user-info">
-            <img src="img/user.png" alt="User Icon">
+            <img src="img/user.webp" alt="User Icon">
             <div>
                 <h5>Hello, <?= htmlspecialchars($_SESSION['username']); ?></h5>
                 <a href="php/logout.php" onclick="return confirmLogout()">Logout</a>
@@ -133,13 +133,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['add_review'])) {
                 <h6 class="text-primary text-uppercase" style="letter-spacing: 5px;">Testimonial</h6>
                 <h1>What Say Our Clients</h1>
             </div>
-           
+
             <div class="owl-carousel testimonial-carousel">
-    <?php
-    if ($result && mysqli_num_rows($result) > 0) {
-        while ($row = mysqli_fetch_assoc($result)) {
-            $imagePath = !empty($row['photo_url']) ? htmlspecialchars($row['photo_url']) : 'img/placeholder.jpg';
-            echo "
+                <?php
+                if ($result && mysqli_num_rows($result) > 0) {
+                    while ($row = mysqli_fetch_assoc($result)) {
+                        $imagePath = !empty($row['photo_url']) ? htmlspecialchars($row['photo_url']) : 'img/placeholder.webp';
+                        echo "
             <div class='text-center pb-4'>
                 <img class='img-fluid mx-auto' src='$imagePath' style='width: 100px; height: 100px;'>
                 <div class='testimonial-text bg-white p-4 mt-n5'>
@@ -152,41 +152,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['add_review'])) {
                     </form>
                 </div>
             </div>";
-        }
-    } else {
-        echo "<p>No reviews found.</p>";
-    }
-    ?>
-</div>
+                    }
+                } else {
+                    echo "<p>No reviews found.</p>";
+                }
+                ?>
+            </div>
 
 
         </div>
     </div>
     <!-- Testimonial End -->
-
-
- 
-
-    <!-- Footer Start -->
-    <div id="footer"></div>
-
-    <script>
-        fetch('components/footer.html')
-            .then(response => response.text())
-            .then(data => {
-                const tempDiv = document.createElement('div');
-                tempDiv.innerHTML = data;
-                const template = tempDiv.querySelector('template');
-                document.getElementById('footer').appendChild(template.content.cloneNode(true));
-            })
-            .catch(error => console.error('Error loading footer:', error));
-    </script>
-    <!-- Footer End -->
-
-
-    <!-- Back to Top -->
-    <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="fa fa-angle-double-up"></i></a>
-
 
     <!-- JavaScript Libraries -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>

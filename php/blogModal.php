@@ -8,7 +8,7 @@ if (isset($_GET['id'])) {
 
     if ($result && mysqli_num_rows($result) > 0) {
         $row = mysqli_fetch_assoc($result);
-        $imagePath = !empty($row['image_url']) ? htmlspecialchars($row['image_url']) : 'img/placeholder.jpg';
+        $imagePath = !empty($row['image_url']) ? htmlspecialchars($row['image_url']) : 'img/placeholder.webp';
         echo "
         <div class='text-center'>
             <img src='$imagePath' alt='Blog Image' class='img-fluid mb-3'>
