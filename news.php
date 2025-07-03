@@ -1,5 +1,5 @@
 <?php
-include('news_helpers.php');
+include('news_helper.php');
 
 // Check if news ID is valid
 if (isset($_GET['id'])) {
