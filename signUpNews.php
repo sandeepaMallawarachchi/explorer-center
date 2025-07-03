@@ -14,7 +14,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if ($checkStmt->num_rows > 0) {
             echo "<script>
                 alert('You are already signed up!');
-                window.location.href = '//allNews.php';
+                window.location.href = '/allNews.php';
             </script>";
         } else {
             $checkStmt->close();
