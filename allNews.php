@@ -109,21 +109,21 @@ $tags = getNewsTags($conn);
                                 $imagePath = !empty($row['image_url']) ? htmlspecialchars($row['image_url']) : 'img/placeholder.webp';
                                 echo "
                                 <div class='col-md-6 mb-4 pb-2'>
-                                    <div class='blog-item'>
-                                        <div class='position-relative'>
-                                            <img class='img-fluid w-100' src='$imagePath' alt='News Image' style='max-height: 350px; object-fit: cover;'>
-                                            <div class='blog-date'>
-                                                <h6 class='font-weight-bold mb-n1'>" . date("d", strtotime($row['date'])) . "</h6>
-                                                <small class='text-white text-uppercase'>" . date("M", strtotime($row['date'])) . "</small>
+                                    <a href='/signUpNews.php?id=" . $row['id'] . "' class='text-decoration-none'>
+                                        <div class='blog-item'>
+                                            <div class='position-relative'>
+                                                <img class='img-fluid w-100' src='$imagePath' alt='News Image' style='max-height: 350px; object-fit: cover;'>
+                                                <div class='blog-date'>
+                                                    <h6 class='font-weight-bold mb-n1'>" . date("d", strtotime($row['date'])) . "</h6>
+                                                    <small class='text-white text-uppercase'>" . date("M", strtotime($row['date'])) . "</small>
+                                                </div>
+                                            </div>
+                                           <div class='bg-white p-4'>
+                                                <span class='text-primary text-uppercase text-decoration-none'>" . htmlspecialchars($row['category']) . "</span>
+                                                <h5 class='m-0'>" . htmlspecialchars($row['topic']) . "</h5>
                                             </div>
                                         </div>
-                                        <div class='bg-white p-4'>
-                                            <div class='d-flex mb-2'>
-                                                <a class='text-primary text-uppercase text-decoration-none' href='#'>" . htmlspecialchars($row['category']) . "</a>
-                                            </div>
-                                            <a class='h5 m-0 text-decoration-none' href='/news.php?id=" . $row['id'] . "'>" . htmlspecialchars($row['topic']) . "</a>
-                                        </div>
-                                    </div>
+                                    </a>
                                 </div>";
                             }
                         } else {
@@ -180,7 +180,7 @@ $tags = getNewsTags($conn);
                             </form>
                         </div>
                     </div>
-                    
+
                 </div>
             </div>
         </div>
