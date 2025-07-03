@@ -109,7 +109,7 @@ $tags = getNewsTags($conn);
                                 $imagePath = !empty($row['image_url']) ? htmlspecialchars($row['image_url']) : 'img/placeholder.webp';
                                 echo "
                                 <div class='col-md-6 mb-4 pb-2'>
-                                    <a href='/signUpNews.php?id=" . $row['id'] . "' class='text-decoration-none'>
+                                    <a href='/news.php?id=" . $row['id'] . "' class='text-decoration-none'>
                                         <div class='blog-item'>
                                             <div class='position-relative'>
                                                 <img class='img-fluid w-100' src='$imagePath' alt='News Image' style='max-height: 350px; object-fit: cover;'>
