@@ -36,9 +36,9 @@ if (isset($_GET['id'])) {
 $searchKeyword = isset($_GET['search']) ? $_GET['search'] : '';
 
 // Fetch categories and recent news
-$categoryResult = getBlogCategories($conn);
-$recentPostsResult = getRecentPosts($conn);
-$tags = getBlogTags($conn);
+$categoryResult = getNewsCategories($conn);
+$recentPostsResult = getRecentNews($conn);
+$tags = getNewsTags($conn);
 ?>
 
 <!DOCTYPE html>
@@ -109,11 +109,11 @@ $tags = getBlogTags($conn);
     <div class="container-fluid page-header">
         <div class="container">
             <div class="d-flex flex-column align-items-center justify-content-center" style="min-height: 400px">
-                <h3 class="display-4 text-white text-uppercase">Blog Detail</h3>
+                <h3 class="display-4 text-white text-uppercase">News Detail</h3>
                 <div class="d-inline-flex text-white">
                     <p class="m-0 text-uppercase"><a class="text-white" href="">Home</a></p>
                     <i class="fa fa-angle-double-right pt-1 px-3"></i>
-                    <p class="m-0 text-uppercase">Blog Detail</p>
+                    <p class="m-0 text-uppercase">News Detail</p>
                 </div>
             </div>
         </div>
@@ -204,7 +204,7 @@ $tags = getBlogTags($conn);
                         }
                         ?>
                     </div>
-                    <!-- Blog Detail End -->
+                    <!-- News Detail End -->
 
                     <!-- Comment List Start -->
                     
@@ -339,7 +339,7 @@ $tags = getBlogTags($conn);
             </div>
         </div>
     </div>
-    <!-- Blog End -->
+    <!-- News End -->
 
 
     <!-- Footer Start -->
